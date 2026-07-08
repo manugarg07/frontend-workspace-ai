@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: 220 20% 97%;
+  --foreground: 224 71.4% 4.1%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 20% 98%;
+  
+  --secondary: 220 14.3% 90%;
+  --secondary-foreground: 220.9 39.3% 11%;
+  
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  
+  --accent: 262.1 83.3% 95%;
+  --accent-foreground: 262.1 83.3% 40%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  
+  --border: 220 15% 90%;
+  --input: 220 15% 90%;
+  --ring: 262.1 83.3% 57.8%;
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 224 25% 6%;
+  --foreground: 210 20% 98%;
+  
+  --card: 224 25% 9%;
+  --card-foreground: 210 20% 98%;
+  
+  --popover: 224 25% 9%;
+  --popover-foreground: 210 20% 98%;
+  
+  --primary: 262.1 83.3% 65%;
+  --primary-foreground: 224 25% 6%;
+  
+  --secondary: 224 15% 16%;
+  --secondary-foreground: 210 20% 98%;
+  
+  --muted: 224 15% 14%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  
+  --accent: 262.1 83.3% 15%;
+  --accent-foreground: 262.1 83.3% 85%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 20% 98%;
+  
+  --border: 224 15% 16%;
+  --input: 224 15% 16%;
+  --ring: 262.1 83.3% 65%;
+}
+
+/* Reset baseline style changes that default Vite app might have forced */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  text-align: left !important;
+  border-inline: none !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Glassmorphism custom layouts */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass-panel {
+  background: rgba(13, 16, 23, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Radial Glow Backdrops */
+.glow-spot {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, hsla(var(--primary) / 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* Interactive subtle animations */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 20px 2px hsla(var(--primary) / 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-effect:hover::after {
+  opacity: 1;
+}
+
+/* Focus styling */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+}
+
+/* Grid overlay background patterns */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+}
+
+/* Custom shadow sizes */
+.shadow-premium {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .shadow-premium {
+  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.6);
+}
