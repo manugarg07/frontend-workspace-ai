@@ -1,29 +1,24 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import {
   Play,
-  Maximize2,
-  Minimize2,
-  Copy,
-  Download,
-  Upload,
-  Trash2,
-  RefreshCw,
-  Search,
-  CheckCircle2,
   AlertCircle,
-  X,
-  ChevronRight,
-  ArrowLeftRight,
-  FolderOpen
+  Sparkles,
+  Code,
+  Share2,
+  Eye,
+  Cpu,
+  ArrowLeftRight
 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { IconButton } from '@/components/ui/IconButton'
-import { Badge } from '@/components/ui/Badge'
-import { Chip } from '@/components/ui/Chip'
 import { Input } from '@/components/ui/Input'
 import { useToast } from '@/components/ui/Toast'
-import { useTheme } from '@/hooks/useTheme'
+import { CodeEditorWrapper } from '@/components/ui/CodeEditorWrapper'
+import { FileUpload } from '@/components/ui/FileUpload'
+import { Toolbar } from '@/components/ui/Toolbar'
+import { ResultPanel } from '@/components/ui/ResultPanel'
+import { ToolLayout } from '@/components/common/ToolLayout'
+import type { OptionTab } from '@/components/common/ToolLayout'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 
@@ -117,7 +112,6 @@ const SAMPLES = {
   }
 }
 
-// Spacing selection definitions
 const SPACING_OPTIONS = [
   { id: '2', label: '2 Spaces', value: 2 },
   { id: '4', label: '4 Spaces', value: 4 },
@@ -126,7 +120,6 @@ const SPACING_OPTIONS = [
 
 export function JSONFormatterPro() {
   const { toast } = useToast()
-  const { resolvedTheme } = useTheme()
 
   // State Management
   const [inputVal, setInputVal] = useState('')
@@ -141,37 +134,6 @@ export function JSONFormatterPro() {
     snippet: string
   } | null>(null)
   const [processingTime, setProcessingTime] = useState<number | null>(null)
-  const [isFullscreen, setIsFullscreen] = useState(false)
-
-  // Search/Find States
-  const [showSearch, setShowSearch] = useState(false)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [searchMatches, setSearchMatches] = useState<number[]>([])
-  const [activeMatchIndex, setActiveMatchIndex] = useState(-1)
-
-  // Refs for scrolling and textarea manipulation
-  const inputContainerRef = useRef<HTMLDivElement>(null)
-  const inputGutterRef = useRef<HTMLDivElement>(null)
-  const inputTextareaRef = useRef<HTMLTextAreaElement>(null)
-
-  const outputContainerRef = useRef<HTMLDivElement>(null)
-  const outputGutterRef = useRef<HTMLDivElement>(null)
-  const outputPreRef = useRef<HTMLPreElement>(null)
-
-  // ----------------------------------------------------
-  // Sync Scroll Events
-  // ----------------------------------------------------
-  const handleInputScroll = () => {
-    if (inputTextareaRef.current && inputGutterRef.current) {
-      inputGutterRef.current.scrollTop = inputTextareaRef.current.scrollTop
-    }
-  }
-
-  const handleOutputScroll = () => {
-    if (outputPreRef.current && outputGutterRef.current) {
-      outputGutterRef.current.scrollTop = outputPreRef.current.scrollTop
-    }
-  }
 
   // ----------------------------------------------------
   // Statistics Calculations
@@ -179,7 +141,6 @@ export function JSONFormatterPro() {
   const stats = useMemo(() => {
     const charCount = inputVal.length
     const wordCount = inputVal.trim() ? inputVal.trim().split(/\s+/).length : 0
-    // File size in bytes
     const byteSize = new Blob([inputVal]).size
     const sizeFormatted = byteSize > 1024
       ? `${(byteSize / 1024).toFixed(2)} KB`
@@ -188,13 +149,9 @@ export function JSONFormatterPro() {
     return { charCount, wordCount, sizeFormatted }
   }, [inputVal])
 
-  // Get line numbers count
   const inputLineCount = useMemo(() => inputVal.split('\n').length, [inputVal])
-  const outputLineCount = useMemo(() => outputVal.split('\n').length, [outputVal])
 
-  // ----------------------------------------------------
-  // Advanced Error position parser
-  // ----------------------------------------------------
+  // Error position parser
   const parseJSONError = (text: string, err: Error) => {
     let position = -1
     const match = err.message.match(/position (\d+)/i)
@@ -202,7 +159,6 @@ export function JSONFormatterPro() {
       position = parseInt(match[1], 10)
     }
 
-    // If position not found, check standard browser error strings
     if (position === -1) {
       const positionMatches = [
         /at position (\d+)/,
@@ -218,7 +174,6 @@ export function JSONFormatterPro() {
       }
     }
 
-    // Default to end if unspecified
     if (position === -1 || position > text.length) {
       position = Math.max(0, text.length - 1)
     }
@@ -230,7 +185,6 @@ export function JSONFormatterPro() {
     const allLines = text.split('\n')
     const errorLine = allLines[lineNum - 1] || ''
     
-    // Build compiler-like snippet
     const maxOffset = 30
     const start = Math.max(0, colNum - maxOffset)
     const end = Math.min(errorLine.length, colNum + maxOffset)
@@ -249,9 +203,7 @@ export function JSONFormatterPro() {
     }
   }
 
-  // ----------------------------------------------------
-  // Formatter Core Operations
-  // ----------------------------------------------------
+  // Core Formatting Logic
   const formatJSON = useCallback((mode: 'beautify' | 'minify' | 'validate', customInput = inputVal) => {
     if (!customInput.trim()) {
       setOutputVal('')
@@ -277,19 +229,17 @@ export function JSONFormatterPro() {
 
       setValidationStatus('success')
       setErrorDetails(null)
-      toast(mode === 'validate' ? 'JSON schema is valid!' : 'Formatted successfully!', 'success')
     } catch (err) {
       setValidationStatus('error')
       setOutputVal('')
       if (err instanceof Error) {
         setErrorDetails(parseJSONError(customInput, err))
-        toast('Invalid JSON syntax structure', 'error')
       }
     } finally {
       const endTime = performance.now()
       setProcessingTime(Number((endTime - startTime).toFixed(3)))
     }
-  }, [inputVal, spacing, toast])
+  }, [inputVal, spacing])
 
   // Real-time Auto-formatting triggers
   useEffect(() => {
@@ -301,41 +251,12 @@ export function JSONFormatterPro() {
     }
   }, [inputVal, spacing, autoFormat, formatJSON])
 
-  // ----------------------------------------------------
-  // Syntax Highlighter (Regex replacement)
-  // ----------------------------------------------------
-  const highlightedJSON = useMemo(() => {
-    if (!outputVal) return ''
+  const handleFileLoaded = (text: string, filename: string) => {
+    setInputVal(text)
+    toast(`Loaded: ${filename}`, 'success')
+    formatJSON('beautify', text)
+  }
 
-    let html = outputVal
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-
-    // Match JSON syntax parts
-    return html.replace(
-      /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g,
-      (match) => {
-        let cls = 'text-amber-500 dark:text-amber-400' // numbers (orange)
-        if (/^"/.test(match)) {
-          if (/:$/.test(match)) {
-            cls = 'text-indigo-600 dark:text-indigo-400 font-semibold' // key (violet)
-          } else {
-            cls = 'text-emerald-600 dark:text-emerald-400' // string values (green)
-          }
-        } else if (/true|false/.test(match)) {
-          cls = 'text-blue-500 dark:text-blue-400 font-medium' // booleans (blue)
-        } else if (/null/.test(match)) {
-          cls = 'text-muted-foreground italic' // null (grey)
-        }
-        return `<span class="${cls}">${match}</span>`
-      }
-    )
-  }, [outputVal])
-
-  // ----------------------------------------------------
-  // File Upload & Download
-  // ----------------------------------------------------
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -343,10 +264,7 @@ export function JSONFormatterPro() {
     const reader = new FileReader()
     reader.onload = (event) => {
       const text = event.target?.result as string
-      setInputVal(text)
-      toast(`Loaded file: ${file.name}`, 'success')
-      // Trigger formatting immediately
-      formatJSON('beautify', text)
+      handleFileLoaded(text, file.name)
     }
     reader.readAsText(file)
   }
@@ -357,7 +275,7 @@ export function JSONFormatterPro() {
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = 'workspace-format.json'
+    link.download = 'formatted.json'
     link.click()
     URL.revokeObjectURL(url)
     toast('Downloaded JSON file', 'success')
@@ -370,100 +288,40 @@ export function JSONFormatterPro() {
     toast('Copied payload to clipboard', 'success')
   }
 
-  const handleSwap = () => {
-    const out = outputVal
-    const inp = inputVal
-    if (!out) {
-      toast('Output must be formatted before swapping', 'info')
-      return
+  const handlePaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      setInputVal(text)
+      toast('Pasted from clipboard', 'success')
+      formatJSON('beautify', text)
+    } catch {
+      toast('Clipboard permission blocked. Use Ctrl+V inside the editor.', 'error')
     }
-    setInputVal(out)
-    setOutputVal(inp)
-    toast('Swapped inputs and outputs', 'info')
   }
 
-  const loadPreset = (key: keyof typeof SAMPLES) => {
-    const raw = JSON.stringify(SAMPLES[key].data, null, 2)
+  const loadPreset = (key: string) => {
+    const raw = JSON.stringify(SAMPLES[key as keyof typeof SAMPLES].data, null, 2)
     setInputVal(raw)
-    toast(`Loaded template: ${SAMPLES[key].title}`, 'info')
+    toast(`Loaded template: ${SAMPLES[key as keyof typeof SAMPLES].title}`, 'info')
     formatJSON('beautify', raw)
   }
 
-  // ----------------------------------------------------
-  // Custom Selection search finder
-  // ----------------------------------------------------
-  const handleFind = () => {
-    if (!searchTerm.trim() || !inputTextareaRef.current) return
-    const text = inputVal
-    const term = searchTerm.toLowerCase()
-    
-    // Find all indexes
-    const indices: number[] = []
-    let idx = text.toLowerCase().indexOf(term)
-    while (idx !== -1) {
-      indices.push(idx)
-      idx = text.toLowerCase().indexOf(term, idx + 1)
-    }
-
-    setSearchMatches(indices)
-    
-    if (indices.length > 0) {
-      setActiveMatchIndex(0)
-      selectTextIndex(indices[0], term.length)
-      toast(`Found ${indices.length} matches`, 'info')
-    } else {
-      setActiveMatchIndex(-1)
-      toast('No match found', 'info')
-    }
-  }
-
-  const findNext = () => {
-    if (searchMatches.length === 0 || !inputTextareaRef.current) return
-    const nextIdx = (activeMatchIndex + 1) % searchMatches.length
-    setActiveMatchIndex(nextIdx)
-    selectTextIndex(searchMatches[nextIdx], searchTerm.length)
-  }
-
-  const selectTextIndex = (start: number, length: number) => {
-    const textarea = inputTextareaRef.current
-    if (!textarea) return
-    textarea.focus()
-    textarea.setSelectionRange(start, start + length)
-    
-    // Scroll selection into view manually
-    const textUpToSelection = inputVal.slice(0, start)
-    const linesCount = textUpToSelection.split('\n').length
-    const rowHeight = 20 // Approx height per line
-    textarea.scrollTop = Math.max(0, (linesCount - 5) * rowHeight)
-  }
-
-  // ----------------------------------------------------
-  // Bind Keyboard Shortcuts
-  // ----------------------------------------------------
+  // Keyboard Shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl + Enter to format
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault()
         formatJSON('beautify')
       }
-      // Ctrl + Shift + M to minify
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'm') {
         e.preventDefault()
         formatJSON('minify')
       }
-      // Ctrl + C to copy when focus is within editors
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
-        // If selection is not empty, let standard copy happen. Otherwise copy outputs
         if (window.getSelection()?.toString() === '' && outputVal) {
           e.preventDefault()
           handleCopy()
         }
-      }
-      // Ctrl + F to show search
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
-        e.preventDefault()
-        setShowSearch((prev) => !prev)
       }
     }
 
@@ -471,325 +329,218 @@ export function JSONFormatterPro() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [formatJSON, outputVal])
 
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-6 w-full",
-        isFullscreen && "fixed inset-0 z-50 p-6 bg-background overflow-y-auto"
-      )}
-    >
-      {/* Search Popover panel */}
-      {showSearch && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3 p-3 bg-card border border-border rounded-xl glass-panel shadow-md max-w-md w-full relative z-10"
-        >
-          <Search className="h-4 w-4 text-primary shrink-0" />
-          <Input
-            placeholder="Search key or text value..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleFind()}
-            className="h-8 py-1"
-          />
-          <div className="flex items-center gap-1.5">
-            <Button size="sm" variant="outline" className="h-8 px-2.5" onClick={handleFind}>
-              Find
-            </Button>
-            {searchMatches.length > 0 && (
-              <Button size="sm" variant="ghost" className="h-8 px-2.5" onClick={findNext}>
-                Next ({activeMatchIndex + 1}/{searchMatches.length})
-              </Button>
-            )}
-            <IconButton size="sm" variant="ghost" onClick={() => setShowSearch(false)}>
-              <X className="h-4 w-4" />
-            </IconButton>
-          </div>
-        </motion.div>
-      )}
+  // Spacing options templates
+  const spacingSamples = useMemo(() => {
+    const obj: { [key: string]: { title: string; data: any } } = {}
+    Object.entries(SAMPLES).forEach(([key, value]) => {
+      obj[key] = { title: value.title, data: JSON.stringify(value.data, null, 2) }
+    })
+    return obj
+  }, [])
 
-      {/* Main Top Header Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/40 pb-4">
-        {/* Sample selection chips */}
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider mr-2">Sample Presets:</span>
-          {Object.entries(SAMPLES).map(([key, sample]) => (
-            <Chip key={key} onClick={() => loadPreset(key as keyof typeof SAMPLES)}>
-              {sample.title}
-            </Chip>
-          ))}
-        </div>
-
-        {/* Global Editor configs */}
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Spacing dropdown */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-muted-foreground">Spacing:</span>
-            <select
-              value={spacing}
-              onChange={(e) => setSpacing(e.target.value)}
-              className="text-xs font-medium border border-border bg-card rounded-lg px-2.5 py-1.5 focus-ring outline-none"
-            >
-              {SPACING_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Auto Format Toggle */}
-          <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-muted-foreground select-none">
-            <input
-              type="checkbox"
-              checked={autoFormat}
-              onChange={(e) => setAutoFormat(e.target.checked)}
-              className="rounded border-border text-primary focus-ring h-4 w-4 cursor-pointer"
-            />
-            <span>Auto Format</span>
-          </label>
-
-          {/* Fullscreen control */}
-          <IconButton size="sm" variant="outline" onClick={() => setIsFullscreen((prev) => !prev)}>
-            {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-          </IconButton>
-        </div>
-      </div>
-
-      {/* Dual Column Workspace grid layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-        
-        {/* Left Side: Input Editor Workspace */}
-        <Card className="flex flex-col bg-card/45 relative border-border overflow-hidden">
-          <CardHeader className="p-4 border-b border-border/40 flex justify-between items-center bg-secondary/15">
-            <CardTitle className="font-heading text-xs uppercase tracking-wider font-semibold text-muted-foreground flex items-center gap-1.5">
-              Input Editor
-            </CardTitle>
+  // Options tabs
+  const optionTabs: OptionTab[] = [
+    {
+      id: 'options',
+      label: 'Formatting Settings',
+      icon: <ArrowLeftRight className="h-3.5 w-3.5" />,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground block">
+              Indentation Spacing
+            </label>
             <div className="flex items-center gap-2">
-              {/* File upload hidden input proxy */}
-              <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-border bg-card hover:bg-secondary/40 rounded-lg cursor-pointer transition-colors focus-ring">
-                <Upload className="h-3.5 w-3.5" />
-                <span>Upload</span>
+              <select
+                value={spacing}
+                onChange={(e) => setSpacing(e.target.value)}
+                className="text-xs font-medium border border-border bg-card rounded-lg px-2.5 py-1.5 focus-ring outline-none"
+              >
+                {SPACING_OPTIONS.map((opt) => (
+                  <option key={opt.id} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <p className="text-xs text-muted-foreground/60 leading-normal">
+              Select spacing width or tab markers. Updates rendering immediately.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground block">
+              Execution Control
+            </span>
+            <div className="flex items-center gap-2">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-muted-foreground select-none">
                 <input
-                  type="file"
-                  accept=".json,.txt"
-                  onChange={handleFileUpload}
-                  className="hidden"
+                  type="checkbox"
+                  checked={autoFormat}
+                  onChange={(e) => setAutoFormat(e.target.checked)}
+                  className="rounded border-border text-primary focus-ring h-4.5 w-4.5 cursor-pointer"
                 />
+                <span>Auto-Format compilation on input changes</span>
               </label>
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-8"
-                onClick={() => setInputVal('')}
-                disabled={!inputVal}
-              >
-                Clear
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent className="p-0 flex-1 flex relative min-h-[350px]">
-            {/* Scroll-sync line numbers Gutter */}
-            <div
-              ref={inputGutterRef}
-              className="w-12 shrink-0 bg-secondary/20 border-r border-border/40 select-none text-right pr-2 text-[11px] leading-5 text-muted-foreground/35 py-3 font-mono overflow-hidden"
-              style={{ height: '350px' }}
-            >
-              {Array.from({ length: inputLineCount }).map((_, i) => (
-                <div key={i} className="h-5">
-                  {i + 1}
-                </div>
-              ))}
-            </div>
-
-            {/* Input textarea */}
-            <textarea
-              ref={inputTextareaRef}
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              onScroll={handleInputScroll}
-              placeholder='Paste or upload raw JSON code here e.g. { "key": "value" }'
-              className="flex-1 p-3 text-[13px] leading-5 font-mono bg-transparent text-foreground placeholder:text-muted-foreground/45 border-none resize-none focus:outline-none h-[350px] overflow-y-auto"
-              spellCheck="false"
-            />
-          </CardContent>
-
-          {/* Stats Bar */}
-          <div className="border-t border-border/40 p-2.5 flex justify-between items-center text-[10px] sm:text-xs text-muted-foreground bg-secondary/10">
-            <div className="flex gap-4">
-              <span>Lines: <strong className="text-foreground">{inputLineCount}</strong></span>
-              <span>Chars: <strong className="text-foreground">{stats.charCount}</strong></span>
-              <span>Words: <strong className="text-foreground">{stats.wordCount}</strong></span>
-            </div>
-            <div>
-              <span>Raw Size: <strong className="text-foreground">{stats.sizeFormatted}</strong></span>
             </div>
           </div>
-        </Card>
+        </div>
+      )
+    },
+    {
+      id: 'actions',
+      label: 'Compactor Actions',
+      icon: <Cpu className="h-3.5 w-3.5" />,
+      content: (
+        <div className="space-y-3">
+          <h4 className="text-sm font-semibold text-foreground">Advanced Compactor Actions</h4>
+          <p className="text-xs text-muted-foreground leading-normal">
+            Directly compress the JSON text format or trigger immediate syntax validation check.
+          </p>
+          <div className="flex flex-wrap gap-2.5">
+            <Button size="sm" variant="outline" onClick={() => formatJSON('beautify')}>
+              Beautify Format
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => formatJSON('minify')}>
+              Minify JSON
+            </Button>
+            <Button size="sm" variant="outline" onClick={() => formatJSON('validate')}>
+              Validate Schema
+            </Button>
+          </div>
+        </div>
+      )
+    }
+  ]
 
-        {/* Right Side: Output Highlighting Panel */}
-        <Card className="flex flex-col bg-card/45 relative border-border overflow-hidden">
-          <CardHeader className="p-4 border-b border-border/40 flex justify-between items-center bg-secondary/15">
-            <CardTitle className="font-heading text-xs uppercase tracking-wider font-semibold text-muted-foreground">
-              Formatted Output
-            </CardTitle>
-            
-            {/* Actions toolbar */}
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-8"
-                onClick={handleSwap}
-                disabled={!outputVal}
-                leftIcon={<ArrowLeftRight className="h-3.5 w-3.5" />}
-              >
-                Swap
-              </Button>
-              <IconButton
-                variant="outline"
-                size="sm"
-                onClick={handleCopy}
-                disabled={!outputVal && !inputVal}
-                aria-label="Copy to Clipboard"
-              >
-                <Copy className="h-4 w-4" />
-              </IconButton>
-              <IconButton
-                variant="outline"
-                size="sm"
-                onClick={handleDownload}
-                disabled={!outputVal}
-                aria-label="Download results file"
-              >
-                <Download className="h-4 w-4" />
-              </IconButton>
+  // FAQs Accordion
+  const faqItems = [
+    {
+      id: 'json-faq-1',
+      title: 'How does JSON Formatter Pro work?',
+      content: (
+        <span>
+          The tool parses your input string using client-side JavaScript <code>JSON.parse()</code>. If valid, it reformats it according to your selected indentation spacing. If invalid, it catches the exception and outputs syntax details showing exactly what character caused the issue.
+        </span>
+      )
+    },
+    {
+      id: 'json-faq-2',
+      title: 'Is my data secure?',
+      content: (
+        <span>
+          Yes, all formatting and linting occur client-side inside your browser sandbox. No data is sent over the network, ensuring private system logs or production config objects remain completely confidential.
+        </span>
+      )
+    },
+    {
+      id: 'json-faq-3',
+      title: 'Can I minify my JSON?',
+      content: (
+        <span>
+          Yes! Select the Minify action in the Toolbar or within the options to compress JSON data into a single-line string with all whitespace removed.
+        </span>
+      )
+    }
+  ]
+
+  return (
+    <FileUpload onFileLoaded={handleFileLoaded} accept=".json,.txt">
+      <ToolLayout
+        toolSlug="json-formatter"
+        toolbar={
+          <Toolbar
+            onPaste={handlePaste}
+            onUpload={handleFileUpload}
+            uploadAccept=".json,.txt"
+            samples={spacingSamples}
+            onLoadSample={loadPreset}
+            onConvert={() => formatJSON('beautify')}
+            convertLabel="Beautify JSON"
+            onCopy={handleCopy}
+            copyDisabled={!outputVal && !inputVal}
+            onDownload={handleDownload}
+            downloadDisabled={!outputVal}
+            onClear={() => { setInputVal(''); setOutputVal(''); setValidationStatus(null); setErrorDetails(null); }}
+            clearDisabled={!inputVal && !outputVal}
+          />
+        }
+        editorSection={
+          <div className="flex flex-col gap-6 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch w-full">
+              {/* Input card */}
+              <div className="lg:col-span-6 flex flex-col">
+                <CodeEditorWrapper
+                  language="json"
+                  value={inputVal}
+                  onChange={setInputVal}
+                  placeholder="Paste or upload raw JSON code here..."
+                />
+              </div>
+
+              {/* Output card */}
+              <div className="lg:col-span-6 flex flex-col">
+                <ResultPanel
+                  title="Formatted Output"
+                  value={outputVal}
+                  onCopy={handleCopy}
+                  onDownload={handleDownload}
+                  validationStatus={validationStatus}
+                  processingTime={processingTime}
+                >
+                  <CodeEditorWrapper
+                    language="json"
+                    value={outputVal}
+                    readOnly={true}
+                  />
+                </ResultPanel>
+              </div>
             </div>
-          </CardHeader>
-          <CardContent className="p-0 flex-1 flex relative min-h-[350px] bg-secondary/5">
-            {/* Scroll-sync Gutter */}
-            <div
-              ref={outputGutterRef}
-              className="w-12 shrink-0 bg-secondary/30 border-r border-border/40 select-none text-right pr-2 text-[11px] leading-5 text-muted-foreground/35 py-3 font-mono overflow-hidden"
-              style={{ height: '350px' }}
-            >
-              {Array.from({ length: outputLineCount }).map((_, i) => (
-                <div key={i} className="h-5">
-                  {i + 1}
+
+            {/* Compiler Diagnostics Alert Card */}
+            {validationStatus === 'error' && errorDetails && (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="border border-destructive/20 bg-destructive/5 rounded-2xl p-5 text-left flex flex-col gap-3"
+              >
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-heading text-sm font-bold text-destructive">
+                      Parse Error: {errorDetails.message}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      A syntax violation was parsed at <strong className="text-foreground">Line {errorDetails.line}</strong>, <strong className="text-foreground">Column {errorDetails.column}</strong>.
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Syntax Highlighted read-only pre block */}
-            <pre
-              ref={outputPreRef}
-              onScroll={handleOutputScroll}
-              className="flex-1 p-3 text-[13px] leading-5 font-mono overflow-auto h-[350px]"
-            >
-              <code
-                className="block whitespace-pre select-text"
-                dangerouslySetInnerHTML={{ __html: highlightedJSON || '<span class="text-muted-foreground/45">JSON Formatter Pro output will render here...</span>' }}
-              />
-            </pre>
-          </CardContent>
-
-          {/* Validation Metrics Footer */}
-          <div className="border-t border-border/40 p-2.5 flex justify-between items-center text-xs bg-secondary/10">
-            <div className="flex items-center gap-3">
-              {validationStatus === 'success' && (
-                <span className="flex items-center gap-1.5 text-emerald-500 font-bold uppercase tracking-wider text-[10px]">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> Syntax Valid
-                </span>
-              )}
-              {validationStatus === 'error' && (
-                <span className="flex items-center gap-1.5 text-destructive font-bold uppercase tracking-wider text-[10px]">
-                  <AlertCircle className="h-3.5 w-3.5" /> Syntax Invalid
-                </span>
-              )}
-              {validationStatus === null && (
-                <span className="text-muted-foreground font-semibold text-[10px] uppercase">Awaiting Input</span>
-              )}
-            </div>
-            {processingTime !== null && (
-              <span className="text-[10px] text-muted-foreground">
-                Time: <strong className="text-foreground">{processingTime} ms</strong>
-              </span>
+                <div className="bg-black/30 border border-destructive/15 p-4 rounded-xl font-mono text-xs text-destructive leading-normal whitespace-pre-wrap select-text">
+                  {errorDetails.snippet}
+                </div>
+              </motion.div>
             )}
           </div>
-        </Card>
-
-      </div>
-
-      {/* Manual Toolbar actions */}
-      <div className="flex flex-wrap gap-2.5">
-        <Button onClick={() => formatJSON('beautify')} leftIcon={<Play className="h-4 w-4" />}>
-          Beautify / Format
-        </Button>
-        <Button variant="outline" onClick={() => formatJSON('minify')}>
-          Minify JSON
-        </Button>
-        <Button variant="outline" onClick={() => formatJSON('validate')}>
-          Validate Syntax
-        </Button>
-        <Button variant="outline" onClick={() => setShowSearch((p) => !p)} leftIcon={<Search className="h-4 w-4" />}>
-          Find in Input
-        </Button>
-      </div>
-
-      {/* Compiler Diagnostics Alert Card */}
-      {validationStatus === 'error' && errorDetails && (
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="border border-destructive/20 bg-destructive/5 rounded-2xl p-5 text-left flex flex-col gap-3"
-        >
-          <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-heading text-sm font-bold text-destructive">
-                Parse Error: {errorDetails.message}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                A syntax violation was parsed at <strong className="text-foreground">Line {errorDetails.line}</strong>, <strong className="text-foreground">Column {errorDetails.column}</strong>.
-              </p>
-            </div>
+        }
+        optionTabs={optionTabs}
+        faqs={faqItems}
+        instructionsTitle="What is JSON Formatter Pro?"
+        instructions={
+          <div className="flex flex-col gap-3">
+            <p>
+              JSON Formatter Pro is a high-performance, developer-focused online sandbox designed to prettify, validate, parse, and compress JSON structures.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Paste your raw unformatted string into the Input editor. Standard syntax highlights render instantly on the right. You can select spacing options, search for parameters, or download file outputs.
+            </p>
           </div>
-          <div className="bg-destructive/10 border border-destructive/15 p-4 rounded-xl font-mono text-xs text-destructive leading-normal whitespace-pre-wrap select-text">
-            {errorDetails.snippet}
-          </div>
-        </motion.div>
-      )}
-
-      {/* SEO Info Panels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 border-t border-border/40 pt-8 text-left">
-        <div className="flex flex-col gap-3">
-          <h3 className="font-heading text-base font-bold">What is JSON Formatter Pro?</h3>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-            JSON Formatter Pro is a high-performance, developer-focused online sandbox designed to prettify, validate, parse, and compress JSON structures.
-          </p>
-          <h3 className="font-heading text-base font-bold mt-2">Key Benefits</h3>
-          <ul className="list-disc pl-4 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
-            <li>100% Client-Side execution. None of your data is sent to external servers.</li>
-            <li>Compiler-grade diagnostic tracing highlighting line & column numbers for invalid characters.</li>
-            <li>Sync-scrolling gutters with active layout alignments.</li>
-          </ul>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <h3 className="font-heading text-base font-bold">How to Use</h3>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-            Paste your raw unformatted string into the Input editor. Standard syntax highlights render instantly on the right. You can select spacing options, search for parameters using <kbd className="bg-secondary px-1 py-0.5 rounded border border-border">Ctrl+F</kbd>, or download file outputs.
-          </p>
-          <h3 className="font-heading text-base font-bold mt-2">Keyboard Shortcuts</h3>
-          <ul className="space-y-1 text-xs sm:text-sm text-muted-foreground font-mono">
-            <li><span className="font-bold text-foreground">Ctrl + Enter</span> : Beautify & Format</li>
-            <li><span className="font-bold text-foreground">Ctrl + Shift + M</span> : Minify JSON</li>
-            <li><span className="font-bold text-foreground">Ctrl + C</span> : Copy Compiled Output</li>
-            <li><span className="font-bold text-foreground">Ctrl + F</span> : Find Search Overlay</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+        }
+        benefits={[
+          "100% Client-Side execution. None of your data is sent to external servers.",
+          "Compiler-grade diagnostic tracing highlighting line & column numbers for invalid characters.",
+          "Gutter-numbered code editors with dark/light themes and word wrapping support."
+        ]}
+      />
+    </FileUpload>
   )
 }

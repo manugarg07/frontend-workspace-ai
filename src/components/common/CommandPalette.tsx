@@ -187,6 +187,7 @@ export function CommandPalette() {
                   setSearch(e.target.value)
                   setSelectedIndex(0)
                 }}
+                onKeyDown={handleKeyDown}
                 placeholder="Search tools or type actions..."
                 className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
               />

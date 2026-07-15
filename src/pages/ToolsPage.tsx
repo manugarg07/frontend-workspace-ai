@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import { Search, Filter, AlertCircle, ArrowRight } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card'
-import { Input } from '@/components/ui/Input'
-import { Badge } from '@/components/ui/Badge'
+import { useSearchParams } from 'react-router-dom'
+import { Filter, AlertCircle } from 'lucide-react'
 import { Chip } from '@/components/ui/Chip'
 import { Pagination } from '@/components/ui/Pagination'
 import { SEO } from '@/components/common/SEO'
+import { ToolCard } from '@/components/ui/ToolCard'
+import { Search } from '@/components/ui/Search'
 import { TOOLS, CATEGORIES } from '@/services/toolRegistry'
 import type { ToolCategory } from '@/services/toolRegistry'
 import { cn } from '@/lib/utils'
@@ -177,11 +176,10 @@ export function ToolsPage() {
 
             {/* Catalog search */}
             <div className="w-full sm:max-w-xs">
-              <Input
+              <Search
                 placeholder="Filter tools..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                leftIcon={<Search className="h-3.5 w-3.5" />}
+                onChange={setSearchQuery}
                 className="h-9"
               />
             </div>
@@ -196,51 +194,13 @@ export function ToolsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedTools.map((tool) => {
-                const cardContent = (
-                  <Card hoverable={!tool.comingSoon} className="h-full bg-card/60 flex flex-col justify-between border-border group-hover:border-primary/20">
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-center mb-3">
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{tool.category}</span>
-                        {tool.comingSoon && (
-                          <Badge variant="outline" className="text-[9px] uppercase font-bold text-muted-foreground tracking-wider bg-secondary/80">
-                            Soon
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="font-heading text-base group-hover:text-primary transition-colors">{tool.title}</CardTitle>
-                      <CardDescription className="text-xs line-clamp-3 mt-1 leading-relaxed">{tool.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0 pb-4 text-xs font-semibold text-primary flex items-center gap-1">
-                      {!tool.comingSoon ? (
-                        <>
-                          <span>Open Utility</span>
-                          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                        </>
-                      ) : (
-                        <span className="text-muted-foreground">In active pipeline</span>
-                      )}
-                    </CardContent>
-                  </Card>
-                )
-
-                return tool.comingSoon ? (
-                  <div
-                    key={tool.id}
-                    className="block h-full group opacity-65 pointer-events-none"
-                  >
-                    {cardContent}
-                  </div>
-                ) : (
-                  <Link
-                    key={tool.id}
-                    to={`/tool/${tool.slug}`}
-                    className="block h-full group"
-                  >
-                    {cardContent}
-                  </Link>
-                )
-              })}
+              {paginatedTools.map((tool) => (
+                <ToolCard
+                  key={tool.id}
+                  tool={tool}
+                  layout="grid"
+                />
+              ))}
             </div>
           )}
 

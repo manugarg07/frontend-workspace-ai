@@ -10,9 +10,13 @@ import { Accordion } from '@/components/ui/Accordion'
 import { useToast } from '@/components/ui/Toast'
 import { SEO } from '@/components/common/SEO'
 import { getToolBySlug, getRelatedTools } from '@/services/toolRegistry'
-import type { Tool } from '@/services/toolRegistry'
 import { cn } from '@/lib/utils'
 import { JSONFormatterPro } from '@/features/formatters/JSONFormatterPro'
+import { HTMLToJSXConverterPro } from '@/features/converters/HTMLToJSXConverterPro'
+import { CSSToTailwindConverterPro } from '@/features/converters/CSSToTailwindConverterPro'
+import { SVGToReactGeneratorPro } from '@/features/converters/SVGToReactGeneratorPro'
+import { Base64ConverterPro } from '@/features/converters/Base64ConverterPro'
+import { JWTDecoderPro } from '@/features/validators/JWTDecoderPro'
 
 export function ToolTemplatePage() {
   const { slug } = useParams<{ slug: string }>()
@@ -39,13 +43,12 @@ export function ToolTemplatePage() {
     }
   }, [tool, navigate])
 
-  if (!tool) return null
-
   // Related tools
-  const relatedTools = getRelatedTools(tool, 3)
+  const relatedTools = tool ? getRelatedTools(tool, 3) : []
 
   // Auto-run a mock transformer just to demonstrate visual updates
   useEffect(() => {
+    if (!tool) return
     if (!inputVal.trim()) {
       setOutputVal('')
       setErrorState(null)
@@ -72,7 +75,9 @@ export function ToolTemplatePage() {
       setErrorState(err instanceof Error ? err.message : 'Invalid structure syntax')
       setOutputVal('')
     }
-  }, [inputVal, tool.id])
+  }, [inputVal, tool])
+
+  if (!tool) return null
 
   // Load sample example
   const loadExample = () => {
@@ -161,7 +166,7 @@ export function ToolTemplatePage() {
           </div>
 
           {/* Top header buttons */}
-          {tool.id !== 'json-formatter' && (
+          {tool.id !== 'json-formatter' && tool.id !== 'html-to-jsx' && tool.id !== 'css-to-tailwind' && tool.id !== 'svg-to-react' && tool.id !== 'base64-converter' && tool.id !== 'jwt-decoder' && (
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" onClick={loadExample} leftIcon={<RefreshCw className="h-3.5 w-3.5" />}>
                 Load Example
@@ -176,6 +181,16 @@ export function ToolTemplatePage() {
 
       {tool.id === 'json-formatter' ? (
         <JSONFormatterPro />
+      ) : tool.id === 'html-to-jsx' ? (
+        <HTMLToJSXConverterPro />
+      ) : tool.id === 'css-to-tailwind' ? (
+        <CSSToTailwindConverterPro />
+      ) : tool.id === 'svg-to-react' ? (
+        <SVGToReactGeneratorPro />
+      ) : tool.id === 'base64-converter' ? (
+        <Base64ConverterPro />
+      ) : tool.id === 'jwt-decoder' ? (
+        <JWTDecoderPro />
       ) : (
         <>
           {/* Interactive dual column workspace panels */}
