@@ -747,9 +747,9 @@ export function UUIDGeneratorPro() {
           
           {/* What is a UUID */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Fingerprint className="h-4.5 w-4.5 text-primary" /> What is a UUID?
-            </h4>
+            </h3>
             <p>
               UUID stands for <strong>Universally Unique Identifier</strong>. Defined in RFC 4122, it is a 128-bit label used to uniquely identify resources in computer systems. Standard string notation splits this identifier into hexadecimal sequences delimited by dashes, totalizing 36 characters.
             </p>
@@ -757,9 +757,9 @@ export function UUIDGeneratorPro() {
 
           {/* UUID Versions Explained */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Layers className="h-4.5 w-4.5 text-primary" /> UUID Versions Explained
-            </h4>
+            </h3>
             <p>
               The RFC 4122 standard defines several distinct versions, each suited for different architectures:
             </p>
@@ -773,9 +773,9 @@ export function UUIDGeneratorPro() {
 
           {/* Common Use Cases */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <FileText className="h-4.5 w-4.5 text-primary" /> Common Use Cases
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">Database Primary Keys:</strong> Prevents auto-incrementing ID guess attacks and simplifies distributed database merging operations.</li>
               <li><strong className="text-foreground">Correlation IDs:</strong> Stamped on network requests to trace asynchronous workflows across API microservices.</li>
@@ -785,9 +785,9 @@ export function UUIDGeneratorPro() {
 
           {/* UUID Best Practices */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Settings className="h-4.5 w-4.5 text-primary" /> UUID Best Practices
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">Use high-entropy sources:</strong> Always generate UUIDs using secure cryptographic APIs. Weak pseudorandom generators like standard Math.random are prone to collisions.</li>
               <li><strong className="text-foreground">Optimize database storage:</strong> While UUIDs are represented as 36-character strings, store them as raw 16-byte binary arrays inside databases like MySQL or PostgreSQL for optimal indexing speed.</li>

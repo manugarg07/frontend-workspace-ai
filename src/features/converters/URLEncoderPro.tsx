@@ -519,12 +519,11 @@ export function URLEncoderPro() {
         instructionsTitle="URL Encoding Guide"
         instructions={
           <div className="space-y-6 text-sm text-muted-foreground leading-relaxed font-sans">
-            
-            {/* What is URL encoding */}
+                   {/* What is URL encoding */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <Link2 className="h-4.5 w-4.5 text-primary" /> What is URL Encoding?
-              </h4>
+              </h3>
               <p>
                 URL encoding (Percent encoding) is a standard mechanism defined in RFC 3986. It converts characters containing special meanings (like space delimiters or query dividers) into compliant percentage sequences so URIs can traverse HTTP networks securely.
               </p>
@@ -532,9 +531,9 @@ export function URLEncoderPro() {
 
             {/* Reserved characters explained */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <Info className="h-4.5 w-4.5 text-primary" /> Reserved vs Unreserved Characters
-              </h4>
+              </h3>
               <ul className="list-disc pl-5 space-y-1.5 text-xs">
                 <li><strong className="text-foreground">Unreserved:</strong> `A-Z`, `a-z`, `0-9`, `-`, `_`, `.`, and `~`. These characters are safe to transmit raw without encoding.</li>
                 <li><strong className="text-foreground">Reserved:</strong> Characters like `?`, `&`, `=`, `+`, `/`, `:`, and `#`. These serve structural purposes inside URL routers and query lines, so they must be encoded to `%XX` (e.g. space to `%20` or ampersand to `%26`) when placed inside query values.</li>
@@ -543,9 +542,9 @@ export function URLEncoderPro() {
 
             {/* URL Encoding Examples */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <FileText className="h-4.5 w-4.5 text-primary" /> Common Percent-Encoding Examples
-              </h4>
+              </h3>
               <table className="w-full text-xs text-left border-collapse min-w-[280px]">
                 <thead>
                   <tr className="border-b border-border/50 text-muted-foreground font-bold uppercase tracking-wider">
@@ -581,9 +580,9 @@ export function URLEncoderPro() {
 
             {/* Best practices */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <Sliders className="h-4.5 w-4.5 text-primary" /> URL Best Practices
-              </h4>
+              </h3>
               <ul className="list-disc pl-5 space-y-1.5 text-xs">
                 <li><strong className="text-foreground">Never encode the entire URL:</strong> Encoding complete URL schemes (like `https://...`) turns structural symbols like `/` and `:` into percent codes, rendering the path unresolvable. Only encode parameter keys and values.</li>
                 <li><strong className="text-foreground">Validate escape sequences:</strong> Catch missing values or invalid hex codes (e.g. `%G1`) during decodes to prevent application crashes.</li>

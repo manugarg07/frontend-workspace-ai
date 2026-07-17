@@ -517,7 +517,7 @@ export default function ${formattedComponentName}({
         <div className="space-y-3 text-left">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-            <h4 className="font-heading text-sm font-bold text-foreground">AI SVGO Compression & Cleanup</h4>
+            <p className="font-heading text-sm font-bold text-foreground">AI SVGO Compression & Cleanup</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-sans">
             Clean up editor artifacts (from Figma or Illustrator), remove redundant group classes, merge paths, and simplify vector complexity using background optimizations.
@@ -581,6 +581,7 @@ export default function ${formattedComponentName}({
             onLoadSample={loadPreset}
             onConvert={() => handleConvert()}
             convertLabel="Generate React Component"
+            convertLoading={isProcessing}
             onCopy={handleCopy}
             copyDisabled={!outputVal}
             onDownload={handleDownload}
@@ -737,7 +738,7 @@ export default function ${formattedComponentName}({
               <div className="border border-amber-500/20 bg-amber-500/5 rounded-2xl p-4 flex gap-3 text-left font-sans">
                 <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-amber-500">SVG Parser Warnings</h4>
+                  <p className="text-sm font-bold text-amber-500">SVG Parser Warnings</p>
                   <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed font-sans">
                     {validationMessage}
                   </p>

@@ -884,9 +884,9 @@ export function PasswordGeneratorPro() {
           
           {/* Why strong passwords matter */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Lock className="h-4.5 w-4.5 text-primary" /> Why Strong Passwords Matter
-            </h4>
+            </h3>
             <p>
               In secure computing environments, authentication forms the first line of defense. Standard brute-force dictionary attacks utilize massive database libraries of previously leaked passwords or rapidly guess combinations using high-end graphical processing units (GPUs). A secure password significantly increases computational time, preventing successful breach compromises.
             </p>
@@ -894,9 +894,9 @@ export function PasswordGeneratorPro() {
 
           {/* Password Security Best Practices */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Sparkles className="h-4.5 w-4.5 text-primary" /> Security Best Practices
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">Minimum 16 characters:</strong> Length is the most critical driver of cryptographic entropy. Each additional character increases combinations exponentially.</li>
               <li><strong className="text-foreground">Use diverse character sets:</strong> Always combine uppercase, lowercase, numbers, and symbols to maximize character diversity.</li>
@@ -907,9 +907,9 @@ export function PasswordGeneratorPro() {
 
           {/* Common Password Mistakes */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <ShieldAlert className="h-4.5 w-4.5 text-primary" /> Common Password Mistakes
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">Password Reuse:</strong> Reusing a single password across multiple services means a single website database leak exposes all your active accounts.</li>
               <li><strong className="text-foreground">Using dictionary words or personal data:</strong> Attackers compile names, birth dates, dictionary vocabularies, and phone sequences into guessing scripts.</li>

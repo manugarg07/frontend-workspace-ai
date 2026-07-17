@@ -271,7 +271,7 @@ export function ToolsPage() {
                   className={cn(
                     'px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap font-sans',
                     activeTab === tab.id
-                      ? 'bg-secondary text-primary border border-primary/10'
+                      ? 'bg-secondary text-violet-800 dark:text-violet-200 font-bold border border-violet-500/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-secondary/20'
                   )}
                 >
@@ -295,7 +295,7 @@ export function ToolsPage() {
           {paginatedTools.length === 0 ? (
             <div className="flex flex-col items-center justify-center text-center p-16 border border-dashed border-border rounded-2xl bg-card/25 min-h-[300px]">
               <AlertCircle className="h-8 w-8 text-muted-foreground mb-3 animate-pulse" />
-              <h3 className="font-heading text-lg font-semibold mb-1">No tools matched your filters</h3>
+              <p className="font-heading text-lg font-semibold mb-1">No tools matched your filters</p>
               <p className="text-sm text-muted-foreground max-w-sm font-sans">
                 Try clearing your search query or choosing another category in the sidebar options list.
               </p>

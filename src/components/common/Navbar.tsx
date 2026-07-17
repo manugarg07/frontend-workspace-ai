@@ -67,11 +67,11 @@ export function Navbar() {
               window.dispatchEvent(event)
             }}
             className="hidden sm:flex items-center gap-2 border border-border bg-card/50 hover:bg-secondary/40 text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-colors focus-ring"
-            aria-label="Open Command Palette"
+            aria-label="Search tools... (Open Command Palette)"
           >
             <Search className="h-3.5 w-3.5" />
             <span>Search tools...</span>
-            <span className="font-mono text-[9px] bg-secondary/80 border border-border/60 px-1.5 py-0.5 rounded text-muted-foreground ml-1">⌘K</span>
+            <span className="font-mono text-[9px] bg-secondary/80 border border-border/60 px-1.5 py-0.5 rounded text-secondary-foreground ml-1">⌘K</span>
           </button>
 
           <ThemeToggle />

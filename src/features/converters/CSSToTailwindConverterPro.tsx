@@ -955,7 +955,7 @@ export function CSSToTailwindConverterPro() {
       icon: <Cpu className="h-3.5 w-3.5" />,
       content: (
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold text-foreground">Compiler Compatibility Options</h4>
+          <p className="text-sm font-semibold text-foreground">Compiler Compatibility Options</p>
           <p className="text-xs text-muted-foreground leading-normal">
             Choose whether to output Tailwind v4.0 or v3.0 syntax rules. Version 4.0 uses modern spacing and opacity syntax bindings.
           </p>
@@ -993,7 +993,7 @@ export function CSSToTailwindConverterPro() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-            <h4 className="font-heading text-sm font-bold text-foreground">AI Optimization & Cleanup</h4>
+            <p className="font-heading text-sm font-bold text-foreground">AI Optimization & Cleanup</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             De-duplicate generated classes, suggest responsive variants using device media queries, merge redundant divs, and structure layouts.
@@ -1126,7 +1126,7 @@ export function CSSToTailwindConverterPro() {
               <div className="border border-amber-500/20 bg-amber-500/5 rounded-2xl p-4 flex gap-3 text-left font-sans">
                 <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-amber-500">Unsupported Rules Notice</h4>
+                  <p className="text-sm font-bold text-amber-500">Unsupported Rules Notice</p>
                   <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
                     {validationMessage}
                   </p>

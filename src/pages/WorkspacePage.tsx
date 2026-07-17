@@ -166,7 +166,7 @@ export function WorkspacePage() {
             {/* Recent Activity placeholder */}
             <Card className="bg-card/65 border-border">
               <CardHeader className="pb-4">
-                <CardTitle className="font-heading text-base flex items-center gap-2">
+                <CardTitle as="h2" className="font-heading text-base flex items-center gap-2">
                   <Terminal className="h-4 w-4 text-primary" />
                   Recent Activity
                 </CardTitle>
@@ -195,7 +195,7 @@ export function WorkspacePage() {
             {/* Quick Metrics Panel */}
             <Card className="bg-card/45 border-border/80 text-xs text-muted-foreground">
               <CardHeader className="p-4">
-                <CardTitle className="text-xs uppercase tracking-wider font-bold">System Status</CardTitle>
+                <CardTitle as="h2" className="text-xs uppercase tracking-wider font-bold">System Status</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0 flex flex-col gap-2">
                 <div className="flex justify-between">

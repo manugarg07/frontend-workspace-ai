@@ -38,7 +38,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="text-muted-foreground hover:text-foreground p-2 hover:bg-secondary rounded-lg transition-colors inline-flex items-center gap-1.5 text-xs font-semibold"
-                aria-label="GitHub profile link"
+                aria-label="Star on GitHub"
               >
                 <Github className="h-4 w-4" />
                 <span>Star on GitHub</span>
@@ -118,7 +118,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-4">
             <p>© {currentYear} Frontend Workspace AI. All rights reserved.</p>
             <span className="h-4 w-px bg-border hidden md:inline" />
-            <p className="font-mono text-[10px] bg-secondary/80 px-2 py-0.5 rounded border border-border/50">
+            <p className="font-mono text-[10px] bg-secondary/80 px-2 py-0.5 rounded border border-border/50 text-secondary-foreground">
               v2.0.0
             </p>
           </div>

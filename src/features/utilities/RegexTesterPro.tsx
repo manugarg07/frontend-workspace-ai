@@ -619,9 +619,9 @@ export function RegexTesterPro() {
           
           {/* What is Regex */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Code2 className="h-4.5 w-4.5 text-primary" /> What is Regex?
-            </h4>
+            </h3>
             <p>
               Regex is shorthand for <strong>Regular Expressions</strong>. It represents structured pattern schemas used to coordinate text validations, match substring positions, or perform bulk format replacements in script loops.
             </p>
@@ -629,9 +629,9 @@ export function RegexTesterPro() {
 
           {/* Regex Flags Explained */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Sliders className="h-4.5 w-4.5 text-primary" /> Pattern Modifiers (Flags)
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">g (Global):</strong> Continues search beyond the initial match to highlight all matching occurrences.</li>
               <li><strong className="text-foreground">i (Ignore Case):</strong> Executes validations case-insensitively.</li>
@@ -642,9 +642,9 @@ export function RegexTesterPro() {
 
           {/* Common Regex Patterns */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Search className="h-4.5 w-4.5 text-primary" /> Common Regex Patterns Cheat Sheet
-            </h4>
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="p-3 border border-border/40 bg-secondary/15 rounded-lg">
                 <span className="font-bold text-foreground block">Email Validation</span>
@@ -667,9 +667,9 @@ export function RegexTesterPro() {
 
           {/* Regex Best Practices */}
           <div className="space-y-2">
-            <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+            <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
               <Settings className="h-4.5 w-4.5 text-primary" /> Regex Best Practices
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-1.5 text-xs">
               <li><strong className="text-foreground">Avoid Catastrophic Backtracking:</strong> Be cautious with nested quantifiers (e.g. `(a+)+`). They can trigger massive exponential calculation loops on long strings, locking thread execution.</li>
               <li><strong className="text-foreground">Enforce Anchors:</strong> Always use anchors (`^` and `$`) where matching full strings is required, avoiding substring mismatch slips.</li>

@@ -656,27 +656,27 @@ export function LandingPage() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
           <div className="flex flex-col items-center justify-center p-3">
             <Zap className="h-5 w-5 text-primary mb-2 animate-pulse" />
-            <h3 className="text-xs sm:text-sm font-bold text-foreground font-heading">Fast Browser Tools</h3>
+            <p className="text-xs sm:text-sm font-bold text-foreground font-heading">Fast Browser Tools</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 font-sans">Instant local parsing loops</p>
           </div>
           <div className="flex flex-col items-center justify-center p-3">
             <Shield className="h-5 w-5 text-primary mb-2" />
-            <h3 className="text-xs sm:text-sm font-bold text-foreground font-heading">Privacy-First Design</h3>
+            <p className="text-xs sm:text-sm font-bold text-foreground font-heading">Privacy-First Design</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 font-sans">Data never uploads to servers</p>
           </div>
           <div className="flex flex-col items-center justify-center p-3 col-span-2 md:col-span-1">
             <Cpu className="h-5 w-5 text-primary mb-2" />
-            <h3 className="text-xs sm:text-sm font-bold text-foreground font-heading">No Install Required</h3>
+            <p className="text-xs sm:text-sm font-bold text-foreground font-heading">No Install Required</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 font-sans">Runs completely client-side</p>
           </div>
           <div className="flex flex-col items-center justify-center p-3">
             <SmileIcon className="h-5 w-5 text-primary mb-2" />
-            <h3 className="text-xs sm:text-sm font-bold text-foreground font-heading">Free to Use</h3>
+            <p className="text-xs sm:text-sm font-bold text-foreground font-heading">Free to Use</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 font-sans">No rate limits or auth wall</p>
           </div>
           <div className="flex flex-col items-center justify-center p-3">
             <Github className="h-5 w-5 text-primary mb-2" />
-            <h3 className="text-xs sm:text-sm font-bold text-foreground font-heading">Open Source Code</h3>
+            <p className="text-xs sm:text-sm font-bold text-foreground font-heading">Open Source Code</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 font-sans">MIT licensed github catalog</p>
           </div>
         </div>
@@ -780,7 +780,7 @@ export function LandingPage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all cursor-pointer font-sans ${
                   selectedCategory === cat.id
-                    ? 'bg-secondary text-primary border-primary/20 shadow-sm'
+                    ? 'bg-secondary text-violet-800 dark:text-violet-200 font-bold border-violet-500/20 shadow-sm'
                     : 'bg-card/25 border-border/40 text-muted-foreground hover:text-foreground hover:bg-secondary/35'
                 }`}
               >

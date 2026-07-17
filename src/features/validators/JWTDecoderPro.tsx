@@ -810,9 +810,9 @@ export function JWTDecoderPro() {
             
             {/* How it works */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <FileJson className="h-4.5 w-4.5 text-primary" /> How JWT Works
-              </h4>
+              </h3>
               <p>
                 A JSON Web Token consists of three base64url-encoded segments separated by dots (`.`): Header, Payload, and Signature.
               </p>
@@ -825,9 +825,9 @@ export function JWTDecoderPro() {
 
             {/* Security best practices */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <Shield className="h-4.5 w-4.5 text-primary" /> Cryptographic Security Best Practices
-              </h4>
+              </h3>
               <ul className="list-disc pl-5 space-y-1.5 text-xs">
                 <li><strong className="text-foreground">Verify Signatures:</strong> Always verify signatures before trust layers read claims parameters.</li>
                 <li><strong className="text-foreground">Never store secrets in payloads:</strong> Decoded JWT structures are base64 strings readable by anyone. Do not store authorization keys or user passwords.</li>
@@ -838,9 +838,9 @@ export function JWTDecoderPro() {
 
             {/* Common mistakes */}
             <div className="space-y-2">
-              <h4 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <AlertTriangle className="h-4.5 w-4.5 text-primary" /> Common Developer Mistakes
-              </h4>
+              </h3>
               <ul className="list-disc pl-5 space-y-1.5 text-xs">
                 <li><strong className="text-foreground">Trusting header algorithm parameter unconditionally:</strong> Some platforms check algorithm parameters directly, exposing they can be manipulated to "none".</li>
                 <li><strong className="text-foreground">Failing to check exp and nbf parameters:</strong> Ensure your payload claims parser always validates timestamp scopes against current local/server offsets.</li>

@@ -598,7 +598,7 @@ export function HTMLToJSXConverterPro() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary animate-pulse" />
-            <h4 className="font-heading text-sm font-bold text-foreground">AI Code Refactoring & Optimization</h4>
+            <p className="font-heading text-sm font-bold text-foreground">AI Code Refactoring & Optimization</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Leverage localized AI inference loops to optimize converted structures, automatically generate hook actions, inject dynamic dummy data, or structure layouts.
@@ -625,7 +625,7 @@ export function HTMLToJSXConverterPro() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Code className="h-5 w-5 text-primary" />
-            <h4 className="font-heading text-sm font-bold text-foreground">React Component Decomposition</h4>
+            <p className="font-heading text-sm font-bold text-foreground">React Component Decomposition</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Decompose large, complex HTML layouts into a tree of functional React components. The compiler automatically extracts nested nodes (like headers, cards, icons) into separate modular modules.
@@ -652,7 +652,7 @@ export function HTMLToJSXConverterPro() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Cpu className="h-5 w-5 text-primary" />
-            <h4 className="font-heading text-sm font-bold text-foreground">Inline Styles to Tailwind Utility Converter</h4>
+            <p className="font-heading text-sm font-bold text-foreground">Inline Styles to Tailwind Utility Converter</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Automatically translate raw style attributes and values (e.g. <code>style="margin-top: 10px; font-weight: bold"</code>) into equivalent Tailwind CSS utility classes (e.g. <code>className="mt-2.5 font-bold"</code>).
@@ -674,7 +674,7 @@ export function HTMLToJSXConverterPro() {
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <Eye className="h-5 w-5 text-primary" />
-            <h4 className="font-heading text-sm font-bold text-foreground">Live Virtual DOM Render Sandbox</h4>
+            <p className="font-heading text-sm font-bold text-foreground">Live Virtual DOM Render Sandbox</p>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
             Generate a hot-reloading canvas display of your compiled React elements. Renders the component inside an isolated container to preview styles, tags, and click triggers.

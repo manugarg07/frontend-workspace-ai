@@ -291,7 +291,7 @@ export function ToolLayout({
           <div className="lg:col-span-2 flex flex-col gap-6">
             <Card className="bg-card/45 border-border">
               <CardHeader className="pb-3">
-                <CardTitle className="font-heading text-lg flex items-center gap-2">
+                <CardTitle as="h2" className="font-heading text-lg flex items-center gap-2">
                   <FileText className="h-5 w-5 text-primary" />
                   {instructionsTitle}
                 </CardTitle>
@@ -312,7 +312,7 @@ export function ToolLayout({
 
             {benefits.length > 0 && (
               <div className="flex flex-col gap-3 text-left">
-                <h3 className="font-heading text-base font-bold">Key Benefits</h3>
+                <h2 className="font-heading text-base font-bold">Key Benefits</h2>
                 <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
                   {benefits.map((benefit, i) => (
                     <li key={i}>{benefit}</li>
@@ -338,7 +338,7 @@ export function ToolLayout({
             {relatedTools.length > 0 && (
               <Card className="bg-card/65 border-border">
                 <CardHeader>
-                  <CardTitle className="font-heading text-base flex items-center gap-2">
+                  <CardTitle as="h2" className="font-heading text-base flex items-center gap-2">
                     <ArrowLeftRight className="h-4.5 w-4.5 text-primary" />
                     Related Utilities
                   </CardTitle>

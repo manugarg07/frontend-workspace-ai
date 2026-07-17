@@ -393,7 +393,7 @@ export function JSONFormatterPro() {
       icon: <Cpu className="h-3.5 w-3.5" />,
       content: (
         <div className="space-y-3">
-          <h4 className="text-sm font-semibold text-foreground">Advanced Compactor Actions</h4>
+          <p className="text-sm font-semibold text-foreground">Advanced Compactor Actions</p>
           <p className="text-xs text-muted-foreground leading-normal">
             Directly compress the JSON text format or trigger immediate syntax validation check.
           </p>
@@ -507,9 +507,9 @@ export function JSONFormatterPro() {
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-heading text-sm font-bold text-destructive">
+                    <p className="font-heading text-sm font-bold text-destructive">
                       Parse Error: {errorDetails.message}
-                    </h3>
+                    </p>
                     <p className="text-xs text-muted-foreground mt-1">
                       A syntax violation was parsed at <strong className="text-foreground">Line {errorDetails.line}</strong>, <strong className="text-foreground">Column {errorDetails.column}</strong>.
                     </p>

@@ -114,7 +114,6 @@ export function CookieConsent() {
             <button
               onClick={() => setShowPreferences(prev => !prev)}
               className="px-3 h-9 text-xs font-semibold text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors rounded-lg bg-transparent cursor-pointer"
-              aria-label="Manage cookie settings preferences"
             >
               <Settings className="h-4 w-4" />
               <span>{showPreferences ? 'Hide Settings' : 'Preferences'}</span>
