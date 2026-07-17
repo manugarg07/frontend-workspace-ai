@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChevronRight, Home } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { cn } from '@/lib/utils'
 
 export interface BreadcrumbItem {
@@ -14,8 +15,36 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
+  const siteUrl = 'https://personal-frontend-workspace.ai'
+  
+  // W3C compliant BreadcrumbList schema
+  const breadcrumbListSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Workspace",
+        "item": `${siteUrl}/workspace`
+      },
+      ...items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": item.label,
+        "item": item.href ? (item.href.startsWith('http') ? item.href : `${siteUrl}${item.href}`) : undefined
+      }))
+    ].filter((elem) => elem.item !== undefined)
+  }
+
   return (
     <nav className={cn('flex select-none', className)} aria-label="Breadcrumb">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbListSchema)}
+        </script>
+      </Helmet>
+
       <ol className="inline-flex items-center space-x-1 md:space-x-2 text-xs sm:text-sm font-medium text-muted-foreground">
         <li className="inline-flex items-center">
           <Link

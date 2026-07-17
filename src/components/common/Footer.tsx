@@ -1,42 +1,66 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Terminal, Github, Heart } from 'lucide-react'
+import { Terminal, Github, Heart, ExternalLink } from 'lucide-react'
 import { CATEGORIES } from '@/services/toolRegistry'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
-  // Take the first 4 categories for footer column
-  const footerCategories = CATEGORIES.slice(0, 4)
+  // Grab first 5 categories for the footer list
+  const footerCategories = CATEGORIES.slice(0, 5)
+
+  // Direct links to key tools
+  const developerTools = [
+    { name: 'JSON Formatter', slug: 'json-formatter' },
+    { name: 'Base64 Converter', slug: 'base64-converter' },
+    { name: 'HTML to JSX', slug: 'html-to-jsx' },
+    { name: 'CSS to Tailwind', slug: 'css-to-tailwind' },
+    { name: 'JWT Decoder', slug: 'jwt-decoder' },
+  ]
 
   return (
-    <footer className="border-t border-border/40 bg-card/30 transition-colors duration-300">
+    <footer className="border-t border-border/40 bg-card/30 transition-colors duration-300 font-sans z-15 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           
-          {/* Brand info column */}
+          {/* Brand Info */}
           <div className="col-span-2 flex flex-col gap-4">
             <Link to="/" className="flex items-center gap-2 font-heading text-base font-bold text-foreground">
               <Terminal className="h-5 w-5 text-primary" />
               <span>Workspace<span className="text-primary">.ai</span></span>
             </Link>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-sm">
-              Build Faster. Ship Better. The ultimate offline developer productivity dashboard. Everything you need to optimize web projects.
+              Build Faster. Ship Better. The premium browser-based developer productivity dashboard. Everything you need to format, convert, validate, and compile.
             </p>
             <div className="flex items-center gap-3 mt-1">
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-muted-foreground hover:text-foreground p-2 hover:bg-secondary rounded-lg transition-colors"
+                className="text-muted-foreground hover:text-foreground p-2 hover:bg-secondary rounded-lg transition-colors inline-flex items-center gap-1.5 text-xs font-semibold"
                 aria-label="GitHub profile link"
               >
                 <Github className="h-4 w-4" />
+                <span>Star on GitHub</span>
               </a>
             </div>
           </div>
 
-          {/* Categories column */}
+          {/* Column 1: Developer Tools */}
+          <div>
+            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Developer Tools</h4>
+            <ul className="space-y-2.5 text-sm">
+              {developerTools.map((tool) => (
+                <li key={tool.slug}>
+                  <Link to={`/tool/${tool.slug}`} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {tool.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: Categories */}
           <div>
             <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Categories</h4>
             <ul className="space-y-2.5 text-sm">
@@ -55,26 +79,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal column */}
+          {/* Column 3: Resources & Legal */}
           <div>
-            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Legal</h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Product Info column */}
-          <div>
-            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Company</h4>
+            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Resources</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -91,14 +98,30 @@ export function Footer() {
                   Changelog
                 </Link>
               </li>
+              <li>
+                <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom Bar */}
         <div className="border-t border-border/40 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} Frontend Workspace AI. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <p>© {currentYear} Frontend Workspace AI. All rights reserved.</p>
+            <span className="h-4 w-px bg-border hidden md:inline" />
+            <p className="font-mono text-[10px] bg-secondary/80 px-2 py-0.5 rounded border border-border/50">
+              v2.0.0
+            </p>
+          </div>
           <p className="flex items-center gap-1.5">
             Designed for engineers with <Heart className="h-3 w-3 text-red-500 fill-current animate-pulse" /> by Google DeepMind Team.
           </p>

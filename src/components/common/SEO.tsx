@@ -39,6 +39,11 @@ export function SEO({
       <meta name="description" content={description} />
       {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
       <link rel="canonical" href={finalCanonical} />
+      
+      {/* Google Search Console verification */}
+      {import.meta.env.VITE_GSC_VERIFICATION && (
+        <meta name="google-site-verification" content={import.meta.env.VITE_GSC_VERIFICATION} />
+      )}
 
       {/* Open Graph Tags */}
       <meta property="og:title" content={title} />

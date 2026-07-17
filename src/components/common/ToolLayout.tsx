@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui
 import { Accordion } from '../ui/Accordion'
 import { SEO } from './SEO'
 import { useToast } from '../ui/Toast'
-import { getToolBySlug, getRelatedTools } from '@/services/toolRegistry'
+import { getToolBySlug, getRelatedTools, mapCategoryToSlug, getCategoryName } from '@/services/toolRegistry'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -102,6 +102,9 @@ export function ToolLayout({
 
   if (!tool) return null
 
+  const categoryName = getCategoryName(tool.category)
+  const categorySlug = mapCategoryToSlug(tool.category)
+
   // Related tools automatically resolved based on registry category
   const relatedTools = getRelatedTools(tool, 3)
 
@@ -117,6 +120,35 @@ export function ToolLayout({
     "browserRequirements": "Requires HTML5 support"
   }
 
+  // W3C Schema: SoftwareApplication
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": tool.title,
+    "description": tool.shortDescription || tool.description,
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+
+  // W3C Schema: FAQPage
+  const faqSchema = tool.faqs && tool.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": tool.faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  } : null
+
   return (
     <div className={cn(
       "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 transition-colors duration-300 w-full text-left",
@@ -130,22 +162,38 @@ export function ToolLayout({
         canonical={extraSEOProps?.canonical || `/tool/${tool.slug}`}
       />
 
-      {/* JSON-LD Script block */}
+      {/* JSON-LD Script blocks */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Header section with Breadcrumb and Meta */}
       <div className="flex flex-col gap-4">
         {!isFullscreen && (
-          <Breadcrumb items={[{ label: 'Catalog', href: '/tools' }, { label: tool.title }]} />
+          <Breadcrumb 
+            items={[
+              { label: 'Catalog', href: '/tools' },
+              { label: categoryName, href: `/tools/${categorySlug}` },
+              { label: tool.title }
+            ]} 
+          />
         )}
         
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-5">
+          <div className="flex-1 min-w-0">
             <h1 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
-              {tool.title}
+              <span>{tool.title}</span>
               <button
                 onClick={toggleFavorite}
                 className="text-muted-foreground hover:text-yellow-500 transition-colors cursor-pointer"
@@ -154,7 +202,20 @@ export function ToolLayout({
                 <Star className={cn('h-5 w-5', isFavorited && 'text-yellow-500 fill-current')} />
               </button>
             </h1>
-            <p className="text-sm text-muted-foreground mt-1 max-w-2xl">{tool.description}</p>
+            <p className="text-sm text-muted-foreground mt-1.5 max-w-3xl font-sans">{tool.description}</p>
+            
+            <div className="text-[11px] text-muted-foreground mt-3.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-mono">
+              <Link 
+                to={`/tools/${categorySlug}`}
+                className="bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded font-semibold hover:bg-primary/20 transition-all"
+              >
+                {categoryName}
+              </Link>
+              <span>•</span>
+              <span>Last Updated: {tool.lastUpdated || '2026-07-17'}</span>
+              <span>•</span>
+              <span>{tool.estimatedReadingTime || '2 min read'}</span>
+            </div>
           </div>
         </div>
       </div>

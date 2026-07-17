@@ -44,6 +44,7 @@ export function AppRoutes() {
           <Route index element={<LandingPage />} />
           <Route path="workspace" element={<WorkspacePage />} />
           <Route path="tools" element={<ToolsPage />} />
+          <Route path="tools/:categorySlug" element={<ToolsPage />} />
           <Route path="tool/:slug" element={<ToolTemplatePage />} />
           
           {/* Categories index redirect to tools list */}

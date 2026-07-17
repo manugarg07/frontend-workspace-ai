@@ -13,6 +13,7 @@ import {
 import { Button } from './Button'
 import { Chip } from './Chip'
 import { cn } from '@/lib/utils'
+import { trackEvent } from '@/services/analytics'
 
 interface ToolbarProps {
   onPaste?: () => void
@@ -107,7 +108,10 @@ export function Toolbar({
           <Button 
             size="sm" 
             variant="primary" 
-            onClick={onConvert}
+            onClick={() => {
+              onConvert()
+              trackEvent({ action: 'convert_click', category: 'toolbar', label: convertLabel })
+            }}
             isLoading={convertLoading}
             leftIcon={<Play className="h-4 w-4" />}
             className="h-9 bg-primary text-primary-foreground font-semibold shadow-sm shadow-primary/25"
@@ -120,7 +124,10 @@ export function Toolbar({
           <Button 
             size="sm" 
             variant="outline"
-            onClick={onCopy}
+            onClick={() => {
+              onCopy()
+              trackEvent({ action: 'copy_click', category: 'toolbar' })
+            }}
             disabled={copyDisabled}
             leftIcon={<Copy className="h-4 w-4" />}
             className="h-9 font-medium"
@@ -133,7 +140,10 @@ export function Toolbar({
           <Button 
             size="sm" 
             variant="outline"
-            onClick={onDownload}
+            onClick={() => {
+              onDownload()
+              trackEvent({ action: 'download_click', category: 'toolbar' })
+            }}
             disabled={downloadDisabled}
             leftIcon={<Download className="h-4 w-4" />}
             className="h-9 font-medium"
@@ -146,7 +156,10 @@ export function Toolbar({
           <Button
             size="sm"
             variant="outline"
-            onClick={onShare}
+            onClick={() => {
+              onShare()
+              trackEvent({ action: 'share_click', category: 'toolbar' })
+            }}
             disabled={shareDisabled}
             leftIcon={<Share2 className="h-4 w-4" />}
             className="h-9 font-medium"
@@ -170,7 +183,10 @@ export function Toolbar({
           <Button 
             size="sm" 
             variant="outline"
-            onClick={onClear}
+            onClick={() => {
+              onClear()
+              trackEvent({ action: 'clear_click', category: 'toolbar' })
+            }}
             disabled={clearDisabled}
             className="h-9 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/20 font-medium"
           >

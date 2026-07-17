@@ -4,6 +4,7 @@ import { IconButton } from './IconButton'
 import { Copy, Download, CheckCircle2, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { EmptyState } from './FeedbackStates'
+import { trackEvent } from '@/services/analytics'
 
 interface ResultPanelProps {
   title: string
@@ -45,7 +46,10 @@ export function ResultPanel({
             <IconButton
               variant="outline"
               size="sm"
-              onClick={onCopy}
+              onClick={() => {
+                onCopy()
+                trackEvent({ action: 'copy_click', category: 'result_panel', label: title })
+              }}
               disabled={!value}
               aria-label="Copy to Clipboard"
             >
@@ -56,7 +60,10 @@ export function ResultPanel({
             <IconButton
               variant="outline"
               size="sm"
-              onClick={onDownload}
+              onClick={() => {
+                onDownload()
+                trackEvent({ action: 'download_click', category: 'result_panel', label: title })
+              }}
               disabled={!value}
               aria-label="Download results file"
             >

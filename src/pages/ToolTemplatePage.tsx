@@ -1,22 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Copy, Download, Trash, RefreshCw, Star, HelpCircle, FileText } from 'lucide-react'
-import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Copy, Download } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { Textarea } from '@/components/ui/Textarea'
-import { Accordion } from '@/components/ui/Accordion'
 import { useToast } from '@/components/ui/Toast'
-import { SEO } from '@/components/common/SEO'
-import { getToolBySlug, getRelatedTools } from '@/services/toolRegistry'
-import { cn } from '@/lib/utils'
-import { JSONFormatterPro } from '@/features/formatters/JSONFormatterPro'
-import { HTMLToJSXConverterPro } from '@/features/converters/HTMLToJSXConverterPro'
-import { CSSToTailwindConverterPro } from '@/features/converters/CSSToTailwindConverterPro'
-import { SVGToReactGeneratorPro } from '@/features/converters/SVGToReactGeneratorPro'
-import { Base64ConverterPro } from '@/features/converters/Base64ConverterPro'
-import { JWTDecoderPro } from '@/features/validators/JWTDecoderPro'
+import { LoadingState } from '@/components/ui/FeedbackStates'
+import { ToolLayout } from '@/components/common/ToolLayout'
+import { 
+  getToolBySlug, 
+  getToolWithDefaults,
+} from '@/services/toolRegistry'
+import { trackToolUsage } from '@/services/popularityService'
+
+// Lazy loaded feature components
+const JSONFormatterPro = lazy(() => import('@/features/formatters/JSONFormatterPro').then(m => ({ default: m.JSONFormatterPro })))
+const HTMLToJSXConverterPro = lazy(() => import('@/features/converters/HTMLToJSXConverterPro').then(m => ({ default: m.HTMLToJSXConverterPro })))
+const CSSToTailwindConverterPro = lazy(() => import('@/features/converters/CSSToTailwindConverterPro').then(m => ({ default: m.CSSToTailwindConverterPro })))
+const SVGToReactGeneratorPro = lazy(() => import('@/features/converters/SVGToReactGeneratorPro').then(m => ({ default: m.SVGToReactGeneratorPro })))
+const Base64ConverterPro = lazy(() => import('@/features/converters/Base64ConverterPro').then(m => ({ default: m.Base64ConverterPro })))
+const JWTDecoderPro = lazy(() => import('@/features/validators/JWTDecoderPro').then(m => ({ default: m.JWTDecoderPro })))
+const UUIDGeneratorPro = lazy(() => import('@/features/generators/UUIDGeneratorPro').then(m => ({ default: m.UUIDGeneratorPro })))
+const PasswordGeneratorPro = lazy(() => import('@/features/generators/PasswordGeneratorPro').then(m => ({ default: m.PasswordGeneratorPro })))
+const RegexTesterPro = lazy(() => import('@/features/utilities/RegexTesterPro').then(m => ({ default: m.RegexTesterPro })))
+const URLEncoderPro = lazy(() => import('@/features/converters/URLEncoderPro').then(m => ({ default: m.URLEncoderPro })))
+
+const CUSTOM_TOOLS: Record<string, React.ComponentType> = {
+  'json-formatter': JSONFormatterPro,
+  'html-to-jsx': HTMLToJSXConverterPro,
+  'css-to-tailwind': CSSToTailwindConverterPro,
+  'svg-to-react': SVGToReactGeneratorPro,
+  'base64-converter': Base64ConverterPro,
+  'jwt-decoder': JWTDecoderPro,
+  'uuid-generator': UUIDGeneratorPro,
+  'password-generator': PasswordGeneratorPro,
+  'regex-tester': RegexTesterPro,
+  'url-encoder': URLEncoderPro,
+}
 
 export function ToolTemplatePage() {
   const { slug } = useParams<{ slug: string }>()
@@ -25,11 +46,11 @@ export function ToolTemplatePage() {
   
   const [inputVal, setInputVal] = useState('')
   const [outputVal, setOutputVal] = useState('')
-  const [isFavorited, setIsFavorited] = useState(false)
   const [errorState, setErrorState] = useState<string | null>(null)
 
   // Find tool details from registry
-  const tool = slug ? getToolBySlug(slug) : undefined
+  const toolRaw = slug ? getToolBySlug(slug) : undefined
+  const tool = toolRaw ? getToolWithDefaults(toolRaw) : undefined
 
   // Redirect to 404 if tool is invalid or coming soon
   useEffect(() => {
@@ -40,15 +61,15 @@ export function ToolTemplatePage() {
       setInputVal('')
       setOutputVal('')
       setErrorState(null)
+      trackToolUsage(tool.id)
     }
-  }, [tool, navigate])
+  }, [slug, navigate, tool])
 
-  // Related tools
-  const relatedTools = tool ? getRelatedTools(tool, 3) : []
-
-  // Auto-run a mock transformer just to demonstrate visual updates
+  // Auto-run a mock transformer just to demonstrate visual updates for generic tools
   useEffect(() => {
     if (!tool) return
+    if (CUSTOM_TOOLS[tool.id]) return
+
     if (!inputVal.trim()) {
       setOutputVal('')
       setErrorState(null)
@@ -56,22 +77,9 @@ export function ToolTemplatePage() {
     }
 
     try {
-      // Simple mock compilation rules based on tool slug
-      if (tool.id === 'json-formatter') {
-        const parsed = JSON.parse(inputVal)
-        setOutputVal(JSON.stringify(parsed, null, 2))
-        setErrorState(null)
-      } else if (tool.id === 'base64-converter') {
-        // Mock Base64
-        setOutputVal(btoa(inputVal))
-        setErrorState(null)
-      } else {
-        // Fallback mock: just reverse the text string to show reaction
-        setOutputVal(inputVal.split('').reverse().join(''))
-        setErrorState(null)
-      }
+      setOutputVal(inputVal.split('').reverse().join(''))
+      setErrorState(null)
     } catch (err) {
-      // Show validation errors visually
       setErrorState(err instanceof Error ? err.message : 'Invalid structure syntax')
       setOutputVal('')
     }
@@ -79,244 +87,100 @@ export function ToolTemplatePage() {
 
   if (!tool) return null
 
-  // Load sample example
-  const loadExample = () => {
-    if (tool.id === 'json-formatter') {
-      setInputVal('{"name":"Frontend Workspace","version":"2.0.0","active":true,"features":["Converters","Formatters","Validators"]}')
-      toast('Loaded JSON example configuration', 'info')
-    } else if (tool.id === 'base64-converter') {
-      setInputVal('Welcome to Workspace.ai!')
-      toast('Loaded Base64 example string', 'info')
-    } else {
-      setInputVal('This is a mock sample text input.')
-      toast('Loaded placeholder utility example', 'info')
-    }
+  // Check if it's a custom tool
+  const CustomComponent = CUSTOM_TOOLS[tool.id]
+
+  if (CustomComponent) {
+    return (
+      <Suspense fallback={<LoadingState message={`Initializing ${tool.title}...`} />}>
+        <CustomComponent />
+      </Suspense>
+    )
   }
 
-  // Action: Clear
-  const clearInput = () => {
-    setInputVal('')
-    setOutputVal('')
-    setErrorState(null)
-    toast('Cleared workspace panels', 'info')
-  }
-
-  // Action: Copy to clipboard
+  // Action: Copy to clipboard for generic tool
   const copyOutput = () => {
     if (!outputVal) return
     navigator.clipboard.writeText(outputVal)
     toast('Copied result to clipboard!', 'success')
   }
 
-  // Action: Download as file
+  // Action: Download as file for generic tool
   const downloadOutput = () => {
     if (!outputVal) return
-    const fileExtension = tool.id === 'json-formatter' ? 'json' : 'txt'
     const blob = new Blob([outputVal], { type: 'text/plain;charset=utf-8' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = `${tool.slug}-result.${fileExtension}`
+    link.download = `${tool.slug}-result.txt`
     link.click()
     URL.revokeObjectURL(url)
     toast('Downloaded result file', 'success')
   }
 
-  // Mock FAQs
-  const toolFaqs = [
-    {
-      id: 'tool-faq-1',
-      title: `How do I use the ${tool.title}?`,
-      content: `Simply paste your input text or code into the left editor panel. The application will validate the structure in real-time, displaying syntax issues below. The parsed results are rendered instantly in the right output panel.`,
-    },
-    {
-      id: 'tool-faq-2',
-      title: 'Is this tool secure to use with private keys or user data?',
-      content: `Yes, completely secure. All calculations occur inside your browser using sandboxed JavaScript context. No network API calls are triggered, ensuring your secrets never leave your device.`,
-    },
-  ]
+  const genericEditorSection = (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch w-full">
+      {/* Input Panel */}
+      <Card className="flex flex-col bg-card/60 relative border-border">
+        <CardHeader className="p-4 border-b border-border/40 flex flex-row justify-between items-center bg-secondary/10">
+          <CardTitle className="font-heading text-sm text-muted-foreground uppercase tracking-wider font-semibold">Input Panel</CardTitle>
+          <Badge variant="outline">{tool.category}</Badge>
+        </CardHeader>
+        <CardContent className="p-4 flex-1 flex flex-col gap-2 min-h-[300px]">
+          <Textarea
+            placeholder={`Paste your raw input here...`}
+            value={inputVal}
+            onChange={(e) => setInputVal(e.target.value)}
+            className="flex-1 resize-y min-h-[250px] focus-ring"
+          />
+          {errorState && (
+            <span className="text-xs text-destructive bg-destructive/10 border border-destructive/20 p-2.5 rounded-lg font-mono">
+              {errorState}
+            </span>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Output Panel */}
+      <Card className="flex flex-col bg-card/60 relative border-border">
+        <CardHeader className="p-4 border-b border-border/40 flex flex-row justify-between items-center bg-secondary/10">
+          <CardTitle className="font-heading text-sm text-muted-foreground uppercase tracking-wider font-semibold">Output Panel</CardTitle>
+          
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={copyOutput} disabled={!outputVal} aria-label="Copy output">
+              <Copy className="h-3.5 w-3.5" />
+            </Button>
+            <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={downloadOutput} disabled={!outputVal} aria-label="Download output">
+              <Download className="h-3.5 w-3.5" />
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="p-4 flex-1 flex flex-col min-h-[300px]">
+          <Textarea
+            placeholder="Compiled result will display here..."
+            value={outputVal}
+            readOnly
+            className="flex-1 bg-secondary/20 text-foreground/90 font-mono resize-y min-h-[250px]"
+          />
+        </CardContent>
+      </Card>
+    </div>
+  )
+
+  const faqItems = tool.faqs.map((f, index) => ({
+    id: `faq-${index}`,
+    title: f.question,
+    content: <span>{f.answer}</span>
+  }))
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 transition-colors duration-300">
-      <SEO
-        title={tool.seoTitle || `${tool.title} - Frontend Workspace AI`}
-        description={tool.seoDescription || tool.description}
-      />
-
-      {/* Header section */}
-      <div className="flex flex-col gap-4">
-        <Breadcrumb items={[{ label: 'Catalog', href: '/tools' }, { label: tool.title }]} />
-        
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
-              {tool.title}
-              <button
-                onClick={() => {
-                  setIsFavorited((prev) => !prev)
-                  toast(isFavorited ? 'Removed from favorites' : 'Added to favorites', 'success')
-                }}
-                className="text-muted-foreground hover:text-yellow-500 transition-colors cursor-pointer"
-                aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
-              >
-                <Star className={cn('h-5 w-5', isFavorited && 'text-yellow-500 fill-current')} />
-              </button>
-            </h1>
-            <p className="text-sm text-muted-foreground mt-1 max-w-2xl">{tool.description}</p>
-          </div>
-
-          {/* Top header buttons */}
-          {tool.id !== 'json-formatter' && tool.id !== 'html-to-jsx' && tool.id !== 'css-to-tailwind' && tool.id !== 'svg-to-react' && tool.id !== 'base64-converter' && tool.id !== 'jwt-decoder' && (
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={loadExample} leftIcon={<RefreshCw className="h-3.5 w-3.5" />}>
-                Load Example
-              </Button>
-              <Button variant="outline" size="sm" onClick={clearInput} leftIcon={<Trash className="h-3.5 w-3.5" />}>
-                Clear
-              </Button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {tool.id === 'json-formatter' ? (
-        <JSONFormatterPro />
-      ) : tool.id === 'html-to-jsx' ? (
-        <HTMLToJSXConverterPro />
-      ) : tool.id === 'css-to-tailwind' ? (
-        <CSSToTailwindConverterPro />
-      ) : tool.id === 'svg-to-react' ? (
-        <SVGToReactGeneratorPro />
-      ) : tool.id === 'base64-converter' ? (
-        <Base64ConverterPro />
-      ) : tool.id === 'jwt-decoder' ? (
-        <JWTDecoderPro />
-      ) : (
-        <>
-          {/* Interactive dual column workspace panels */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            
-            {/* Input Panel */}
-            <Card className="flex flex-col bg-card/60 relative border-border">
-              <CardHeader className="p-4 border-b border-border/40 flex flex-row justify-between items-center bg-secondary/10">
-                <CardTitle className="font-heading text-sm text-muted-foreground uppercase tracking-wider font-semibold">Input Panel</CardTitle>
-                <Badge variant="outline">{tool.category}</Badge>
-              </CardHeader>
-              <CardContent className="p-4 flex-1 flex flex-col gap-2 min-h-[300px]">
-                <Textarea
-                  placeholder={`Paste your raw input here...`}
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  className="flex-1 resize-y min-h-[250px] focus-ring"
-                />
-                {errorState && (
-                  <span className="text-xs text-destructive bg-destructive/10 border border-destructive/20 p-2.5 rounded-lg font-mono">
-                    {errorState}
-                  </span>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Output Panel */}
-            <Card className="flex flex-col bg-card/60 relative border-border">
-              <CardHeader className="p-4 border-b border-border/40 flex flex-row justify-between items-center bg-secondary/10">
-                <CardTitle className="font-heading text-sm text-muted-foreground uppercase tracking-wider font-semibold">Output Panel</CardTitle>
-                
-                {/* Action buttons */}
-                <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
-                    onClick={copyOutput}
-                    disabled={!outputVal}
-                    aria-label="Copy output"
-                  >
-                    <Copy className="h-3.5 w-3.5" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
-                    onClick={downloadOutput}
-                    disabled={!outputVal}
-                    aria-label="Download output"
-                  >
-                    <Download className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="p-4 flex-1 flex flex-col min-h-[300px]">
-                <Textarea
-                  placeholder="Compiled result will display here..."
-                  value={outputVal}
-                  readOnly
-                  className="flex-1 bg-secondary/20 text-foreground/90 font-mono resize-y min-h-[250px]"
-                />
-              </CardContent>
-            </Card>
-
-          </div>
-
-          {/* Guide details / related tools layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
-            
-            {/* Info guide & FAQs */}
-            <div className="lg:col-span-2 flex flex-col gap-6">
-              <Card className="bg-card/45 border-border">
-                <CardHeader className="pb-3">
-                  <CardTitle className="font-heading text-lg flex items-center gap-2">
-                    <FileText className="h-5 w-5 text-primary" />
-                    How It Works
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground leading-relaxed flex flex-col gap-3">
-                  <p>
-                    The <strong>{tool.title}</strong> is a dedicated sandboxed utility configured for {tool.category} workflows.
-                  </p>
-                  <p>
-                    Simply supply the data format inside the Input panel. The client-side parse listener handles parsing syntax tokens, checks formatting parameters, and outputs clean compiled results without triggering network requests.
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Category FAQ */}
-              <div>
-                <h2 className="font-heading text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                  <HelpCircle className="h-4.5 w-4.5 text-primary" />
-                  Frequently Asked Questions
-                </h2>
-                <Accordion items={toolFaqs} />
-              </div>
-            </div>
-
-            {/* Related tools sidebar column */}
-            <div className="flex flex-col gap-6">
-              <Card className="bg-card/65 border-border">
-                <CardHeader>
-                  <CardTitle className="font-heading text-base">Related Utilities</CardTitle>
-                  <CardDescription className="text-xs">Similar tools you might need.</CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="flex flex-col divide-y divide-border/40">
-                    {relatedTools.map((rel) => (
-                      <Link
-                        key={rel.id}
-                        to={`/tool/${rel.slug}`}
-                        className="flex flex-col gap-1 p-4 hover:bg-secondary/40 transition-colors"
-                      >
-                        <span className="font-heading text-sm font-semibold text-foreground">{rel.title}</span>
-                        <span className="text-[10px] text-muted-foreground line-clamp-1">{rel.description}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-          </div>
-        </>
-      )}
-    </div>
+    <ToolLayout
+      toolSlug={tool.slug}
+      editorSection={genericEditorSection}
+      instructionsTitle={`About ${tool.title}`}
+      instructions={<p>{tool.longDescription}</p>}
+      benefits={tool.benefits}
+      faqs={faqItems}
+    />
   )
 }
