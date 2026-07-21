@@ -280,8 +280,8 @@ export function LandingPage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Frontend Workspace AI",
-    "url": "https://personal-frontend-workspace.ai",
-    "logo": "https://personal-frontend-workspace.ai/logo.png",
+    "url": "https://codestrategists.com",
+    "logo": "https://codestrategists.com/logo.png",
     "description": "Premium client-side browser developer tools platform for frontend engineers."
   }
 

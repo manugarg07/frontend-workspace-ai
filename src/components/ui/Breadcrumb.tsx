@@ -15,7 +15,7 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
-  const siteUrl = 'https://personal-frontend-workspace.ai'
+  const siteUrl = 'https://codestrategists.com'
   
   // W3C compliant BreadcrumbList schema
   const breadcrumbListSchema = {

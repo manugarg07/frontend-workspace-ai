@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://personal-frontend-workspace.ai/sitemap.xml
+Sitemap: https://codestrategists.com/sitemap.xml

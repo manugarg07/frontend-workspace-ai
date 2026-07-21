@@ -43,7 +43,7 @@ const SAMPLE_LIBRARY = {
   url: {
     title: 'URL Extractor',
     regex: 'https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)',
-    text: 'Documentation is available at https://docs.workspace.ai/api. Follow secure updates on http://status.company.org/index.html.',
+    text: 'Documentation is available at https://docs.codestrategists.com/api. Follow secure updates on http://status.company.org/index.html.',
     flags: { g: true, i: true, m: false, s: false, u: false, y: false },
     replaceText: '<secure-link>'
   },
