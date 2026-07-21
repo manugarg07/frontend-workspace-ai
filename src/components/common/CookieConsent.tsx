@@ -58,7 +58,7 @@ export function CookieConsent() {
           {/* Header */}
           <div className="flex items-start gap-3">
             <div className="p-2.5 bg-primary/10 text-primary rounded-xl shrink-0">
-              <Cookie className="h-5 w-5 animate-pulse" />
+              <Cookie className="h-5 w-5 animate-pulse" aria-hidden="true" />
             </div>
             <div className="space-y-1">
               <h3 id="cookie-consent-title" className="font-heading text-sm font-bold text-foreground flex items-center gap-1.5">
@@ -88,7 +88,7 @@ export function CookieConsent() {
                     <p className="text-[10px] text-muted-foreground leading-normal">Required for layouts caching and favorites persistence.</p>
                   </div>
                   <div className="flex items-center justify-center h-5 w-5 bg-card border border-border/50 text-muted-foreground rounded shrink-0 select-none">
-                    <Check className="h-3 w-3" />
+                    <Check className="h-3 w-3" aria-hidden="true" />
                   </div>
                 </div>
 
@@ -112,10 +112,12 @@ export function CookieConsent() {
           {/* Actions */}
           <div className="mt-5 flex flex-wrap gap-2 justify-end">
             <button
+              type="button"
               onClick={() => setShowPreferences(prev => !prev)}
-              className="px-3 h-9 text-xs font-semibold text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors rounded-lg bg-transparent cursor-pointer"
+              aria-expanded={showPreferences}
+              className="px-3 h-9 text-xs font-semibold text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors rounded-lg bg-transparent cursor-pointer focus-ring"
             >
-              <Settings className="h-4 w-4" />
+              <Settings className="h-4 w-4" aria-hidden="true" />
               <span>{showPreferences ? 'Hide Settings' : 'Preferences'}</span>
             </button>
             

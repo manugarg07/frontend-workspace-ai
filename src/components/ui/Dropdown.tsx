@@ -50,13 +50,15 @@ export function Dropdown({
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
+        aria-haspopup="true"
+        aria-expanded={isOpen}
         className={cn(
           'inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium border border-border bg-card rounded-lg hover:bg-secondary/50 focus-ring cursor-pointer transition-colors',
           triggerClassName
         )}
       >
         <span>{label}</span>
-        <ChevronDown className={cn('h-4 w-4 text-muted-foreground transition-transform', isOpen && 'rotate-180')} />
+        <ChevronDown className={cn('h-4 w-4 text-muted-foreground transition-transform', isOpen && 'rotate-180')} aria-hidden="true" />
       </button>
 
       <AnimatePresence>
@@ -71,7 +73,7 @@ export function Dropdown({
               align === 'right' ? 'right-0' : 'left-0'
             )}
           >
-            <div className="py-1">
+            <div className="py-1" role="menu">
               {items.map((item, index) => {
                 if (item.divider) {
                   return <hr key={`divider-${index}`} className="my-1 border-border" />
@@ -80,6 +82,8 @@ export function Dropdown({
                 return (
                   <button
                     key={item.id}
+                    type="button"
+                    role="menuitem"
                     onClick={() => {
                       if (!item.disabled) {
                         item.onClick?.()
@@ -94,7 +98,7 @@ export function Dropdown({
                         : 'text-foreground hover:bg-secondary/60 hover:text-foreground'
                     )}
                   >
-                    {item.icon && <span className="mr-2 text-muted-foreground">{item.icon}</span>}
+                    {item.icon && <span className="mr-2 text-muted-foreground" aria-hidden="true">{item.icon}</span>}
                     <span>{item.label}</span>
                   </button>
                 )

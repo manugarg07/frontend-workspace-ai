@@ -454,8 +454,9 @@ export function UUIDGeneratorPro() {
                       {qtyButtons.map((qty) => (
                         <button
                           key={qty}
+                          type="button"
                           onClick={() => selectQty(qty)}
-                          className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer",
+                          className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus-ring",
                             !isCustomQty && quantity === qty 
                               ? 'bg-primary text-primary-foreground border-primary shadow-sm'
                               : 'bg-background hover:bg-secondary/30 text-muted-foreground hover:text-foreground border-border'
@@ -467,8 +468,9 @@ export function UUIDGeneratorPro() {
                       ))}
                       
                       <button
+                        type="button"
                         onClick={activateCustomQty}
-                        className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer",
+                        className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer focus-ring",
                           isCustomQty 
                             ? 'bg-primary text-primary-foreground border-primary shadow-sm'
                             : 'bg-background hover:bg-secondary/30 text-muted-foreground hover:text-foreground border-border'
@@ -487,6 +489,7 @@ export function UUIDGeneratorPro() {
                           max="1000"
                           value={quantity}
                           onChange={(e) => handleCustomQtyChange(e.target.value)}
+                          aria-label="Generation Quantity Slider"
                           className="flex-1 accent-primary h-1 bg-secondary rounded-lg appearance-none cursor-pointer"
                         />
                         <input
@@ -495,6 +498,7 @@ export function UUIDGeneratorPro() {
                           max="1000"
                           value={customQtyInput}
                           onChange={(e) => handleCustomQtyChange(e.target.value)}
+                          aria-label="Custom Generation Quantity"
                           className="w-16 px-2 py-1 text-xs text-center font-semibold bg-background border border-border rounded focus:border-primary focus:outline-none"
                         />
                       </div>

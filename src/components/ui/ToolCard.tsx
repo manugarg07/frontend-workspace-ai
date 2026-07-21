@@ -65,7 +65,7 @@ export function ToolCard({
             ? "bg-secondary/50 text-primary group-hover:bg-primary/10 group-hover:scale-115 mb-5" 
             : "bg-primary/5 text-primary group-hover:bg-primary/15 group-hover:scale-110 mb-4"
         )}>
-          <ToolIcon className="h-5 w-5" />
+          <ToolIcon className="h-5 w-5" aria-hidden="true" />
         </div>
 
         <CardTitle className="font-heading text-base group-hover:text-primary transition-colors">
@@ -81,7 +81,7 @@ export function ToolCard({
         {!tool.comingSoon ? (
           <div className="flex items-center gap-1 group-hover:text-primary">
             <span>{layout === 'landing' ? 'Open Sandbox' : 'Open Utility'}</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </div>
         ) : (
           <span className="text-muted-foreground font-medium">In active pipeline</span>

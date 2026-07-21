@@ -21,12 +21,13 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-card/30 transition-colors duration-300 font-sans z-15 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="sr-only font-heading">Footer Navigation</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           
           {/* Brand Info */}
           <div className="col-span-2 flex flex-col gap-4">
             <Link to="/" className="flex items-center gap-2 font-heading text-base font-bold text-foreground">
-              <Terminal className="h-5 w-5 text-primary" />
+              <Terminal className="h-5 w-5 text-primary" aria-hidden="true" />
               <span>Workspace<span className="text-primary">.ai</span></span>
             </Link>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-sm">
@@ -38,9 +39,8 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="text-muted-foreground hover:text-foreground p-2 hover:bg-secondary rounded-lg transition-colors inline-flex items-center gap-1.5 text-xs font-semibold"
-                aria-label="Star on GitHub"
               >
-                <Github className="h-4 w-4" />
+                <Github className="h-4 w-4" aria-hidden="true" />
                 <span>Star on GitHub</span>
               </a>
             </div>
@@ -48,7 +48,7 @@ export function Footer() {
 
           {/* Column 1: Developer Tools */}
           <div>
-            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Developer Tools</h4>
+            <h3 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Developer Tools</h3>
             <ul className="space-y-2.5 text-sm">
               {developerTools.map((tool) => (
                 <li key={tool.slug}>
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Column 2: Categories */}
           <div>
-            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Categories</h4>
+            <h3 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Categories</h3>
             <ul className="space-y-2.5 text-sm">
               {footerCategories.map((cat) => (
                 <li key={cat.id}>
@@ -81,7 +81,7 @@ export function Footer() {
 
           {/* Column 3: Resources & Legal */}
           <div>
-            <h4 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Resources</h4>
+            <h3 className="font-heading text-xs font-semibold text-foreground uppercase tracking-wider mb-4">Resources</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -118,12 +118,12 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-4">
             <p>© {currentYear} Frontend Workspace AI. All rights reserved.</p>
             <span className="h-4 w-px bg-border hidden md:inline" />
-            <p className="font-mono text-[10px] bg-secondary/80 px-2 py-0.5 rounded border border-border/50 text-secondary-foreground">
+            <p className="font-mono text-xs font-semibold bg-secondary px-2 py-0.5 rounded border border-border/60 text-secondary-foreground">
               v2.0.0
             </p>
           </div>
           <p className="flex items-center gap-1.5">
-            Designed for engineers with <Heart className="h-3 w-3 text-red-500 fill-current animate-pulse" /> by Google DeepMind Team.
+            Designed for engineers with <Heart className="h-3 w-3 text-red-500 fill-current animate-pulse" aria-hidden="true" /> by Google DeepMind Team.
           </p>
         </div>
       </div>

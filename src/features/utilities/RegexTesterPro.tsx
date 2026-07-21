@@ -407,6 +407,7 @@ export function RegexTesterPro() {
                         value={regexInput}
                         onChange={(e) => setRegexInput(e.target.value)}
                         placeholder="e.g. [a-zA-Z]+"
+                        aria-label="Regular Expression pattern"
                         className="flex-1 bg-transparent py-1.5 border-none focus:outline-none text-foreground font-mono"
                       />
                       <span className="text-muted-foreground select-none">/</span>
@@ -423,6 +424,7 @@ export function RegexTesterPro() {
                       {Object.entries(flags).map(([flag, active]) => (
                         <button
                           key={flag}
+                          type="button"
                           onClick={() => toggleFlag(flag)}
                           className={cn("px-2 py-0.5 rounded text-[10px] font-bold font-mono transition-all border cursor-pointer",
                             active 
@@ -447,6 +449,7 @@ export function RegexTesterPro() {
                           type="checkbox"
                           checked={replaceMode}
                           onChange={(e) => setReplaceMode(e.target.checked)}
+                          aria-label="Toggle replace mode"
                           className="sr-only peer"
                         />
                         <div className="w-9 h-5 bg-secondary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
@@ -461,6 +464,7 @@ export function RegexTesterPro() {
                           value={replaceText}
                           onChange={(e) => setReplaceText(e.target.value)}
                           placeholder="Replacement replacement string..."
+                          aria-label="Replacement Text"
                           className="w-full px-3 py-2 text-xs bg-background border border-border rounded-lg focus:border-primary focus:outline-none font-mono"
                         />
                       </div>

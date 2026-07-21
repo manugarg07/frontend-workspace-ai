@@ -28,15 +28,15 @@ export function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         <Card className="bg-card/50">
           <CardHeader>
-            <Milestone className="h-6 w-6 text-primary mb-2" />
-            <CardTitle className="font-heading text-base">Our Vision</CardTitle>
+            <Milestone className="h-6 w-6 text-primary mb-2" aria-hidden="true" />
+            <CardTitle as="h2" className="font-heading text-base">Our Vision</CardTitle>
             <CardDescription className="text-xs">Consolidating developer resources into a beautiful, standardized screen that stays 100% client-side.</CardDescription>
           </CardHeader>
         </Card>
         <Card className="bg-card/50">
           <CardHeader>
-            <ShieldCheck className="h-6 w-6 text-primary mb-2" />
-            <CardTitle className="font-heading text-base">Privacy Standard</CardTitle>
+            <ShieldCheck className="h-6 w-6 text-primary mb-2" aria-hidden="true" />
+            <CardTitle as="h2" className="font-heading text-base">Privacy Standard</CardTitle>
             <CardDescription className="text-xs">We believe your source code and configurations shouldn't travel to any cloud. Security via client side executions.</CardDescription>
           </CardHeader>
         </Card>
@@ -88,11 +88,13 @@ export function ContactPage() {
 
       <Card className="bg-card/60">
         <CardContent className="p-6">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
             <Input
               id="name"
               label="Your Name"
               placeholder="Alex Johnson"
+              autoComplete="name"
+              aria-required="true"
               error={errors.name?.message}
               {...register('name')}
             />
@@ -101,6 +103,8 @@ export function ContactPage() {
               type="email"
               label="Email Address"
               placeholder="alex@company.com"
+              autoComplete="email"
+              aria-required="true"
               error={errors.email?.message}
               {...register('email')}
             />
@@ -108,11 +112,12 @@ export function ContactPage() {
               id="message"
               label="Feedback Message"
               placeholder="Type your feature requests here..."
+              aria-required="true"
               error={errors.message?.message}
               className="min-h-24 font-sans"
               {...register('message')}
             />
-            <Button type="submit" isLoading={isSubmitting} leftIcon={<Send className="h-4 w-4" />}>
+            <Button type="submit" isLoading={isSubmitting} leftIcon={<Send className="h-4 w-4" aria-hidden="true" />}>
               Send Message
             </Button>
           </form>

@@ -36,6 +36,7 @@ export function Tabs({
   return (
     <div className={cn('w-full flex flex-col gap-4', className)}>
       <div
+        role="tablist"
         className={cn(
           'flex overflow-x-auto select-none no-scrollbar p-1 border-b border-border/40 gap-1',
           variant === 'pills' && 'bg-secondary/40 border-none rounded-xl p-1',
@@ -44,10 +45,17 @@ export function Tabs({
       >
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id
+          const tabId = `tab-${tab.id}`
+          const panelId = `tabpanel-${tab.id}`
 
           return (
             <button
               key={tab.id}
+              id={tabId}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={panelId}
               onClick={() => handleTabClick(tab.id)}
               className={cn(
                 'relative flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-medium transition-colors focus-ring rounded-lg cursor-pointer whitespace-nowrap',
@@ -70,7 +78,7 @@ export function Tabs({
                 />
               )}
               <span className="relative z-10 flex items-center gap-1.5">
-                {tab.icon}
+                {tab.icon && <span aria-hidden="true">{tab.icon}</span>}
                 {tab.label}
               </span>
             </button>
@@ -80,8 +88,16 @@ export function Tabs({
       <div className="w-full">
         {tabs.map((tab) => {
           if (tab.id !== activeTab) return null
+          const tabId = `tab-${tab.id}`
+          const panelId = `tabpanel-${tab.id}`
           return (
-            <div key={tab.id} className="w-full animate-fade-in">
+            <div
+              key={tab.id}
+              id={panelId}
+              role="tabpanel"
+              aria-labelledby={tabId}
+              className="w-full animate-fade-in"
+            >
               {tab.content}
             </div>
           )

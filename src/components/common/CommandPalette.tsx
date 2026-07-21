@@ -257,20 +257,21 @@ export function CommandPalette() {
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
             className="absolute inset-0 bg-background/80 backdrop-blur-md"
-          />
-
-          {/* Raycast Panel */}
+          />          {/* Raycast Panel */}
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.97 }}
             transition={{ duration: 0.2 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command Palette"
             className="relative w-full max-w-2xl rounded-2xl border border-border bg-card text-card-foreground shadow-2xl overflow-hidden glass-panel flex flex-col max-h-[500px]"
             onKeyDown={handleKeyDown}
           >
             {/* Search Input Bar */}
             <div className="flex items-center border-b border-border/40 px-4 py-3.5">
-              <Search className="h-5 w-5 text-muted-foreground mr-3" />
+              <Search className="h-5 w-5 text-muted-foreground mr-3" aria-hidden="true" />
               <input
                 ref={inputRef}
                 value={search}
@@ -280,19 +281,22 @@ export function CommandPalette() {
                 }}
                 onKeyDown={handleKeyDown}
                 placeholder="Search tools, aliases, keywords, or type actions..."
+                aria-label="Search tools, aliases, keywords, or type actions"
                 className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none font-sans"
               />
-              <span className="text-xs bg-secondary px-2 py-0.5 rounded text-muted-foreground font-mono select-none">ESC</span>
+              <span className="text-xs bg-secondary border border-border/60 px-2 py-0.5 rounded text-foreground font-semibold font-mono select-none">ESC</span>
             </div>
 
             {/* List Area */}
             <div
               ref={listRef}
+              role="listbox"
+              aria-label="Search suggestions"
               className="flex-1 overflow-y-auto p-2 min-h-[150px] max-h-[350px] flex flex-col gap-1.5"
             >
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center p-12 gap-2 my-auto">
-                  <Terminal className="h-8 w-8 text-muted-foreground animate-bounce" />
+                  <Terminal className="h-8 w-8 text-muted-foreground animate-bounce" aria-hidden="true" />
                   <p className="text-sm font-semibold font-heading">No results found</p>
                   <p className="text-xs text-muted-foreground font-sans">
                     Try typing another query or searching by keywords (e.g. Base64, json).
@@ -311,6 +315,8 @@ export function CommandPalette() {
                         </div>
                       )}
                       <div
+                        role="option"
+                        aria-selected={isSelected}
                         onClick={() => {
                           item.handler()
                           setIsOpen(false)
@@ -326,22 +332,22 @@ export function CommandPalette() {
                         <div className="flex items-center justify-between w-full">
                           <div className="flex items-center gap-3 w-full min-w-0">
                             {item.category.includes('Recent') ? (
-                              <Clock className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')} />
+                              <Clock className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')} aria-hidden="true" />
                             ) : item.category.includes('Actions') ? (
-                              <Terminal className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')} />
+                              <Terminal className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')} aria-hidden="true" />
                             ) : (
-                              <Sparkles className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-primary')} />
+                              <Sparkles className={cn('h-4 w-4 shrink-0', isSelected ? 'text-primary-foreground' : 'text-primary')} aria-hidden="true" />
                             )}
                             <span className="font-heading font-semibold text-sm truncate">
                               <HighlightText text={item.title} match={search} />
                             </span>
                             {item.comingSoon && (
-                              <span className={cn('text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-full font-sans', isSelected ? 'bg-primary-foreground/20 text-primary-foreground' : 'bg-secondary text-muted-foreground')}>
+                              <span className={cn('text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-full font-sans', isSelected ? 'bg-primary-foreground/20 text-primary-foreground' : 'bg-secondary text-secondary-foreground font-semibold')}>
                                 Soon
                               </span>
                             )}
                           </div>
-                          {isSelected && <CornerDownLeft className="h-3.5 w-3.5 shrink-0 opacity-80" />}
+                          {isSelected && <CornerDownLeft className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden="true" />}
                         </div>
                         <span className={cn('text-[11px] truncate w-full block mt-1 font-sans', isSelected ? 'text-primary-foreground/80' : 'text-muted-foreground')}>
                           <HighlightText text={item.subtitle} match={search} />
@@ -356,11 +362,11 @@ export function CommandPalette() {
             {/* Footer Hints */}
             <div className="flex items-center justify-between border-t border-border/40 px-4 py-2.5 text-xs text-muted-foreground bg-secondary/15 font-sans">
               <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1"><kbd className="bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px]">↑↓</kbd> Navigate</span>
-                <span className="flex items-center gap-1"><kbd className="bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px]">Enter</kbd> Select</span>
+                <span className="flex items-center gap-1"><kbd className="bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px] text-foreground font-semibold">↑↓</kbd> Navigate</span>
+                <span className="flex items-center gap-1"><kbd className="bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px] text-foreground font-semibold">Enter</kbd> Select</span>
               </div>
               <div>
-                <span>Press <kbd className="font-mono bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px]">⌘K</kbd> to close</span>
+                <span>Press <kbd className="font-mono bg-secondary px-1.5 py-0.5 rounded border border-border/60 text-[10px] text-foreground font-semibold">⌘K</kbd> to close</span>
               </div>
             </div>
           </motion.div>

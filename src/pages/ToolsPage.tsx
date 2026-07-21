@@ -200,13 +200,13 @@ export function ToolsPage() {
         
         {/* Sidebar Filters */}
         <aside className="w-full lg:w-64 shrink-0 flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-sm font-bold text-foreground border-b border-border/40 pb-3 font-heading uppercase tracking-wider">
-            <Filter className="h-4 w-4 text-primary" />
+          <h2 className="flex items-center gap-2 text-sm font-bold text-foreground border-b border-border/40 pb-3 font-heading uppercase tracking-wider">
+            <Filter className="h-4 w-4 text-primary" aria-hidden="true" />
             <span>Filter Categories</span>
-          </div>
+          </h2>
 
           {/* Mobile chips list */}
-          <div className="flex lg:hidden flex-wrap gap-2">
+          <div className="flex lg:hidden flex-wrap gap-2" role="group" aria-label="Category filters">
             <Chip active={!activeCategory} onClick={() => handleCategorySelect(null)}>
               All Categories
             </Chip>
@@ -222,11 +222,12 @@ export function ToolsPage() {
           </div>
 
           {/* Desktop side list */}
-          <div className="hidden lg:flex flex-col gap-1 text-sm font-medium font-heading">
+          <div className="hidden lg:flex flex-col gap-1 text-sm font-medium font-heading" role="group" aria-label="Category filter sidebar">
             <button
+              type="button"
               onClick={() => handleCategorySelect(null)}
               className={cn(
-                'flex items-center w-full px-3 py-2 text-left rounded-lg transition-colors cursor-pointer',
+                'flex items-center w-full px-3 py-2 text-left rounded-lg transition-colors cursor-pointer focus-ring',
                 !activeCategory 
                   ? 'bg-primary text-primary-foreground font-semibold shadow-sm' 
                   : 'text-muted-foreground hover:bg-secondary/40 hover:text-foreground'
@@ -237,9 +238,10 @@ export function ToolsPage() {
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => handleCategorySelect(cat.id)}
                 className={cn(
-                  'flex items-center justify-between w-full px-3 py-2 text-left rounded-lg transition-colors cursor-pointer',
+                  'flex items-center justify-between w-full px-3 py-2 text-left rounded-lg transition-colors cursor-pointer focus-ring',
                   activeCategory === cat.id 
                     ? 'bg-primary text-primary-foreground font-semibold shadow-sm' 
                     : 'text-muted-foreground hover:bg-secondary/40 hover:text-foreground'
@@ -247,7 +249,7 @@ export function ToolsPage() {
               >
                 <span>{cat.title}</span>
                 <span className={cn('text-[10px] px-1.5 py-0.5 rounded-full font-semibold font-mono', 
-                  activeCategory === cat.id ? 'bg-primary-foreground/20 text-primary-foreground' : 'bg-secondary/80 text-muted-foreground'
+                  activeCategory === cat.id ? 'bg-primary-foreground/20 text-primary-foreground' : 'bg-secondary border border-border/60 text-secondary-foreground'
                 )}>
                   {TOOLS.filter((t) => !t.comingSoon && t.category === cat.id).length}
                 </span>
@@ -263,16 +265,19 @@ export function ToolsPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-4">
             
             {/* Horizontal Tabs */}
-            <div className="flex overflow-x-auto no-scrollbar gap-1 border-b sm:border-none border-border/40 pb-2 sm:pb-0">
+            <div className="flex overflow-x-auto no-scrollbar gap-1 border-b sm:border-none border-border/40 pb-2 sm:pb-0" role="tablist" aria-label="Tool filters">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    'px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap font-sans',
+                    'px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap font-sans focus-ring',
                     activeTab === tab.id
-                      ? 'bg-secondary text-violet-800 dark:text-violet-200 font-bold border border-violet-500/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary/20'
+                      ? 'bg-primary text-primary-foreground font-bold shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary/40'
                   )}
                 >
                   {tab.label}

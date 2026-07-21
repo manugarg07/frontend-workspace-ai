@@ -38,7 +38,7 @@ export function ResultPanel({
   return (
     <Card className={cn("flex flex-col bg-card/45 border-border overflow-hidden min-h-[420px] relative", className)}>
       <CardHeader className="p-4 border-b border-border/40 flex justify-between items-center bg-secondary/15 font-sans">
-        <CardTitle className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
+        <CardTitle as="h2" className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">
           {title}
         </CardTitle>
         <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export function ResultPanel({
               disabled={!value}
               aria-label="Copy to Clipboard"
             >
-              <Copy className="h-4 w-4" />
+              <Copy className="h-4 w-4" aria-hidden="true" />
             </IconButton>
           )}
           {onDownload && (
@@ -67,7 +67,7 @@ export function ResultPanel({
               disabled={!value}
               aria-label="Download results file"
             >
-              <Download className="h-4 w-4" />
+              <Download className="h-4 w-4" aria-hidden="true" />
             </IconButton>
           )}
         </div>
@@ -91,17 +91,17 @@ export function ResultPanel({
         <div className="flex items-center gap-3">
           {validationStatus === 'success' && (
             <span className="flex items-center gap-1.5 text-emerald-500 font-bold uppercase tracking-wider text-[10px]">
-              <CheckCircle2 className="h-3.5 w-3.5" /> Syntax Valid
+              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> Syntax Valid
             </span>
           )}
           {validationStatus === 'warning' && (
             <span className="flex items-center gap-1.5 text-amber-500 font-bold uppercase tracking-wider text-[10px]">
-              <AlertCircle className="h-3.5 w-3.5" /> Syntax Warning
+              <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" /> Syntax Warning
             </span>
           )}
           {validationStatus === 'error' && (
             <span className="flex items-center gap-1.5 text-destructive font-bold uppercase tracking-wider text-[10px]">
-              <AlertCircle className="h-3.5 w-3.5" /> Syntax Invalid
+              <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" /> Syntax Invalid
             </span>
           )}
           {validationStatus === null && (

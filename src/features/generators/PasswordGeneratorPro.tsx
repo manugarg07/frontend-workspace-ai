@@ -554,6 +554,7 @@ export function PasswordGeneratorPro() {
                         max="128"
                         value={length}
                         onChange={(e) => setLength(Math.min(128, Math.max(4, parseInt(e.target.value, 10) || 4)))}
+                        aria-label="Password Length Number"
                         className="w-14 px-2 py-1 text-xs text-center font-bold bg-background border border-border rounded focus:border-primary focus:outline-none"
                       />
                     </div>

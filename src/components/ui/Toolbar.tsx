@@ -70,7 +70,7 @@ export function Toolbar({
             size="sm" 
             variant="outline" 
             onClick={onPaste}
-            leftIcon={<ClipboardList className="h-4 w-4" />}
+            leftIcon={<ClipboardList className="h-4 w-4" aria-hidden="true" />}
             className="h-9 font-medium"
           >
             Paste
@@ -79,12 +79,13 @@ export function Toolbar({
 
         {onUpload && (
           <label className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border bg-card hover:bg-secondary/40 rounded-lg cursor-pointer transition-colors focus-ring h-9 select-none">
-            <Upload className="h-4 w-4" />
+            <Upload className="h-4 w-4" aria-hidden="true" />
             <span>Upload File</span>
             <input
               type="file"
               accept={uploadAccept}
               onChange={onUpload}
+              aria-label="Upload File"
               className="hidden"
             />
           </label>
@@ -113,7 +114,7 @@ export function Toolbar({
               trackEvent({ action: 'convert_click', category: 'toolbar', label: convertLabel })
             }}
             isLoading={convertLoading}
-            leftIcon={<Play className="h-4 w-4" />}
+            leftIcon={<Play className="h-4 w-4" aria-hidden="true" />}
             className="h-9 bg-primary text-primary-foreground font-semibold shadow-sm shadow-primary/25"
           >
             {convertLabel}
@@ -129,7 +130,7 @@ export function Toolbar({
               trackEvent({ action: 'copy_click', category: 'toolbar' })
             }}
             disabled={copyDisabled}
-            leftIcon={<Copy className="h-4 w-4" />}
+            leftIcon={<Copy className="h-4 w-4" aria-hidden="true" />}
             className="h-9 font-medium"
           >
             Copy
@@ -145,7 +146,7 @@ export function Toolbar({
               trackEvent({ action: 'download_click', category: 'toolbar' })
             }}
             disabled={downloadDisabled}
-            leftIcon={<Download className="h-4 w-4" />}
+            leftIcon={<Download className="h-4 w-4" aria-hidden="true" />}
             className="h-9 font-medium"
           >
             Download
@@ -161,7 +162,7 @@ export function Toolbar({
               trackEvent({ action: 'share_click', category: 'toolbar' })
             }}
             disabled={shareDisabled}
-            leftIcon={<Share2 className="h-4 w-4" />}
+            leftIcon={<Share2 className="h-4 w-4" aria-hidden="true" />}
             className="h-9 font-medium"
           >
             Share
@@ -173,7 +174,7 @@ export function Toolbar({
             size="sm"
             variant="outline"
             onClick={onToggleFullscreen}
-            leftIcon={isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+            leftIcon={isFullscreen ? <Minimize2 className="h-4 w-4" aria-hidden="true" /> : <Maximize2 className="h-4 w-4" aria-hidden="true" />}
             className="h-9 font-medium px-2.5"
             aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
           />

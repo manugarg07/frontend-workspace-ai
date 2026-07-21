@@ -25,9 +25,10 @@ export function Search({
       <Input
         type="text"
         placeholder={placeholder}
+        aria-label={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        leftIcon={<SearchIcon className="h-3.5 w-3.5 text-muted-foreground" />}
+        leftIcon={<SearchIcon className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />}
         className={className}
       />
       {value && (
@@ -38,7 +39,7 @@ export function Search({
             onClick={handleClear}
             aria-label="Clear search input"
           >
-            <X className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground" />
+            <X className="h-3.5 w-3.5 text-muted-foreground hover:text-foreground" aria-hidden="true" />
           </IconButton>
         </div>
       )}

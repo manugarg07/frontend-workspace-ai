@@ -195,11 +195,12 @@ export function ToolLayout({
             <h1 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
               <span>{tool.title}</span>
               <button
+                type="button"
                 onClick={toggleFavorite}
                 className="text-muted-foreground hover:text-yellow-500 transition-colors cursor-pointer"
                 aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
               >
-                <Star className={cn('h-5 w-5', isFavorited && 'text-yellow-500 fill-current')} />
+                <Star className={cn('h-5 w-5', isFavorited && 'text-yellow-500 fill-current')} aria-hidden="true" />
               </button>
             </h1>
             <p className="text-sm text-muted-foreground mt-1.5 max-w-3xl font-sans">{tool.description}</p>
@@ -292,7 +293,7 @@ export function ToolLayout({
             <Card className="bg-card/45 border-border">
               <CardHeader className="pb-3">
                 <CardTitle as="h2" className="font-heading text-lg flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-primary" />
+                  <FileText className="h-5 w-5 text-primary" aria-hidden="true" />
                   {instructionsTitle}
                 </CardTitle>
                 {instructionsDescription && (
@@ -325,7 +326,7 @@ export function ToolLayout({
             {faqs.length > 0 && (
               <div className="flex flex-col gap-4 text-left">
                 <h2 className="font-heading text-lg font-bold text-foreground flex items-center gap-2">
-                  <HelpCircle className="h-4.5 w-4.5 text-primary" />
+                  <HelpCircle className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
                   Frequently Asked Questions
                 </h2>
                 <Accordion items={faqs} />
@@ -339,7 +340,7 @@ export function ToolLayout({
               <Card className="bg-card/65 border-border">
                 <CardHeader>
                   <CardTitle as="h2" className="font-heading text-base flex items-center gap-2">
-                    <ArrowLeftRight className="h-4.5 w-4.5 text-primary" />
+                    <ArrowLeftRight className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
                     Related Utilities
                   </CardTitle>
                   <CardDescription className="text-xs">Similar tools you might need.</CardDescription>

@@ -10,7 +10,7 @@ export function NotFoundPage() {
       <SEO title="Page Not Found - Frontend Workspace AI" />
       
       <div className="p-4 bg-primary/10 text-primary border border-primary/20 rounded-full animate-bounce">
-        <FileQuestion className="h-12 w-12" />
+        <FileQuestion className="h-12 w-12" aria-hidden="true" />
       </div>
 
       <h1 className="font-heading text-4xl font-extrabold tracking-tight">404</h1>
@@ -22,12 +22,12 @@ export function NotFoundPage() {
 
       <div className="flex flex-wrap gap-3 mt-2">
         <Link to="/">
-          <Button variant="outline" size="sm" leftIcon={<ArrowLeft className="h-4 w-4" />}>
+          <Button variant="outline" size="sm" leftIcon={<ArrowLeft className="h-4 w-4" aria-hidden="true" />}>
             Back Home
           </Button>
         </Link>
         <Link to="/workspace">
-          <Button size="sm" leftIcon={<Home className="h-4 w-4" />}>
+          <Button size="sm" leftIcon={<Home className="h-4 w-4" aria-hidden="true" />}>
             Workspace
           </Button>
         </Link>

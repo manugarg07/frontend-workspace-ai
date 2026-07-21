@@ -653,6 +653,7 @@ export function LandingPage() {
           SECTION 2 - TRUST HIGHLIGHTS
           ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full relative z-10 border-t border-b border-border/40 bg-card/10 backdrop-blur-sm" aria-label="Trust metrics">
+        <h2 className="sr-only font-heading">Platform Highlights</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
           <div className="flex flex-col items-center justify-center p-3">
             <Zap className="h-5 w-5 text-primary mb-2 animate-pulse" />
@@ -773,14 +774,17 @@ export function LandingPage() {
           </div>
 
           {/* Quick Category filter chips */}
-          <div className="flex flex-wrap justify-center gap-2 mt-6">
+          <div className="flex flex-wrap justify-center gap-2 mt-6" role="tablist" aria-label="Catalog category filter tabs">
             {DISPLAY_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={selectedCategory === cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all cursor-pointer font-sans ${
+                className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all cursor-pointer font-sans focus-ring ${
                   selectedCategory === cat.id
-                    ? 'bg-secondary text-violet-800 dark:text-violet-200 font-bold border-violet-500/20 shadow-sm'
+                    ? 'bg-primary text-primary-foreground font-bold border-transparent shadow-sm'
                     : 'bg-card/25 border-border/40 text-muted-foreground hover:text-foreground hover:bg-secondary/35'
                 }`}
               >
@@ -1065,6 +1069,7 @@ function SmileIcon(props: React.SVGProps<SVGSVGElement>) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       <circle cx="12" cy="12" r="10" />
       <path d="M8 14s1.5 2 4 2 4-2 4-2" />

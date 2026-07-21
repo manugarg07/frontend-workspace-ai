@@ -46,7 +46,7 @@ export function WorkspacePage() {
             placeholder="Type command or filter tools..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            leftIcon={<Search className="h-4 w-4 text-primary" />}
+            leftIcon={<Search className="h-4 w-4 text-primary" aria-hidden="true" />}
           />
         </div>
       </div>
@@ -87,7 +87,7 @@ export function WorkspacePage() {
             {/* Pinned Tools */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Pin className="h-4.5 w-4.5 text-primary rotate-45" />
+                <Pin className="h-4.5 w-4.5 text-primary rotate-45" aria-hidden="true" />
                 <h2 className="font-heading text-lg font-bold text-foreground">Pinned Utilities</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -98,14 +98,14 @@ export function WorkspacePage() {
                         <div>
                           <div className="flex justify-between items-center mb-2">
                             <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{tool.category}</span>
-                            <Pin className="h-3 w-3 text-muted-foreground group-hover:text-primary rotate-45 transition-colors" />
+                            <Pin className="h-3 w-3 text-muted-foreground group-hover:text-primary rotate-45 transition-colors" aria-hidden="true" />
                           </div>
                           <CardTitle className="font-heading text-base group-hover:text-primary transition-colors">{tool.title}</CardTitle>
                           <CardDescription className="text-xs mt-1 line-clamp-2">{tool.description}</CardDescription>
                         </div>
                         <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-primary">
                           <span>Open Utility</span>
-                          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                         </div>
                       </CardHeader>
                     </Card>
@@ -117,7 +117,7 @@ export function WorkspacePage() {
             {/* Favorite Tools placeholder */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Star className="h-4.5 w-4.5 text-yellow-500 fill-current" />
+                <Star className="h-4.5 w-4.5 text-yellow-500 fill-current" aria-hidden="true" />
                 <h2 className="font-heading text-lg font-bold text-foreground">Favorites</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -127,7 +127,7 @@ export function WorkspacePage() {
                       <CardHeader className="p-5">
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{tool.category}</span>
-                          <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                          <Star className="h-3 w-3 text-yellow-500 fill-current" aria-hidden="true" />
                         </div>
                         <CardTitle className="font-heading text-sm group-hover:text-primary transition-colors">{tool.title}</CardTitle>
                         <CardDescription className="text-xs mt-1 line-clamp-2">{tool.description}</CardDescription>
@@ -141,7 +141,7 @@ export function WorkspacePage() {
             {/* Recently Used */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="h-4.5 w-4.5 text-muted-foreground" />
+                <Clock className="h-4.5 w-4.5 text-muted-foreground" aria-hidden="true" />
                 <h2 className="font-heading text-lg font-bold text-foreground">Recently Used</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -167,7 +167,7 @@ export function WorkspacePage() {
             <Card className="bg-card/65 border-border">
               <CardHeader className="pb-4">
                 <CardTitle as="h2" className="font-heading text-base flex items-center gap-2">
-                  <Terminal className="h-4 w-4 text-primary" />
+                  <Terminal className="h-4 w-4 text-primary" aria-hidden="true" />
                   Recent Activity
                 </CardTitle>
                 <CardDescription className="text-xs">Logs for local parsed files.</CardDescription>
@@ -186,7 +186,7 @@ export function WorkspacePage() {
                 <div className="border-t border-border/40 pt-4 flex items-center justify-between text-xs text-muted-foreground mt-2">
                   <span>Total actions logged: 3</span>
                   <span className="text-[10px] uppercase font-bold text-emerald-500 flex items-center gap-1">
-                    <CheckCircle className="h-3 w-3" /> Online Synced
+                    <CheckCircle className="h-3 w-3" aria-hidden="true" /> Online Synced
                   </span>
                 </div>
               </CardContent>

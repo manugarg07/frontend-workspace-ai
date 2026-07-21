@@ -10,8 +10,8 @@ export function Navbar() {
   const location = useLocation()
 
   const navLinks = [
-    { label: 'Workspace', path: '/workspace', icon: <LayoutDashboard className="h-4 w-4" /> },
-    { label: 'Tools', path: '/tools', icon: <Layers className="h-4 w-4" /> },
+    { label: 'Workspace', path: '/workspace', icon: <LayoutDashboard className="h-4 w-4" aria-hidden="true" /> },
+    { label: 'Tools', path: '/tools', icon: <Layers className="h-4 w-4" aria-hidden="true" /> },
     { label: 'Changelog', path: '/changelog' },
   ]
 
@@ -25,7 +25,7 @@ export function Navbar() {
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2.5 font-heading text-lg font-bold text-foreground">
             <div className="bg-primary/10 border border-primary/20 p-2 rounded-xl text-primary shadow-sm shadow-primary/5">
-              <Terminal className="h-5 w-5" />
+              <Terminal className="h-5 w-5" aria-hidden="true" />
             </div>
             <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
               Workspace<span className="text-primary">.ai</span>
@@ -67,11 +67,11 @@ export function Navbar() {
               window.dispatchEvent(event)
             }}
             className="hidden sm:flex items-center gap-2 border border-border bg-card/50 hover:bg-secondary/40 text-muted-foreground hover:text-foreground px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-colors focus-ring"
-            aria-label="Search tools... (Open Command Palette)"
+            aria-label="Search tools"
           >
-            <Search className="h-3.5 w-3.5" />
+            <Search className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Search tools...</span>
-            <span className="font-mono text-[9px] bg-secondary/80 border border-border/60 px-1.5 py-0.5 rounded text-secondary-foreground ml-1">⌘K</span>
+            <span className="font-mono text-[10px] font-semibold bg-secondary border border-border/60 px-1.5 py-0.5 rounded text-secondary-foreground ml-1">⌘K</span>
           </button>
 
           <ThemeToggle />
@@ -80,10 +80,11 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-expanded={mobileMenuOpen}
             className="flex md:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg focus-ring cursor-pointer transition-colors"
             aria-label="Toggle main menu"
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -112,7 +113,7 @@ export function Navbar() {
                 }}
                 className="flex items-center gap-2 border border-border bg-secondary/35 text-muted-foreground px-3 py-2.5 rounded-xl text-sm font-medium w-full text-left"
               >
-                <Search className="h-4 w-4" />
+                <Search className="h-4 w-4" aria-hidden="true" />
                 <span>Search tools...</span>
               </button>
               {navLinks.map((link) => (

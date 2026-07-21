@@ -58,7 +58,7 @@ export function Pagination({
               size="sm"
               onClick={() => onPageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              leftIcon={<ChevronLeft className="h-4 w-4" />}
+              leftIcon={<ChevronLeft className="h-4 w-4" aria-hidden="true" />}
             >
               Previous
             </Button>
@@ -66,7 +66,9 @@ export function Pagination({
             {getPageNumbers().map((page) => (
               <button
                 key={page}
+                type="button"
                 onClick={() => onPageChange(page)}
+                aria-label={`Page ${page}`}
                 className={cn(
                   'h-9 w-9 rounded-lg border border-border flex items-center justify-center text-sm font-semibold transition-colors focus-ring cursor-pointer',
                   page === currentPage
@@ -84,7 +86,7 @@ export function Pagination({
               size="sm"
               onClick={() => onPageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              rightIcon={<ChevronRight className="h-4 w-4" />}
+              rightIcon={<ChevronRight className="h-4 w-4" aria-hidden="true" />}
             >
               Next
             </Button>

@@ -32,14 +32,18 @@ export function Accordion({ items, allowMultiple = false, className }: Accordion
     <div className={cn('divide-y divide-border border border-border rounded-xl overflow-hidden bg-card/50', className)}>
       {items.map((item) => {
         const isOpen = openIds.includes(item.id)
+        const buttonId = `accordion-button-${item.id}`
+        const contentId = `accordion-content-${item.id}`
 
         return (
           <div key={item.id} className="group">
             <button
+              id={buttonId}
               type="button"
               onClick={() => toggleItem(item.id)}
               className="flex w-full items-center justify-between px-6 py-4 text-left font-medium text-foreground hover:bg-secondary/40 transition-colors focus-ring cursor-pointer"
               aria-expanded={isOpen}
+              aria-controls={contentId}
             >
               <span className="font-heading text-sm sm:text-base">{item.title}</span>
               <ChevronDown
@@ -47,11 +51,15 @@ export function Accordion({ items, allowMultiple = false, className }: Accordion
                   'h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:text-foreground',
                   isOpen && 'transform rotate-180'
                 )}
+                aria-hidden="true"
               />
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
+                  id={contentId}
+                  role="region"
+                  aria-labelledby={buttonId}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}

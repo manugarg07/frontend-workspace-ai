@@ -343,16 +343,18 @@ export function JSONFormatterPro() {
     {
       id: 'options',
       label: 'Formatting Settings',
-      icon: <ArrowLeftRight className="h-3.5 w-3.5" />,
+      icon: <ArrowLeftRight className="h-3.5 w-3.5" aria-hidden="true" />,
       content: (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-3">
-            <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground block">
+            <label htmlFor="spacing-select" className="text-xs font-bold uppercase tracking-wider text-muted-foreground block">
               Indentation Spacing
             </label>
             <div className="flex items-center gap-2">
               <select
+                id="spacing-select"
                 value={spacing}
+                aria-label="Indentation Spacing"
                 onChange={(e) => setSpacing(e.target.value)}
                 className="text-xs font-medium border border-border bg-card rounded-lg px-2.5 py-1.5 focus-ring outline-none"
               >
@@ -390,7 +392,7 @@ export function JSONFormatterPro() {
     {
       id: 'actions',
       label: 'Compactor Actions',
-      icon: <Cpu className="h-3.5 w-3.5" />,
+      icon: <Cpu className="h-3.5 w-3.5" aria-hidden="true" />,
       content: (
         <div className="space-y-3">
           <p className="text-sm font-semibold text-foreground">Advanced Compactor Actions</p>
@@ -505,7 +507,7 @@ export function JSONFormatterPro() {
                 className="border border-destructive/20 bg-destructive/5 rounded-2xl p-5 text-left flex flex-col gap-3"
               >
                 <div className="flex items-start gap-3">
-                  <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                  <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
                     <p className="font-heading text-sm font-bold text-destructive">
                       Parse Error: {errorDetails.message}

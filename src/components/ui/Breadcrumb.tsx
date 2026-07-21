@@ -51,7 +51,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             to="/workspace"
             className="inline-flex items-center hover:text-foreground transition-colors"
           >
-            <Home className="mr-2.5 h-3.5 w-3.5" />
+            <Home className="mr-2.5 h-3.5 w-3.5" aria-hidden="true" />
             Workspace
           </Link>
         </li>
@@ -60,7 +60,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
 
           return (
             <li key={index} className="inline-flex items-center">
-              <ChevronRight className="h-4 w-4 text-muted-foreground mx-1" />
+              <ChevronRight className="h-4 w-4 text-muted-foreground mx-1" aria-hidden="true" />
               {isLast || !item.href ? (
                 <span className="text-foreground font-semibold" aria-current="page">
                   {item.label}
