@@ -12,10 +12,11 @@ interface SEOMetaProps {
 }
 
 export function SEOMeta({
-  title = 'Frontend Workspace AI - Build Faster. Ship Better.',
-  description = 'Build the world\'s best productivity workspace for frontend developers. Free online converters, formatters, code generators, and utilities in one single dashboard.',
+  title = 'CodeStrategists - Professional Developer Tools for Modern Frontend Engineers',
+  description = 'Format, convert, validate, and generate code quickly using premium, 100% browser-based client-side developer tools. No installations required.',
   keywords = [
-    'frontend workspace',
+    'codestrategists',
+    'code strategists',
     'developer tools',
     'json formatter',
     'base64 converter',
@@ -70,7 +71,7 @@ export function SEOMeta({
       <meta property="og:url" content={finalCanonical} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content="Frontend Workspace AI" />
+      <meta property="og:site_name" content="CodeStrategists" />
 
       {/* Twitter Cards Social Tags */}
       <meta name="twitter:card" content="summary_large_image" />

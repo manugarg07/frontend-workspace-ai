@@ -27,7 +27,7 @@ const SAMPLES = {
   simple: {
     title: 'Simple Object',
     data: {
-      name: "Workspace AI",
+      name: "CodeStrategists",
       status: "active",
       version: 2.0,
       offline: true
@@ -42,7 +42,7 @@ const SAMPLES = {
         lastName: "Connor",
         roles: ["operator", "engineer"],
         contacts: {
-          email: "sarah.c@workspace.ai",
+          email: "sarah.c@codestrategists.com",
           github: "https://github.com/sarahconnor"
         }
       },
@@ -86,7 +86,7 @@ const SAMPLES = {
     title: 'System Config',
     data: {
       system: {
-        host: "local.workspace.ai",
+        host: "local.codestrategists.com",
         environment: "production",
         uptimeSeconds: 84902,
         loadAverage: [0.15, 0.08, 0.02],
@@ -98,7 +98,7 @@ const SAMPLES = {
       },
       security: {
         sslEnabled: true,
-        corsOrigins: ["https://personal.ai", "http://localhost:3000"],
+        corsOrigins: ["https://codestrategists.com", "http://localhost:3000"],
         tokenExpirySeconds: 3600,
         encryptionAlgorithm: "AES-256-GCM"
       },

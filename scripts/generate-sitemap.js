@@ -146,7 +146,7 @@ try {
   let rss = `<?xml version="1.0" encoding="UTF-8" ?>\n`
   rss += `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n`
   rss += `<channel>\n`
-  rss += `  <title>Code Strategists Blog</title>\n`
+  rss += `  <title>CodeStrategists Blog</title>\n`
   rss += `  <link>${SITE_URL}/blog</link>\n`
   rss += `  <description>Advanced development guidelines, React optimizations, CSS migrations, and Web Security blueprints.</description>\n`
   rss += `  <language>en-us</language>\n`

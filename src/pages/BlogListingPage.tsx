@@ -66,12 +66,12 @@ export default function BlogListingPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Code Strategists Technical Blog',
+    name: 'CodeStrategists Technical Blog',
     description: 'Advanced development guidelines, React optimizations, CSS migrations, and Web Security blueprints.',
     publisher: {
       '@type': 'Organization',
-      name: 'Code Strategists',
-      logo: 'https://www.codestrategists.com/favicon.svg'
+      name: 'CodeStrategists',
+      logo: 'https://www.codestrategists.com/logo.svg'
     },
     blogPost: filteredPosts.map(post => ({
       '@type': 'BlogPosting',
@@ -89,13 +89,13 @@ export default function BlogListingPage() {
   return (
     <>
       <Helmet>
-        <title>Developer Blog - Code Strategists</title>
+        <title>Developer Blog - CodeStrategists</title>
         <meta name="description" content="Read in-depth articles on React 19, CSS to Tailwind migration, JWT authentication security, and developer productivity tools." />
         <link rel="canonical" href={activeCategory === 'All' ? 'https://www.codestrategists.com/blog' : `https://www.codestrategists.com/blog/category/${activeCategory.toLowerCase()}`} />
-        <meta property="og:title" content="Developer Blog - Code Strategists" />
+        <meta property="og:title" content="Developer Blog - CodeStrategists" />
         <meta property="og:description" content="In-depth tutorials, templates, and best practices built for frontend engineers and web developers." />
         <meta property="og:url" content="https://www.codestrategists.com/blog" />
-        <meta name="twitter:title" content="Developer Blog - Code Strategists" />
+        <meta name="twitter:title" content="Developer Blog - CodeStrategists" />
         <meta name="twitter:description" content="In-depth tutorials and best practices built for frontend engineers." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
@@ -111,7 +111,7 @@ export default function BlogListingPage() {
             <span>Developer Knowledge Base</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mb-4">
-            Code Strategists <span className="text-primary">Blog</span>
+            CodeStrategists <span className="text-primary">Blog</span>
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             Deep-dives into React patterns, web security architectures, design migrations, and frontend tooling built to level up your engineering skills.

@@ -188,7 +188,7 @@ const SAMPLES = {
   navbar: {
     title: 'Navbar Header',
     data: `<nav class="navbar" style="background-color: #1e1e24; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; color: white; font-family: sans-serif;">
-  <a href="/" class="brand" style="font-weight: bold; text-decoration: none; color: inherit; font-size: 1.25rem;">Workspace AI</a>
+  <a href="/" class="brand" style="font-weight: bold; text-decoration: none; color: inherit; font-size: 1.25rem;">CodeStrategists</a>
   <ul class="nav-links" style="display: flex; list-style: none; gap: 15px; margin: 0; padding: 0;">
     <li><a href="/tools" style="text-decoration: none; color: #ccc;">Tools</a></li>
     <li><a href="/about" style="text-decoration: none; color: #ccc;">About</a></li>

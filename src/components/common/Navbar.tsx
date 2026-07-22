@@ -24,12 +24,19 @@ export function Navbar() {
         
         {/* Brand logo */}
         <div className="flex items-center gap-6">
-          <Link to="/" className="flex items-center gap-2.5 font-heading text-lg font-bold text-foreground">
-            <div className="bg-primary/10 border border-primary/20 p-2 rounded-xl text-primary shadow-sm shadow-primary/5">
-              <Terminal className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-              Workspace<span className="text-primary">.ai</span>
+          <Link to="/" className="group flex items-center gap-3 font-heading text-xl font-bold text-foreground transition-opacity hover:opacity-90">
+            <svg className="h-8 w-8 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path 
+                d="M 25 78 L 25 48 L 43 30 L 43 78 Z M 57 78 L 57 34 L 75 16 L 75 78 Z M 57 30 L 57 22 L 75 4 L 75 12 Z" 
+                fill="currentColor" 
+              />
+              <path 
+                d="M 34 12 L 43 21 L 34 30 L 25 21 Z" 
+                fill="hsl(var(--brand-blue))" 
+              />
+            </svg>
+            <span className="tracking-tight text-foreground font-bold">
+              Code<span className="font-normal text-primary ml-0.5">Strategists</span>
             </span>
           </Link>
 

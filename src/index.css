@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', Courier, monospace;
   
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -33,71 +34,92 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
   
+  --color-brand-indigo: hsl(var(--brand-indigo));
+  --color-brand-blue: hsl(var(--brand-blue));
+  --color-brand-navy: hsl(var(--brand-navy));
+  --color-brand-success: hsl(var(--brand-success));
+  --color-brand-warning: hsl(var(--brand-warning));
+  --color-brand-error: hsl(var(--brand-error));
+  
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
 :root {
-  --background: 220 20% 97%;
-  --foreground: 224 71.4% 4.1%;
+  --background: 220 30% 99%;
+  --foreground: 224 60% 8%;
   
   --card: 0 0% 100%;
-  --card-foreground: 224 71.4% 4.1%;
+  --card-foreground: 224 60% 8%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 224 71.4% 4.1%;
+  --popover-foreground: 224 60% 8%;
   
-  --primary: 262.1 83.3% 57.8%;
+  --primary: 224 60% 8%;
   --primary-foreground: 210 20% 98%;
   
-  --secondary: 220 14.3% 90%;
-  --secondary-foreground: 220.9 39.3% 11%;
+  --secondary: 220 14% 94%;
+  --secondary-foreground: 224 60% 8%;
   
-  --muted: 220 14.3% 95.9%;
-  --muted-foreground: 220 10% 40%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 10% 45%;
   
-  --accent: 262.1 83.3% 95%;
-  --accent-foreground: 262.1 83.3% 40%;
+  --accent: 220 10% 45%;
+  --accent-foreground: 210 20% 98%;
   
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 0 84% 60%;
   --destructive-foreground: 210 20% 98%;
   
   --border: 220 15% 90%;
   --input: 220 15% 90%;
-  --ring: 262.1 83.3% 57.8%;
+  --ring: 224 60% 8%;
   
   --radius: 0.75rem;
+  
+  --brand-indigo: 224 60% 8%;
+  --brand-blue: 220 10% 45%;
+  --brand-navy: 224 60% 8%;
+  --brand-success: 142.1 76.2% 36.3%;
+  --brand-warning: 47.9 95.8% 51.2%;
+  --brand-error: 0 84.2% 60.2%;
 }
 
 .dark {
-  --background: 224 25% 6%;
+  --background: 224 25% 4%;
   --foreground: 210 20% 98%;
   
-  --card: 224 25% 9%;
+  --card: 224 25% 8%;
   --card-foreground: 210 20% 98%;
   
-  --popover: 224 25% 9%;
+  --popover: 224 25% 8%;
   --popover-foreground: 210 20% 98%;
   
-  --primary: 262.1 83.3% 65%;
-  --primary-foreground: 224 25% 6%;
+  --primary: 210 20% 98%;
+  --primary-foreground: 224 25% 4%;
   
-  --secondary: 224 15% 16%;
+  --secondary: 224 15% 12%;
   --secondary-foreground: 210 20% 98%;
   
-  --muted: 224 15% 14%;
+  --muted: 224 15% 10%;
   --muted-foreground: 217.9 10.6% 64.9%;
   
-  --accent: 262.1 83.3% 15%;
-  --accent-foreground: 262.1 83.3% 85%;
+  --accent: 217.9 10.6% 64.9%;
+  --accent-foreground: 210 20% 98%;
   
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 63% 31%;
   --destructive-foreground: 210 20% 98%;
   
-  --border: 224 15% 16%;
-  --input: 224 15% 16%;
-  --ring: 262.1 83.3% 65%;
+  --border: 224 15% 12%;
+  --input: 224 15% 12%;
+  --ring: 210 20% 98%;
+  
+  --brand-indigo: 210 20% 98%;
+  --brand-blue: 217.9 10.6% 64.9%;
+  --brand-navy: 224 25% 4%;
+  --brand-success: 142.1 76.2% 36.3%;
+  --brand-warning: 47.9 95.8% 51.2%;
+  --brand-error: 0 84.2% 60.2%;
 }
 
 /* Reset baseline style changes that default Vite app might have forced */
@@ -210,9 +232,18 @@ body {
 
 /* Custom shadow sizes */
 .shadow-premium {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .dark .shadow-premium {
-  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(255, 255, 255, 0.01);
 }
+
+/* Brand Text Gradient Utility */
+.text-brand-gradient {
+  background: linear-gradient(135deg, hsl(var(--brand-indigo)) 0%, hsl(var(--brand-blue)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

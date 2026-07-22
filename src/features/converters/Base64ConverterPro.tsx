@@ -21,11 +21,11 @@ import { cn } from '@/lib/utils'
 const SAMPLES = {
   text: {
     title: 'Plain Text Sample',
-    data: 'Welcome to Frontend Workspace AI! Prettify formatting, convert syntax loops, and inspect tokens secure offline.'
+    data: 'Welcome to CodeStrategists! Prettify formatting, convert syntax loops, and inspect tokens secure offline.'
   },
   base64: {
     title: 'Encoded Base64 Sample',
-    data: 'V2VsY29tZSB0byBGcm9udGVuZCBXb3Jrc3BhY2UgQUkhIFByZXR0aWZ5IGZvcm1hdHRpbmcsIGNvbnZlcnQgc3ludGF4IGxvb3BzLCBhbmQgaW5zcGVjdCB0b2tlbnMgc2VjdXJlIG9mZmxpbmUu'
+    data: 'V2VsY29tZSB0byBDb2RlU3RyYXRlZ2lzdHMhIFByZXR0aWZ5IGZvcm1hdHRpbmcsIGNvbnZlcnQgc3ludGF4IGxvb3BzLCBhbmQgaW5zcGVjdCB0b2tlbnMgc2VjdXJlIG9mZmxpbmUu'
   }
 }
 

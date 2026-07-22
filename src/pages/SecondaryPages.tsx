@@ -16,10 +16,10 @@ import { SEO } from '@/components/common/SEO'
 export function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left">
-      <SEO title="About Us - Frontend Workspace AI" />
-      <h1 className="font-heading text-3xl font-extrabold tracking-tight">About Workspace.ai</h1>
+      <SEO title="About Us - CodeStrategists" />
+      <h1 className="font-heading text-3xl font-extrabold tracking-tight">About CodeStrategists</h1>
       <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-        Workspace.ai was founded on a simple premise: developer productivity tools shouldn't be scattered across 20 different ad-ridden websites.
+        CodeStrategists was founded on a simple premise: developer productivity tools shouldn't be scattered across 20 different ad-ridden websites.
       </p>
       <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
         We set out to create a cohesive, private, and blazing fast browser dashboard where engineers could formatting payloads, test regex, inspect security tokens, and customize CSS config.
@@ -80,7 +80,7 @@ export function ContactPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-12 flex flex-col gap-6 text-left">
-      <SEO title="Contact Us - Frontend Workspace AI" />
+      <SEO title="Contact Us - CodeStrategists" />
       <div>
         <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight">Get in Touch</h1>
         <p className="text-sm text-muted-foreground mt-1">Have ideas or custom tool suggestions? Drop a note.</p>
@@ -133,14 +133,14 @@ export function ContactPage() {
 export function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left leading-relaxed">
-      <SEO title="Privacy Policy - Frontend Workspace AI" />
+      <SEO title="Privacy Policy - CodeStrategists" />
       <h1 className="font-heading text-3xl font-extrabold tracking-tight">Privacy Policy</h1>
       <p className="text-xs text-muted-foreground">Last updated: July 8, 2026</p>
       
       <div className="flex flex-col gap-4 text-sm text-muted-foreground">
         <h2 className="font-heading text-base font-bold text-foreground mt-2">1. Local Execution Principle</h2>
         <p>
-          Workspace.ai is dedicated to maintaining your privacy. All operations, conversions, beautification parsing, and regex calculations take place on your local computer using the browser's context execution environments.
+          CodeStrategists is dedicated to maintaining your privacy. All operations, conversions, beautification parsing, and regex calculations take place on your local computer using the browser's context execution environments.
         </p>
         <p>
           We do not collect, intercept, or copy any input data that you process in our utilities.
@@ -161,14 +161,14 @@ export function PrivacyPage() {
 export function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left leading-relaxed">
-      <SEO title="Terms of Service - Frontend Workspace AI" />
+      <SEO title="Terms of Service - CodeStrategists" />
       <h1 className="font-heading text-3xl font-extrabold tracking-tight">Terms of Service</h1>
       <p className="text-xs text-muted-foreground">Last updated: July 8, 2026</p>
       
       <div className="flex flex-col gap-4 text-sm text-muted-foreground">
         <h2 className="font-heading text-base font-bold text-foreground mt-2">1. Use License</h2>
         <p>
-          You are free to utilize all active converters, validators, formatters, and generators in Workspace.ai for personal and commercial development.
+          You are free to utilize all active converters, validators, formatters, and generators in CodeStrategists for personal and commercial development.
         </p>
         <p>
           The service is provided "as is", without any warranties of any kind. We are not responsible for outputs or configurations generated during your session.
@@ -217,7 +217,7 @@ export function ChangelogPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-8 text-left">
-      <SEO title="Changelog & Updates - Frontend Workspace AI" />
+      <SEO title="Changelog & Updates - CodeStrategists" />
       <div>
         <h1 className="font-heading text-3xl font-extrabold tracking-tight">Product Changelog</h1>
         <p className="text-sm text-muted-foreground mt-1">Keep track of releases and configuration updates.</p>

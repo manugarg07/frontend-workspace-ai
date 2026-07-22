@@ -29,7 +29,7 @@ const SAMPLE_LIBRARY = {
   email: {
     title: 'Email Validator',
     regex: '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}',
-    text: 'Workspace feedback: contact@workspace.ai, sales-support@company.co.uk, or test-invalid@domain.',
+    text: 'Workspace feedback: contact@codestrategists.com, sales-support@company.co.uk, or test-invalid@domain.',
     flags: { g: true, i: true, m: false, s: false, u: false, y: false },
     replaceText: '[hidden-email]'
   },
@@ -68,7 +68,7 @@ export function RegexTesterPro() {
 
   // State Management
   const [regexInput, setRegexInput] = useState('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')
-  const [testText, setTestText] = useState('Workspace feedback: contact@workspace.ai, sales-support@company.co.uk, or test-invalid@domain.')
+  const [testText, setTestText] = useState('Workspace feedback: contact@codestrategists.com, sales-support@company.co.uk, or test-invalid@domain.')
   const [replaceText, setReplaceText] = useState('[hidden-email]')
   const [replaceMode, setReplaceMode] = useState(false)
 
@@ -355,7 +355,7 @@ export function RegexTesterPro() {
     <ToolLayout
       toolSlug="regex-tester"
       extraSEOProps={{
-        title: "JavaScript Regular Expression (Regex) Tester - Frontend Workspace AI",
+        title: "JavaScript Regular Expression (Regex) Tester - CodeStrategists",
         description: "Interactive JavaScript Regex tester. Validate pattern matches, capture groups, and check speeds on dummy data."
       }}
       editorSection={

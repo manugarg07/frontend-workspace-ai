@@ -1,8 +1,8 @@
-# Developer Workspace Platform (AI-Powered Frontend Tools)
+# CodeStrategists — Professional Developer Tools for Modern Frontend Engineers
 
-A production-ready, highly performant, and search-optimized developer tools catalog built using **Vite + React 19 + TypeScript + Tailwind CSS** (running React Router v7). 
+A production-ready, highly performant, and search-optimized developer tools catalog built using **Vite + React 19 + TypeScript + Tailwind CSS** (running React Router v7).
 
-Designed to support instant single-page sandbox code conversions, formatters, and secure cryptographic generators with 0 initial page bloat.
+Designed to support instant single-page sandbox code conversions, formatters, and secure cryptographic generators with 0 initial page bloat. Visit live: **[codestrategists.com](https://www.codestrategists.com)**
 
 ---
 
@@ -105,7 +105,7 @@ Add your tool specifications block into the `TOOLS` list inside [toolRegistry.ts
   estimatedReadingTime: '2 min read',
   popular: true,
   seo: {
-    title: 'My Custom Tool Pro - Frontend Workspace',
+    title: 'My Custom Tool Pro - CodeStrategists',
     description: 'Format, parse, and validate custom files locally.',
     keywords: ['custom-format', 'parser'],
     canonical: '/tool/my-new-tool'

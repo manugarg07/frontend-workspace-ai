@@ -110,8 +110,8 @@ export function ToolsPage() {
   // Resolve Category SEO metadata details
   const categoryName = activeCategory ? getCategoryName(activeCategory) : 'All Tools'
   const pageTitle = activeCategory 
-    ? `${categoryName} Developer Utilities - Frontend Workspace AI`
-    : 'Developer Utilities Catalog index - Frontend Workspace AI'
+    ? `${categoryName} Developer Utilities - CodeStrategists`
+    : 'Developer Utilities Catalog index - CodeStrategists'
   
   const pageDescription = activeCategory
     ? `Browse free, browser-based client-side ${categoryName} developer tools. Format, convert, validate, and compile code instantly and securely.`

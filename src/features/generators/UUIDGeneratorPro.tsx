@@ -377,7 +377,7 @@ export function UUIDGeneratorPro() {
     <ToolLayout
       toolSlug="uuid-generator"
       extraSEOProps={{
-        title: "UUID / GUID Generator Pro - Frontend Workspace AI",
+        title: "UUID / GUID Generator Pro - CodeStrategists",
         description: "Generate single or batch Universally Unique Identifiers (UUID v4) instantly. Customize casings, hyphen options, separator layouts, and download TXT/CSV/JSON outputs."
       }}
       editorSection={

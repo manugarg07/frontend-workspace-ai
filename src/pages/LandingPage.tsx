@@ -250,8 +250,8 @@ export function LandingPage() {
   const faqs = [
     {
       id: 'faq-1',
-      title: 'Is Workspace.ai free to use?',
-      content: 'Yes, Workspace.ai is 100% free to use. All core browser-based developer utilities—including JSON formatters, HTML to JSX converters, and CSS generators—are completely free and require no accounts, subscriptions, or credit cards.',
+      title: 'Is CodeStrategists free to use?',
+      content: 'Yes, CodeStrategists is 100% free to use. All core browser-based developer utilities—including JSON formatters, HTML to JSX converters, and CSS generators—are completely free and require no accounts, subscriptions, or credit cards.',
     },
     {
       id: 'faq-2',
@@ -266,7 +266,7 @@ export function LandingPage() {
     {
       id: 'faq-4',
       title: 'Can I use the tools for commercial projects?',
-      content: 'Yes! All code generated, formatted, or designed by Workspace.ai is free to use in any commercial, open-source, or personal projects without license restrictions.',
+      content: 'Yes! All code generated, formatted, or designed by CodeStrategists is free to use in any commercial, open-source, or personal projects without license restrictions.',
     },
     {
       id: 'faq-5',
@@ -279,10 +279,10 @@ export function LandingPage() {
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Frontend Workspace AI",
+    "name": "CodeStrategists",
     "url": "https://www.codestrategists.com",
-    "logo": "https://www.codestrategists.com/logo.png",
-    "description": "Premium client-side browser developer tools platform for frontend engineers."
+    "logo": "https://www.codestrategists.com/logo.svg",
+    "description": "Professional developer tools for modern frontend engineers. Format, convert, validate, and generate code quickly using premium, 100% browser-based client-side developer tools."
   }
 
   const faqSchema = {
@@ -301,7 +301,7 @@ export function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden bg-background text-foreground grid-bg">
       <SEO 
-        title="The Modern Developer Workspace - Frontend Workspace AI"
+        title="The Modern Developer Workspace - CodeStrategists"
         description="Format, convert, validate, and generate code quickly using premium, 100% browser-based client-side developer tools. No installations required."
       />
 
@@ -398,7 +398,7 @@ export function LandingPage() {
                 <span className="w-3 h-3 rounded-full bg-emerald-500/80 block" />
               </div>
               <span className="text-xs font-mono text-muted-foreground ml-2 select-none">
-                sandbox@workspace.ai:~
+                sandbox@codestrategists.com:~
               </span>
             </div>
             
@@ -865,7 +865,7 @@ export function LandingPage() {
           ==================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-border/40 w-full relative z-10" aria-label="Why choose our developer tools">
         <div className="text-center mb-16">
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight mb-3">Why Choose Workspace.ai</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight mb-3">Why Choose CodeStrategists</h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base font-sans">
             Optimized developer workflows designed for performance, extreme privacy, and rapid execution.
           </p>

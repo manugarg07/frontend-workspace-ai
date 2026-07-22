@@ -31,11 +31,11 @@ import { cn } from '@/lib/utils'
 const SAMPLES = {
   rawUrl: {
     title: 'Raw URL with Queries',
-    data: 'https://search.api.com/v1/query?q=frontend workspace & dev tools&tags=[react,typescript]&active=true&session=🔥-active'
+    data: 'https://search.api.com/v1/query?q=codestrategists & dev tools&tags=[react,typescript]&active=true&session=🔥-active'
   },
   encodedUrl: {
     title: 'Encoded Percent String',
-    data: 'https%3A%2F%2Fsearch.api.com%2Fv1%2Fquery%3Fq%3Dfrontend%20workspace%20%26%20dev%20tools%26tags%3D%5Breact%2Ctypescript%5D%26active%3Dtrue%26session%3D%F0%9F%94%A5-active'
+    data: 'https%3A%2F%2Fsearch.api.com%2Fv1%2Fquery%3Fq%3Dcodestrategists%20%26%20dev%20tools%26tags%3D%5Breact%2Ctypescript%5D%26active%3Dtrue%26session%3D%F0%9F%94%A5-active'
   },
   pathUnicode: {
     title: 'Path with Unicode & Emojis',
@@ -289,7 +289,7 @@ export function URLEncoderPro() {
       <ToolLayout
         toolSlug="url-encoder"
         extraSEOProps={{
-          title: "URL Encoder & Decoder - Percent Encoding Tool - Frontend Workspace AI",
+          title: "URL Encoder & Decoder - Percent Encoding Tool - CodeStrategists",
           description: "Encode or decode strings using standard RFC 3986 percent-encoding instantly online. Supports live conversions, auto-detection, copy/paste, file upload, and character size statistics."
         }}
         toolbar={

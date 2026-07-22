@@ -500,7 +500,7 @@ export function PasswordGeneratorPro() {
     <ToolLayout
       toolSlug="password-generator"
       extraSEOProps={{
-        title: "Secure Password Generator Pro - Frontend Workspace AI",
+        title: "Secure Password Generator Pro - CodeStrategists",
         description: "Generate cryptographically secure random passwords instantly. Live entropy crack-time measurements, character diversity charts, and batch exports."
       }}
       editorSection={

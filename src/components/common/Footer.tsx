@@ -27,12 +27,21 @@ export function Footer() {
           
           {/* Brand Info */}
           <div className="col-span-2 flex flex-col gap-4">
-            <Link to="/" className="flex items-center gap-2 font-heading text-base font-bold text-foreground">
-              <Terminal className="h-5 w-5 text-primary" aria-hidden="true" />
-              <span>Workspace<span className="text-primary">.ai</span></span>
+            <Link to="/" className="group flex items-center gap-2.5 font-heading text-lg font-bold text-foreground transition-opacity hover:opacity-90">
+              <svg className="h-6 w-6 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                  d="M 25 78 L 25 48 L 43 30 L 43 78 Z M 57 78 L 57 34 L 75 16 L 75 78 Z M 57 30 L 57 22 L 75 4 L 75 12 Z" 
+                  fill="currentColor" 
+                />
+                <path 
+                  d="M 34 12 L 43 21 L 34 30 L 25 21 Z" 
+                  fill="hsl(var(--brand-blue))" 
+                />
+              </svg>
+              <span className="tracking-tight text-foreground font-bold">Code<span className="font-normal text-primary ml-0.5">Strategists</span></span>
             </Link>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-sm">
-              Build Faster. Ship Better. The premium browser-based developer productivity dashboard. Everything you need to format, convert, validate, and compile.
+              Professional Developer Tools for Modern Frontend Engineers. Format, convert, validate, and generate code quickly using premium, 100% browser-based client-side developer tools.
             </p>
             
             <div className="w-full max-w-xs mt-1">
@@ -122,7 +131,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border/40 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4">
-            <p>© {currentYear} Frontend Workspace AI. All rights reserved.</p>
+            <p>© {currentYear} CodeStrategists. All rights reserved.</p>
             <span className="h-4 w-px bg-border hidden md:inline" />
             <p className="font-mono text-xs font-semibold bg-secondary px-2 py-0.5 rounded border border-border/60 text-secondary-foreground">
               v2.0.0

@@ -16,7 +16,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'json-tools',
     title: 'JSON Developer Tools',
-    seoTitle: 'JSON Formatter, Validator, and Web Token Decoders - Workspace.ai',
+    seoTitle: 'JSON Formatter, Validator, and Web Token Decoders - CodeStrategists',
     seoDescription: 'Access free client-side JSON formatters, syntax validators, and JWT decoders to debug payloads locally and securely.',
     description: 'Format, validate, and inspect JSON structures and token values.',
     introduction: 'JSON (JavaScript Object Notation) is the backbone of modern APIs and state management. However, dealing with compressed logs or debugging authentication payloads can be difficult without formatting utilities. Our JSON Developer Tools collection provides client-side formatters and validators to clean and analyze payloads instantly in browser memory. By executing all calculations locally, these utilities ensure credentials and private JSON structures remain secure.',
@@ -40,7 +40,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'react-tools',
     title: 'React & JSX Developer Tools',
-    seoTitle: 'HTML to JSX and SVG to React Component Converters - Workspace.ai',
+    seoTitle: 'HTML to JSX and SVG to React Component Converters - CodeStrategists',
     seoDescription: 'Convert standard HTML and SVG vectors into React functional components. Clean syntax formatting, TypeScript options, and customizable props.',
     description: 'Convert layout markup and SVGs to React-compliant JSX.',
     introduction: 'React codebases require camelCase attributes and self-closing tags. Porting design templates, inline styling, or SVG vectors manually can slow down development. Our React & JSX Developer Tools automate these migrations, generating clean JSX/TSX elements. All utilities run client-side, allowing you to port layouts securely in your browser.',
@@ -64,7 +64,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'css-tools',
     title: 'CSS & Tailwind Styling Tools',
-    seoTitle: 'CSS to Tailwind Compiler, Grid Generator, and Glassmorphism - Workspace.ai',
+    seoTitle: 'CSS to Tailwind Compiler, Grid Generator, and Glassmorphism - CodeStrategists',
     seoDescription: 'Convert CSS declarations to Tailwind CSS utility classes, design responsive layout grids, and preview glassmorphism panel styling.',
     description: 'Compile styles, build grids, and generate glassmorphism designs.',
     introduction: 'Managing layout properties and responsive breakpoints requires constant adjustment. Our CSS & Tailwind Styling Tools collection provides visual and code-based utilities to speed up design workflows. You can convert legacy CSS to Tailwind classes, build responsive grids, and design glassmorphism effects locally in your browser sandbox.',
@@ -88,7 +88,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'developer-utilities',
     title: 'Developer Workspace Utilities',
-    seoTitle: 'Regular Expression Testers and secure Password Generators - Workspace.ai',
+    seoTitle: 'Regular Expression Testers and secure Password Generators - CodeStrategists',
     seoDescription: 'Evaluate Javascript regular expressions, generate secure passwords, and build batch UUID lists locally in browser sandbox.',
     description: 'Test regular expressions, generate secure passwords, and create UUIDs.',
     introduction: 'Developer workflows require generating secure credentials and testing patterns. Our Developer Workspace Utilities provide tools to speed up these tasks. You can evaluate regular expressions, generate cryptographically secure passwords, and build batch UUID lists locally in your browser memory.',
@@ -112,7 +112,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'generators',
     title: 'Random Data & Asset Generators',
-    seoTitle: 'UUID Lists, Secure Password Generators, and Design Canvas - Workspace.ai',
+    seoTitle: 'UUID Lists, Secure Password Generators, and Design Canvas - CodeStrategists',
     seoDescription: 'Generate secure random UUIDs, strong passwords, glassmorphic styles, and Tailwind grid layouts online.',
     description: 'Generate secure random UUIDs, strong passwords, glassmorphic styles, and layouts.',
     introduction: 'Generating secure data seeds, layout options, and random identifiers is essential for frontend development. Our Random Data & Asset Generators collection provides tools to generate these resources. You can create UUID lists, strong passwords, glassmorphic styles, and responsive grids locally in your browser.',
@@ -136,7 +136,7 @@ export const COLLECTIONS_CONFIG: CollectionConfig[] = [
   {
     slug: 'converters',
     title: 'Code Format & Encoding Converters',
-    seoTitle: 'Base64 Converters, Percent Encoders, and HTML-to-JSX - Workspace.ai',
+    seoTitle: 'Base64 Converters, Percent Encoders, and HTML-to-JSX - CodeStrategists',
     seoDescription: 'Translate binary assets to Base64, percent-encode query strings, and convert HTML stylesheets into React utility components.',
     description: 'Translate binary assets to Base64, encode query strings, and convert layouts.',
     introduction: 'Exchanging data across different frameworks and communication channels requires converting formats. Our Code Format & Encoding Converters collection provides utilities to simplify these conversions. You can encode query parameters, convert binary files to Base64, and translate legacy styling or HTML code securely in your browser.',

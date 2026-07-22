@@ -31,7 +31,7 @@ export function WorkspacePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8 transition-colors duration-300">
-      <SEO title="Workspace Dashboard - Frontend Workspace AI" />
+      <SEO title="Workspace Dashboard - CodeStrategists" />
 
       {/* Header section with search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-border/40 pb-6">

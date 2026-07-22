@@ -82,8 +82,8 @@ export default function BlogDetailPage() {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Code Strategists',
-      logo: 'https://www.codestrategists.com/favicon.svg'
+      name: 'CodeStrategists',
+      logo: 'https://www.codestrategists.com/logo.svg'
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -94,16 +94,16 @@ export default function BlogDetailPage() {
   return (
     <>
       <Helmet>
-        <title>{post.title} - Code Strategists Blog</title>
+        <title>{post.title} - CodeStrategists Blog</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={`https://www.codestrategists.com/blog/${post.slug}`} />
         <meta name="keywords" content={post.keywords.join(', ')} />
-        <meta property="og:title" content={`${post.title} - Code Strategists Blog`} />
+        <meta property="og:title" content={`${post.title} - CodeStrategists Blog`} />
         <meta property="og:description" content={post.description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://www.codestrategists.com/blog/${post.slug}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${post.title} - Code Strategists Blog`} />
+        <meta name="twitter:title" content={`${post.title} - CodeStrategists Blog`} />
         <meta name="twitter:description" content={post.description} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>

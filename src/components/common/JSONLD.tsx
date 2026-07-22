@@ -15,7 +15,7 @@ export function JSONLD({ tool }: JSONLDProps) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${siteUrl}/#organization`,
-    'name': 'Code Strategists',
+    'name': 'CodeStrategists',
     'url': siteUrl,
     'logo': `${siteUrl}/logo.png`, // Fallback/default logo
     'sameAs': [
@@ -29,7 +29,7 @@ export function JSONLD({ tool }: JSONLDProps) {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
-    'name': 'Code Strategists',
+    'name': 'CodeStrategists',
     'url': siteUrl,
     'potentialAction': {
       '@type': 'SearchAction',

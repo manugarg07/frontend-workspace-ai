@@ -96,7 +96,7 @@ export function NewsletterSignup({ source, className, variant = 'card' }: Newsle
           <Input
             id="inline-email"
             type="email"
-            placeholder="dev@workspace.ai"
+            placeholder="dev@codestrategists.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

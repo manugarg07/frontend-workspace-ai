@@ -488,7 +488,7 @@ export function JWTDecoderPro() {
     },
     {
       id: 'jwt-faq-2',
-      title: 'Is it secure to paste private tokens in Workspace.ai?',
+      title: 'Is it secure to paste private tokens in CodeStrategists?',
       content: (
         <span className="font-sans">
           Yes, 100% secure. All calculations occur inside your browser using sandboxed JavaScript context. No network API calls are triggered, ensuring your secrets never leave your device.
@@ -500,7 +500,7 @@ export function JWTDecoderPro() {
       title: 'How does signature validation work?',
       content: (
         <span className="font-sans">
-          Workspace.ai utilizes the browser's native SubtleCrypto Web Cryptography API to calculate HMAC signatures locally. When you type the verification secret, it generates the hash over your decoded Header and Payload blocks and matches it against the third segment of the token.
+          CodeStrategists utilizes the browser's native SubtleCrypto Web Cryptography API to calculate HMAC signatures locally. When you type the verification secret, it generates the hash over your decoded Header and Payload blocks and matches it against the third segment of the token.
         </span>
       )
     },
@@ -520,7 +520,7 @@ export function JWTDecoderPro() {
       <ToolLayout
         toolSlug="jwt-decoder"
         extraSEOProps={{
-          title: "JWT Decoder & Token Inspector - Frontend Workspace AI",
+          title: "JWT Decoder & Token Inspector - CodeStrategists",
           description: "Decode JSON Web Tokens (JWT) payload, header headers, and signature claims instantly inside your browser. Verify HMAC signatures locally."
         }}
         toolbar={
