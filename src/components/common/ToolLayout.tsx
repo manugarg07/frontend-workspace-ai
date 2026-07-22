@@ -113,7 +113,7 @@ export function ToolLayout({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": tool.title,
-    "url": `https://codestrategists.com/tool/${tool.slug}`,
+    "url": `https://www.codestrategists.com/tool/${tool.slug}`,
     "description": tool.description,
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",

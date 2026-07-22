@@ -47,7 +47,7 @@ Create `.env.[environment]` configuration files in the root folder. See [.env.ex
 | `VITE_GA_ID` | Google Analytics Measurement Tag | `G-XXXXXXXXXX` |
 | `VITE_CLARITY_ID` | Microsoft Clarity Project Code | `xxxxxxxxxx` |
 | `VITE_GSC_VERIFICATION` | Google Search Console site validation tag | `gsc-verification-hash` |
-| `VITE_SITE_URL` | Application canonical base URL | `https://codestrategists.com` |
+| `VITE_SITE_URL` | Application canonical base URL | `https://www.codestrategists.com` |
 
 ---
 

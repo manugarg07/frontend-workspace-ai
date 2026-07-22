@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://codestrategists.com/sitemap.xml
+Sitemap: https://www.codestrategists.com/sitemap.xml

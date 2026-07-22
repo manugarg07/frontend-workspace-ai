@@ -39,7 +39,7 @@ const SAMPLES = {
   },
   pathUnicode: {
     title: 'Path with Unicode & Emojis',
-    data: 'https://codestrategists.com/categories/🚀-product-launch/user/manu-garg?status=active&verified=yes'
+    data: 'https://www.codestrategists.com/categories/🚀-product-launch/user/manu-garg?status=active&verified=yes'
   }
 }
 

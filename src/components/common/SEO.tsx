@@ -26,10 +26,10 @@ export function SEO({
     'developers',
   ],
   canonical,
-  ogImage = 'https://codestrategists.com/og-default.png', // Placeholder URL
+  ogImage = 'https://www.codestrategists.com/og-default.png', // Placeholder URL
   ogType = 'website',
 }: SEOProps) {
-  const siteUrl = 'https://codestrategists.com'
+  const siteUrl = 'https://www.codestrategists.com'
   const finalCanonical = canonical ? `${siteUrl}${canonical}` : window.location.href
 
   return (

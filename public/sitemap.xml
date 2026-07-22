@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://codestrategists.com/</loc>
+    <loc>https://www.codestrategists.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/workspace</loc>
+    <loc>https://www.codestrategists.com/workspace</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools</loc>
+    <loc>https://www.codestrategists.com/tools</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/formatting</loc>
+    <loc>https://www.codestrategists.com/tools/formatting</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/conversion</loc>
+    <loc>https://www.codestrategists.com/tools/conversion</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/generators</loc>
+    <loc>https://www.codestrategists.com/tools/generators</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/encoding</loc>
+    <loc>https://www.codestrategists.com/tools/encoding</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/security</loc>
+    <loc>https://www.codestrategists.com/tools/security</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/validation</loc>
+    <loc>https://www.codestrategists.com/tools/validation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tools/utilities</loc>
+    <loc>https://www.codestrategists.com/tools/utilities</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/json-formatter</loc>
+    <loc>https://www.codestrategists.com/tool/json-formatter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/base64-converter</loc>
+    <loc>https://www.codestrategists.com/tool/base64-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/url-encoder</loc>
+    <loc>https://www.codestrategists.com/tool/url-encoder</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/html-to-jsx</loc>
+    <loc>https://www.codestrategists.com/tool/html-to-jsx</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/css-to-tailwind</loc>
+    <loc>https://www.codestrategists.com/tool/css-to-tailwind</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/svg-to-react</loc>
+    <loc>https://www.codestrategists.com/tool/svg-to-react</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/jwt-decoder</loc>
+    <loc>https://www.codestrategists.com/tool/jwt-decoder</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/glassmorphism-generator</loc>
+    <loc>https://www.codestrategists.com/tool/glassmorphism-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/uuid-generator</loc>
+    <loc>https://www.codestrategists.com/tool/uuid-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/password-generator</loc>
+    <loc>https://www.codestrategists.com/tool/password-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/svg-converter</loc>
+    <loc>https://www.codestrategists.com/tool/svg-converter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/tailwind-grid-generator</loc>
+    <loc>https://www.codestrategists.com/tool/tailwind-grid-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/meta-tag-generator</loc>
+    <loc>https://www.codestrategists.com/tool/meta-tag-generator</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://codestrategists.com/tool/regex-tester</loc>
+    <loc>https://www.codestrategists.com/tool/regex-tester</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -117,7 +117,7 @@ export function ToolsPage() {
     ? `Browse free, browser-based client-side ${categoryName} developer tools. Format, convert, validate, and compile code instantly and securely.`
     : 'Browse our complete catalog of client-side web utility tools. Free online json formatters, jwt decoders, base64 encoders, and css creators.'
 
-  const siteUrl = 'https://codestrategists.com'
+  const siteUrl = 'https://www.codestrategists.com'
   
   // JSON-LD CollectionPage Schema
   const collectionSchema = {

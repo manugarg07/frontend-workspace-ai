@@ -9,7 +9,7 @@ const REGISTRY_PATH = path.join(__dirname, '../src/services/toolRegistry.ts')
 const SITEMAP_PATH = path.join(__dirname, '../public/sitemap.xml')
 const ROBOTS_PATH = path.join(__dirname, '../public/robots.txt')
 
-const SITE_URL = 'https://codestrategists.com'
+const SITE_URL = 'https://www.codestrategists.com'
 
 try {
   console.log('[Sitemap Generator] Initializing build...')
