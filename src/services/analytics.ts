@@ -4,6 +4,10 @@
  * Strictly respects user privacy and GPDR cookie compliance by loading only after consent.
  */
 
+import Clarity from '@microsoft/clarity'
+
+let clarityInitialized = false
+
 declare global {
   interface Window {
     dataLayer: any[]
@@ -66,22 +70,11 @@ export function initAnalytics(): void {
     }
   }
 
-  // 2. Initialize Microsoft Clarity
-  if (clarityId && !document.getElementById('clarity-script')) {
+  // 2. Initialize Microsoft Clarity (only in production build)
+  if (import.meta.env.PROD && clarityId && !clarityInitialized) {
     try {
-      const clarityScript = document.createElement('script')
-      clarityScript.id = 'clarity-script'
-      clarityScript.async = true
-      
-      const claritySnippet = `
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "${clarityId}");
-      `
-      clarityScript.innerHTML = claritySnippet
-      document.head.appendChild(clarityScript)
+      Clarity.init(clarityId)
+      clarityInitialized = true
       console.log(`[Analytics] Microsoft Clarity telemetry successfully initialized with ID: ${clarityId}`)
     } catch (err) {
       console.error('[Analytics] Failed to initialize Microsoft Clarity:', err)
