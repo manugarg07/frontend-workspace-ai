@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Star, HelpCircle, FileText, ArrowLeftRight } from 'lucide-react'
-import { Breadcrumb } from '../ui/Breadcrumb'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card'
-import { Accordion } from '../ui/Accordion'
-import { SEO } from './SEO'
+import { Star } from 'lucide-react'
+import { Card, CardContent } from '../ui/Card'
+import { SEOMeta } from './SEOMeta'
+import { JSONLD } from './JSONLD'
+import { Breadcrumbs } from './Breadcrumbs'
+import { ToolContent } from './ToolContent'
+import { TOOLS_CONFIG } from '@/config/tools.config'
+import type { ToolSEOConfig } from '@/config/tools.config'
 import { useToast } from '../ui/Toast'
-import { getToolBySlug, getRelatedTools, mapCategoryToSlug, getCategoryName } from '@/services/toolRegistry'
+import { getToolBySlug, mapCategoryToSlug, getCategoryName } from '@/services/toolRegistry'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -105,49 +108,31 @@ export function ToolLayout({
   const categoryName = getCategoryName(tool.category)
   const categorySlug = mapCategoryToSlug(tool.category)
 
-  // Related tools automatically resolved based on registry category
-  const relatedTools = getRelatedTools(tool, 3)
-
-  // Construct JSON-LD schema dynamically
-  const jsonLdSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": tool.title,
-    "url": `https://www.codestrategists.com/tool/${tool.slug}`,
-    "description": tool.description,
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires HTML5 support"
+  // Resolve config from central file, falling back to defaults if not present
+  const config = TOOLS_CONFIG.find((t) => t.slug === toolSlug)
+  const fallbackConfig: ToolSEOConfig = {
+    id: tool.id,
+    slug: tool.slug,
+    title: tool.title,
+    description: tool.description,
+    introduction: tool.longDescription || tool.description,
+    category: tool.category,
+    keywords: tool.keywords || [],
+    icon: tool.icon,
+    features: tool.benefits || [],
+    howToUse: tool.howToUse || [],
+    example: {
+      input: '',
+      output: '',
+      explanation: ''
+    },
+    useCases: tool.useCases || [],
+    faqs: (tool.faqs || []).map(f => ({ question: f.question, answer: f.answer })),
+    relatedTools: tool.relatedTools || [],
+    tips: [],
+    pitfalls: []
   }
-
-  // W3C Schema: SoftwareApplication
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": tool.title,
-    "description": tool.shortDescription || tool.description,
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-
-  // W3C Schema: FAQPage
-  const faqSchema = tool.faqs && tool.faqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": tool.faqs.map((f) => ({
-      "@type": "Question",
-      "name": f.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.answer
-      }
-    }))
-  } : null
+  const activeConfig = config || fallbackConfig
 
   return (
     <div className={cn(
@@ -155,39 +140,20 @@ export function ToolLayout({
       isFullscreen && "fixed inset-0 z-50 p-6 bg-background overflow-y-auto w-screen h-screen"
     )}>
       {/* Dynamic SEO Tags */}
-      <SEO
-        title={extraSEOProps?.title || tool.seoTitle || `${tool.title} - Frontend Workspace AI`}
-        description={extraSEOProps?.description || tool.seoDescription || tool.description}
-        keywords={extraSEOProps?.keywords || tool.keywords}
-        canonical={extraSEOProps?.canonical || `/tool/${tool.slug}`}
+      <SEOMeta
+        title={extraSEOProps?.title || activeConfig.seoTitle || activeConfig.title}
+        description={extraSEOProps?.description || activeConfig.seoDescription || activeConfig.description}
+        keywords={extraSEOProps?.keywords || activeConfig.keywords}
+        canonical={extraSEOProps?.canonical || `/tool/${activeConfig.slug}`}
       />
 
       {/* JSON-LD Script blocks */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
+      <JSONLD tool={activeConfig} />
 
       {/* Header section with Breadcrumb and Meta */}
       <div className="flex flex-col gap-4">
         {!isFullscreen && (
-          <Breadcrumb 
-            items={[
-              { label: 'Catalog', href: '/tools' },
-              { label: categoryName, href: `/tools/${categorySlug}` },
-              { label: tool.title }
-            ]} 
-          />
+          <Breadcrumbs toolTitle={activeConfig.title} />
         )}
         
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-5">
@@ -285,84 +251,9 @@ export function ToolLayout({
         </Card>
       )}
 
-      {/* Instructional Guidelines, FAQs, and Related Tools */}
+      {/* Dynamic SEO Landing Page Content Section */}
       {!isFullscreen && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4 border-t border-border/40 pt-8">
-          {/* Instructions and Benefits (Col 2) */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            <Card className="bg-card/45 border-border">
-              <CardHeader className="pb-3">
-                <CardTitle as="h2" className="font-heading text-lg flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-primary" aria-hidden="true" />
-                  {instructionsTitle}
-                </CardTitle>
-                {instructionsDescription && (
-                  <CardDescription className="text-xs mt-0.5 leading-normal">
-                    {instructionsDescription}
-                  </CardDescription>
-                )}
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground leading-relaxed flex flex-col gap-3">
-                {instructions || (
-                  <p>
-                    Paste your raw code or data format into the input editor. The sandbox parser performs calculations locally in real-time.
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-
-            {benefits.length > 0 && (
-              <div className="flex flex-col gap-3 text-left">
-                <h2 className="font-heading text-base font-bold">Key Benefits</h2>
-                <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-muted-foreground">
-                  {benefits.map((benefit, i) => (
-                    <li key={i}>{benefit}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* FAQs Accordion */}
-            {faqs.length > 0 && (
-              <div className="flex flex-col gap-4 text-left">
-                <h2 className="font-heading text-lg font-bold text-foreground flex items-center gap-2">
-                  <HelpCircle className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
-                  Frequently Asked Questions
-                </h2>
-                <Accordion items={faqs} />
-              </div>
-            )}
-          </div>
-
-          {/* Related Tools sidebar (Col 1) */}
-          <div className="flex flex-col gap-6">
-            {relatedTools.length > 0 && (
-              <Card className="bg-card/65 border-border">
-                <CardHeader>
-                  <CardTitle as="h2" className="font-heading text-base flex items-center gap-2">
-                    <ArrowLeftRight className="h-4.5 w-4.5 text-primary" aria-hidden="true" />
-                    Related Utilities
-                  </CardTitle>
-                  <CardDescription className="text-xs">Similar tools you might need.</CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="flex flex-col divide-y divide-border/40">
-                    {relatedTools.map((rel) => (
-                      <Link
-                        key={rel.id}
-                        to={`/tool/${rel.slug}`}
-                        className="flex flex-col gap-1 p-4 hover:bg-secondary/40 transition-colors"
-                      >
-                        <span className="font-heading text-sm font-semibold text-foreground">{rel.title}</span>
-                        <span className="text-[10px] text-muted-foreground line-clamp-1">{rel.description}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        </div>
+        <ToolContent tool={activeConfig} />
       )}
     </div>
   )

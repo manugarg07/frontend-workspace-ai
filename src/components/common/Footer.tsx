@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Terminal, Github, Heart, ExternalLink } from 'lucide-react'
 import { CATEGORIES } from '@/services/toolRegistry'
+import { NewsletterSignup } from './NewsletterSignup'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -33,6 +34,11 @@ export function Footer() {
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-sm">
               Build Faster. Ship Better. The premium browser-based developer productivity dashboard. Everything you need to format, convert, validate, and compile.
             </p>
+            
+            <div className="w-full max-w-xs mt-1">
+              <span className="text-xs font-semibold text-foreground uppercase tracking-wider block mb-2">Subscribe to newsletter</span>
+              <NewsletterSignup source="footer" variant="compact" />
+            </div>
             <div className="flex items-center gap-3 mt-1">
               <a
                 href="https://github.com"

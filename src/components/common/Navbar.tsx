@@ -12,6 +12,7 @@ export function Navbar() {
   const navLinks = [
     { label: 'Workspace', path: '/workspace', icon: <LayoutDashboard className="h-4 w-4" aria-hidden="true" /> },
     { label: 'Tools', path: '/tools', icon: <Layers className="h-4 w-4" aria-hidden="true" /> },
+    { label: 'Blog', path: '/blog' },
     { label: 'Changelog', path: '/changelog' },
   ]
 

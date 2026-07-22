@@ -13,6 +13,7 @@ import {
   getToolWithDefaults,
 } from '@/services/toolRegistry'
 import { trackToolUsage } from '@/services/popularityService'
+import { analytics } from '@/services/analyticsService'
 
 // Lazy loaded feature components
 const JSONFormatterPro = lazy(() => import('@/features/formatters/JSONFormatterPro').then(m => ({ default: m.JSONFormatterPro })))
@@ -62,6 +63,7 @@ export function ToolTemplatePage() {
       setOutputVal('')
       setErrorState(null)
       trackToolUsage(tool.id)
+      analytics.trackToolOpened(tool.id)
     }
   }, [slug, navigate, tool])
 

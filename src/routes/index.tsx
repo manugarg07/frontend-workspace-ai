@@ -35,6 +35,15 @@ const TermsPage = lazy(() =>
 const ChangelogPage = lazy(() =>
   import('@/pages/SecondaryPages').then((m) => ({ default: m.ChangelogPage }))
 )
+const BlogListingPage = lazy(() =>
+  import('@/pages/BlogListingPage')
+)
+const BlogDetailPage = lazy(() =>
+  import('@/pages/BlogDetailPage')
+)
+const CollectionPage = lazy(() =>
+  import('@/pages/CollectionPage')
+)
 
 export function AppRoutes() {
   return (
@@ -57,6 +66,19 @@ export function AppRoutes() {
           <Route path="terms" element={<TermsPage />} />
           <Route path="changelog" element={<ChangelogPage />} />
           
+          {/* Blog routes */}
+          <Route path="blog" element={<BlogListingPage />} />
+          <Route path="blog/category/:category" element={<BlogListingPage />} />
+          <Route path="blog/:slug" element={<BlogDetailPage />} />
+
+          {/* Collections pages */}
+          <Route path="json-tools" element={<CollectionPage slug="json-tools" />} />
+          <Route path="react-tools" element={<CollectionPage slug="react-tools" />} />
+          <Route path="css-tools" element={<CollectionPage slug="css-tools" />} />
+          <Route path="developer-utilities" element={<CollectionPage slug="developer-utilities" />} />
+          <Route path="generators" element={<CollectionPage slug="generators" />} />
+          <Route path="converters" element={<CollectionPage slug="converters" />} />
+
           {/* 404 Fallback page */}
           <Route path="404" element={<NotFoundPage />} />
           <Route path="*" element={<Navigate to="/404" replace />} />

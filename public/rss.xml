@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Code Strategists Blog</title>
+  <link>https://www.codestrategists.com/blog</link>
+  <description>Advanced development guidelines, React optimizations, CSS migrations, and Web Security blueprints.</description>
+  <language>en-us</language>
+  <lastBuildDate>Wed, 22 Jul 2026 06:17:09 GMT</lastBuildDate>
+  <atom:link href="https://www.codestrategists.com/rss.xml" rel="self" type="application/rss+xml" />
+  <item>
+    <title>Base64 Encoding vs Decoding: Binary-to-Text Internals</title>
+    <link>https://www.codestrategists.com/blog/base64-encoding-vs-decoding</link>
+    <guid>https://www.codestrategists.com/blog/base64-encoding-vs-decoding</guid>
+    <description>An in-depth developer guide to Base64 encoding and decoding. Learn how binary streams are converted to ASCII text, padding calculations, URL-safe variations, and performance considerations.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>Best Free Frontend Developer Tools in 2026</title>
+    <link>https://www.codestrategists.com/blog/best-frontend-tools-2026</link>
+    <guid>https://www.codestrategists.com/blog/best-frontend-tools-2026</guid>
+    <description>An analysis of the best free frontend developer tools in 2026. Explore performance formatters, code converters, security validators, and local debuggers to improve your productivity.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>Common JSON Errors and How to Fix Them: A Linter\</title>
+    <link>https://www.codestrategists.com/blog/common-json-errors</link>
+    <guid>https://www.codestrategists.com/blog/common-json-errors</guid>
+    <description>A comprehensive developer guide to diagnosing and fixing common JSON syntax errors. Learn about quote escaping, trailing commas, parsing rules, and how to write secure try-catch blocks.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>CSS to Tailwind CSS Migration: A Practical Refactoring Guide</title>
+    <link>https://www.codestrategists.com/blog/css-to-tailwind-migration</link>
+    <guid>https://www.codestrategists.com/blog/css-to-tailwind-migration</guid>
+    <description>A complete developer guide to migrating from CSS to Tailwind CSS. Learn spacing scales, layout mappings, breakpoint systems, custom configurations, and best practices for refactoring legacy styles.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>HTML to JSX Conversion: The Complete Developer Guide</title>
+    <link>https://www.codestrategists.com/blog/html-to-jsx-guide</link>
+    <guid>https://www.codestrategists.com/blog/html-to-jsx-guide</guid>
+    <description>A comprehensive developer guide for HTML to JSX conversion. Learn key syntax differences, attribute mappings, inline style formatting, and how to avoid compilation errors during React migrations.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>JSON Formatter vs JSON Validator: Key Differences for Developers</title>
+    <link>https://www.codestrategists.com/blog/json-formatter-vs-validator</link>
+    <guid>https://www.codestrategists.com/blog/json-formatter-vs-validator</guid>
+    <description>An in-depth comparison of JSON formatting and validation tools. Learn how parser engines work under the hood, how they differ, and when to use each for clean API debugging.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>JWT Authentication: A Deep Dive into Stateless Session Management</title>
+    <link>https://www.codestrategists.com/blog/jwt-authentication-explained</link>
+    <guid>https://www.codestrategists.com/blog/jwt-authentication-explained</guid>
+    <description>An in-depth developer guide to JWT authentication. Learn token anatomy, signing algorithms, security best practices, and why cookie-based storage beats localStorage.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>React Developer Productivity Toolkit: Essential Utilities for 2026</title>
+    <link>https://www.codestrategists.com/blog/react-productivity-toolkit</link>
+    <guid>https://www.codestrategists.com/blog/react-productivity-toolkit</guid>
+    <description>An analysis of React developer productivity tools for 2026. Learn about custom hook optimization, state management patterns, and workflow utilities.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>SVG to React: How to Build a Reusable Icon Component Library</title>
+    <link>https://www.codestrategists.com/blog/svg-to-react-guide</link>
+    <guid>https://www.codestrategists.com/blog/svg-to-react-guide</guid>
+    <description>A complete developer guide to converting SVGs into React components. Learn SVG optimization techniques, camelCase mapping rules, dynamic styling, and how to configure TypeScript icon components.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+  <item>
+    <title>UUID v4 Explained: Cryptographic Randomness and Collision Math</title>
+    <link>https://www.codestrategists.com/blog/uuid-generator-explained</link>
+    <guid>https://www.codestrategists.com/blog/uuid-generator-explained</guid>
+    <description>An in-depth developer guide to UUID v4. Learn how unique identifiers are structured, the role of Web Crypto APIs, collision probabilities, and database indexing considerations.</description>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
+</channel>
+</rss>

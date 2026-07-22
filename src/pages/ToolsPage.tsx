@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
+import { useParams, useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { Filter, AlertCircle, ArrowLeft } from 'lucide-react'
 import { Chip } from '@/components/ui/Chip'
 import { Pagination } from '@/components/ui/Pagination'
@@ -255,6 +255,30 @@ export function ToolsPage() {
                 </span>
               </button>
             ))}
+          </div>
+
+          {/* Trending Tools Section */}
+          <div className="hidden lg:flex flex-col gap-3 mt-6 border-t border-border/40 pt-6 text-left">
+            <h3 className="font-heading text-xs font-bold text-foreground uppercase tracking-wider">Trending Utilities</h3>
+            <div className="flex flex-col gap-2">
+              {TOOLS.filter(t => t.popular && !t.comingSoon).slice(0, 3).map(t => (
+                <Link key={t.id} to={`/tool/${t.slug}`} className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors">
+                  {t.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Recently Added Section */}
+          <div className="hidden lg:flex flex-col gap-3 mt-4 text-left">
+            <h3 className="font-heading text-xs font-bold text-foreground uppercase tracking-wider">Recently Added</h3>
+            <div className="flex flex-col gap-2">
+              {TOOLS.filter(t => !t.comingSoon).slice(2, 5).map(t => (
+                <Link key={t.id} to={`/tool/${t.slug}`} className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors">
+                  {t.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </aside>
 

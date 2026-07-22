@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TOOLS, getToolWithDefaults } from '@/services/toolRegistry'
 import type { Tool } from '@/services/toolRegistry'
+import { BLOG_POSTS } from '@/config/blog.config'
+import { COLLECTIONS_CONFIG } from '@/config/collections.config'
+import { analytics } from '@/services/analyticsService'
 import { useTheme } from '@/hooks/useTheme'
 import { cn } from '@/lib/utils'
 
@@ -67,35 +70,6 @@ export function CommandPalette() {
   const { setTheme } = useTheme()
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
-
-  // Listen to keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
-        setIsOpen((prev) => !prev)
-      } else if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false)
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen])
-
-  // Focus input when opened
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50)
-      setSearch('')
-      setSelectedIndex(0)
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
 
   const expandedTools = TOOLS.map((t) => getToolWithDefaults(t))
 
@@ -180,6 +154,21 @@ export function CommandPalette() {
         t.category.toLowerCase().includes(query)
     )
 
+    const filteredBlogs = BLOG_POSTS.filter(
+      (p) =>
+        p.title.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.keywords.some((k) => k.toLowerCase().includes(query)) ||
+        p.category.toLowerCase().includes(query)
+    )
+
+    const filteredCollections = COLLECTIONS_CONFIG.filter(
+      (c) =>
+        c.title.toLowerCase().includes(query) ||
+        c.description.toLowerCase().includes(query) ||
+        c.keywords.some((k) => k.toLowerCase().includes(query))
+    )
+
     const filteredActions = actions.filter(
       (a) =>
         a.title.toLowerCase().includes(query) ||
@@ -200,11 +189,67 @@ export function CommandPalette() {
         },
         category: 'Matching Developer Tools',
       })),
+      ...filteredBlogs.map((p) => ({
+        id: `blog-${p.slug}`,
+        title: p.title,
+        subtitle: `Article • ${p.description}`,
+        handler: () => {
+          navigate(`/blog/${p.slug}`)
+        },
+        category: 'Matching Blog Articles',
+      })),
+      ...filteredCollections.map((c) => ({
+        id: `collection-${c.slug}`,
+        title: c.title,
+        subtitle: `Collection • ${c.description}`,
+        handler: () => {
+          navigate(`/${c.slug}`)
+        },
+        category: 'Matching Collections',
+      })),
       ...filteredActions,
     ]
   }
 
   const items = getFilteredItems()
+
+  // Listen to keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setIsOpen((prev) => !prev)
+      } else if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen])
+
+  // Focus input when opened
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 50)
+      setSearch('')
+      setSelectedIndex(0)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  // Track search queries in local analytics log
+  useEffect(() => {
+    if (!search.trim()) return
+    const timer = setTimeout(() => {
+      analytics.trackSearchUsed(search.trim(), items.length)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [search, items.length])
 
   // Handle arrow navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
