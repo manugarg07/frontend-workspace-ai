@@ -50,7 +50,7 @@ export function CookieConsent() {
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 30, scale: 0.95 }}
-          className="fixed bottom-4 right-4 z-50 max-w-md w-[calc(100vw-2rem)] border border-border/80 bg-card/95 backdrop-blur-md p-6 rounded-2xl shadow-premium glass-panel font-sans text-left"
+          className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 z-50 max-w-md w-auto sm:w-full border border-border/80 bg-card/95 backdrop-blur-md p-6 rounded-2xl shadow-premium glass-panel font-sans text-left"
           role="dialog"
           aria-labelledby="cookie-consent-title"
           aria-describedby="cookie-consent-desc"

@@ -93,7 +93,7 @@ export function Toolbar({
 
         {/* Preset Chips */}
         {samples && onLoadSample && (
-          <div className="flex items-center gap-1 border-l border-border/40 pl-2">
+          <div className="flex flex-wrap items-center gap-1.5 border-t sm:border-t-0 sm:border-l border-border/40 pt-2 sm:pt-0 pl-0 sm:pl-2 w-full sm:w-auto">
             {Object.entries(samples).map(([key, sample]) => (
               <Chip key={key} onClick={() => onLoadSample(key)}>
                 {sample.title}
@@ -104,7 +104,7 @@ export function Toolbar({
       </div>
 
       {/* Right side actions (Compile and Output side) */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         {onConvert && (
           <Button 
             size="sm" 

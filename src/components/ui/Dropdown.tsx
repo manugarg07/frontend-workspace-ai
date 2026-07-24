@@ -69,7 +69,7 @@ export function Dropdown({
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
             className={cn(
-              'absolute z-50 mt-1.5 w-56 rounded-xl border border-border bg-popover text-popover-foreground shadow-lg focus:outline-none overflow-hidden glass-panel',
+              'absolute z-50 mt-1.5 w-56 rounded-xl border border-border bg-popover text-popover-foreground shadow-lg focus:outline-none overflow-hidden',
               align === 'right' ? 'right-0' : 'left-0'
             )}
           >

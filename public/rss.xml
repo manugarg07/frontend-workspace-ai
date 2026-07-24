@@ -5,8 +5,16 @@
   <link>https://www.codestrategists.com/blog</link>
   <description>Advanced development guidelines, React optimizations, CSS migrations, and Web Security blueprints.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 22 Jul 2026 12:18:08 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 24 Jul 2026 05:37:55 GMT</lastBuildDate>
   <atom:link href="https://www.codestrategists.com/rss.xml" rel="self" type="application/rss+xml" />
+  <item>
+    <title>How to Format JSON Online: Complete Guide for Developers (2026)</title>
+    <link>https://www.codestrategists.com/blog/how-to-format-json-online</link>
+    <guid>https://www.codestrategists.com/blog/how-to-format-json-online</guid>
+    <description>Learn how to format JSON online securely. Discover standard JSON syntax, formatting mechanics, common parsing errors, and best practices for debugging API payloads locally.</description>
+    <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
+    <author>Manu Garg</author>
+  </item>
   <item>
     <title>Base64 Encoding vs Decoding: Binary-to-Text Internals</title>
     <link>https://www.codestrategists.com/blog/base64-encoding-vs-decoding</link>

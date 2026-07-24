@@ -37,9 +37,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           variant === 'ghost' && 'bg-transparent text-foreground hover:bg-secondary hover:text-foreground',
           variant === 'link' && 'bg-transparent text-primary hover:underline p-0 rounded-none active:scale-100',
           // Sizes
-          size === 'sm' && 'px-3 py-1.5 text-xs',
-          size === 'md' && 'px-4 py-2 text-sm',
-          size === 'lg' && 'px-5 py-2.5 text-base',
+          size === 'sm' && 'px-3 py-1.5 text-xs min-h-[32px]',
+          size === 'md' && 'px-4 py-2 text-sm min-h-[44px] md:min-h-[38px]',
+          size === 'lg' && 'px-5 py-2.5 text-base min-h-[44px]',
           className
         )}
         {...props}

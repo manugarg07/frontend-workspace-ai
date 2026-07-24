@@ -27,7 +27,7 @@ export function SEO({
     'developers',
   ],
   canonical,
-  ogImage = 'https://www.codestrategists.com/og-default.png',
+  ogImage = 'https://www.codestrategists.com/og-image.png',
   ogType = 'website',
 }: SEOProps) {
   const siteUrl = 'https://www.codestrategists.com'

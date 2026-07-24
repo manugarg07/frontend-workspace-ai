@@ -54,8 +54,7 @@ export function NewsletterSignup({ source, className, variant = 'card' }: Newsle
     return (
       <form onSubmit={handleSubmit} className={cn('flex flex-col gap-2 w-full font-sans', className)}>
         <label htmlFor="compact-email" className="sr-only">Email address</label>
-        <div className="relative">
-          <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+        <div className="relative flex items-center">
           <Input
             id="compact-email"
             type="email"
@@ -63,15 +62,16 @@ export function NewsletterSignup({ source, className, variant = 'card' }: Newsle
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="pl-9 pr-12 bg-card/45 border-border"
+            leftIcon={<Mail className="h-4 w-4" />}
+            className="pr-12 bg-card/45 border-border"
           />
           <button
             type="submit"
             disabled={isSubmitting}
-            className="absolute right-1 top-1 p-1.5 bg-primary hover:opacity-90 disabled:opacity-50 text-primary-foreground rounded-lg transition-all focus-ring cursor-pointer"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center bg-primary hover:opacity-90 disabled:opacity-50 text-primary-foreground rounded-full transition-all focus-ring cursor-pointer"
             aria-label="Subscribe"
           >
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </form>

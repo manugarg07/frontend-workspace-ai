@@ -410,7 +410,7 @@ export function UUIDGeneratorPro() {
                   {/* Version select tabs */}
                   <div className="space-y-1.5">
                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">UUID Version Selection</span>
-                    <div className="grid grid-cols-4 gap-1.5 p-1 bg-secondary/40 rounded-lg border border-border/40 text-xs font-semibold">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1 bg-secondary/40 rounded-lg border border-border/40 text-xs font-semibold">
                       <button
                         onClick={() => setSelectedVersion('v4')}
                         className={cn("py-1.5 rounded-md transition-all cursor-pointer", 
@@ -537,7 +537,7 @@ export function UUIDGeneratorPro() {
                   {/* Output Separator representation */}
                   <div className="space-y-1.5 pt-3 border-t border-border/40">
                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Output Layout Structure</span>
-                    <div className="grid grid-cols-3 gap-1.5 text-xs font-semibold">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-xs font-semibold">
                       <button
                         onClick={() => setSeparator('newline')}
                         className={cn("py-1.5 rounded-lg border text-center transition-all cursor-pointer",
@@ -715,7 +715,7 @@ export function UUIDGeneratorPro() {
 
               {/* Ticking Metrics summary box */}
               {formattedOutput && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
                   <div className="p-4 border border-border/40 bg-card/45 rounded-xl font-sans">
                     <div className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Identifiers Count</div>
                     <div className="text-sm font-semibold mt-1 text-foreground">{metrics.count} UUIDs</div>

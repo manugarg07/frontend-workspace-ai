@@ -29,7 +29,7 @@ export function SEOMeta({
   ],
   canonical,
   robots = 'index, follow',
-  ogImage = 'https://www.codestrategists.com/og-default.png',
+  ogImage = 'https://www.codestrategists.com/og-image.png',
   ogType = 'website',
 }: SEOMetaProps) {
   const siteUrl = 'https://www.codestrategists.com'

@@ -21,8 +21,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           variant === 'outline' && 'bg-transparent border border-border text-foreground hover:bg-secondary/50',
           variant === 'ghost' && 'bg-transparent text-foreground hover:bg-secondary',
           // Sizes
-          size === 'sm' && 'p-1.5 h-8 w-8',
-          size === 'md' && 'p-2 h-10 w-10',
+          size === 'sm' && 'p-1.5 h-11 w-11 md:h-8 md:w-8',
+          size === 'md' && 'p-2 h-11 w-11 md:h-10 md:w-10',
           size === 'lg' && 'p-2.5 h-12 w-12',
           className
         )}

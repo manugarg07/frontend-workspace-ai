@@ -301,7 +301,7 @@ export function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden bg-background text-foreground grid-bg">
       <SEO 
-        title="The Modern Developer Workspace - CodeStrategists"
+        title="CodeStrategists – Free Online Developer Tools"
         description="Format, convert, validate, and generate code quickly using premium, 100% browser-based client-side developer tools. No installations required."
       />
 

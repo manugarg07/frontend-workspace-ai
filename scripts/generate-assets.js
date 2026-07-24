@@ -66,6 +66,14 @@ const ICON_OUTPUTS = [
   { name: 'icon-maskable-512.png',  size: 512,  dir: iconsDir,  svg: () => iconSvg(512) },
 ]
 
+const LOGO_OUTPUTS = [
+  { src: 'logo.svg',               name: 'logo.png',               width: 1120 },
+  { src: 'logo-dark.svg',          name: 'logo-dark.png',          width: 1120 },
+  { src: 'logo-icon.svg',          name: 'logo-icon.png',          width: 512  },
+  { src: 'logo-vertical.svg',      name: 'logo-vertical.png',      width: 800  },
+  { src: 'logo-vertical-dark.svg', name: 'logo-vertical-dark.png', width: 800  }
+]
+
 // ─── Render with sharp ────────────────────────────────────────────────────────
 async function renderWithSharp() {
   const sharp = require('sharp')
@@ -90,6 +98,20 @@ async function renderWithSharp() {
     .png({ quality: 95 })
     .toFile(twitterOut)
   console.log(`  ✅  twitter-card.png  (1200×628)`)
+
+  console.log('\n🎨 Rendering brand logos...')
+  for (const { src, name, width } of LOGO_OUTPUTS) {
+    const srcPath = path.join(publicDir, src)
+    if (existsSync(srcPath)) {
+      const svgBuffer = readFileSync(srcPath)
+      const out = path.join(publicDir, name)
+      await sharp(svgBuffer)
+        .resize(width)
+        .png({ quality: 95, compressionLevel: 9 })
+        .toFile(out)
+      console.log(`  ✅  ${name}  (width: ${width})`)
+    }
+  }
 }
 
 // ─── Render with jimp (pure JS fallback) ─────────────────────────────────────
@@ -101,6 +123,13 @@ async function renderWithJimp() {
     const out = path.join(dir, name)
     await img.write(out)
     console.log(`  ⚠️   ${name}  (${size}×${size}) — placeholders written`)
+  }
+  console.log('\n🎨 Rendering brand logos placeholder...')
+  for (const { name, width } of LOGO_OUTPUTS) {
+    const img = new Jimp({ width, height: Math.round(width * 0.25), color: 0x0c0f17ff })
+    const out = path.join(publicDir, name)
+    await img.write(out)
+    console.log(`  ⚠️   ${name}  (width: ${width}) — placeholders written`)
   }
 }
 
@@ -126,6 +155,21 @@ async function renderWithResvg() {
   const twitterOut = path.join(publicDir, 'twitter-card.png')
   writeFileSync(twitterOut, ogPng.asPng())
   console.log(`  ✅  twitter-card.png  (1200×630)`)
+
+  console.log('\n🎨 Rendering brand logos...')
+  for (const { src, name, width } of LOGO_OUTPUTS) {
+    const srcPath = path.join(publicDir, src)
+    if (existsSync(srcPath)) {
+      const svgString = readFileSync(srcPath, 'utf8')
+      const resvg = new Resvg(svgString, {
+        fitTo: { mode: 'width', value: width }
+      })
+      const pngData = resvg.render()
+      const out = path.join(publicDir, name)
+      writeFileSync(out, pngData.asPng())
+      console.log(`  ✅  ${name}  (width: ${width})`)
+    }
+  }
 }
 
 // ─── Compile favicon.ico from 16x16, 32x32, 48x48 ───────────────────────────

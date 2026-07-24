@@ -8,6 +8,7 @@ import { uuidGeneratorExplained } from './articles/uuid-generator-explained'
 import { base64EncodingVsDecoding } from './articles/base64-encoding-vs-decoding'
 import { commonJsonErrors } from './articles/common-json-errors'
 import { reactProductivityToolkit } from './articles/react-productivity-toolkit'
+import { howToFormatJsonOnline } from './articles/how-to-format-json-online'
 
 export type BlogCategory = 'Development' | 'Security' | 'React' | 'Design' | 'SEO'
 
@@ -44,6 +45,7 @@ export const CATEGORIES: BlogCategoryDetails[] = [
 
 // Aggregate all articles and sort them chronologically (newest first)
 export const BLOG_POSTS: BlogPost[] = [
+  howToFormatJsonOnline,
   jsonFormatterVsValidator,
   htmlToJsxGuide,
   cssToTailwindMigration,

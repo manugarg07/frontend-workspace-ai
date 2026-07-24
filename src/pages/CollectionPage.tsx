@@ -82,7 +82,7 @@ export default function CollectionPage({ slug }: CollectionPageProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans select-text">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-6 select-none">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-y-1 gap-x-2 text-xs sm:text-sm text-muted-foreground mb-6 select-none">
           <Link
             to="/"
             className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150 focus-ring rounded"

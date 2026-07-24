@@ -138,7 +138,7 @@ export function Footer() {
             </p>
           </div>
           <p className="flex items-center gap-1.5">
-            Designed for engineers with <Heart className="h-3 w-3 text-red-500 fill-current animate-pulse" aria-hidden="true" /> by Google DeepMind Team.
+            Designed for engineers with <Heart className="h-3 w-3 text-red-500 fill-current animate-pulse" aria-hidden="true" /> by CodeStrategists.
           </p>
         </div>
       </div>

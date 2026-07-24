@@ -16,7 +16,10 @@ import { SEO } from '@/components/common/SEO'
 export function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left">
-      <SEO title="About Us - CodeStrategists" />
+      <SEO 
+        title="About CodeStrategists – Browser-Based Developer Tools" 
+        description="Learn about CodeStrategists, a cohesive platform of private, browser-based client-side developer utilities designed for modern front-end engineers." 
+      />
       <h1 className="font-heading text-3xl font-extrabold tracking-tight">About CodeStrategists</h1>
       <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
         CodeStrategists was founded on a simple premise: developer productivity tools shouldn't be scattered across 20 different ad-ridden websites.
@@ -80,7 +83,10 @@ export function ContactPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-12 flex flex-col gap-6 text-left">
-      <SEO title="Contact Us - CodeStrategists" />
+      <SEO 
+        title="Contact Us – CodeStrategists" 
+        description="Get in touch with the CodeStrategists team. Send us your feedback, bug reports, and suggestions for new developer tools." 
+      />
       <div>
         <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight">Get in Touch</h1>
         <p className="text-sm text-muted-foreground mt-1">Have ideas or custom tool suggestions? Drop a note.</p>
@@ -133,7 +139,10 @@ export function ContactPage() {
 export function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left leading-relaxed">
-      <SEO title="Privacy Policy - CodeStrategists" />
+      <SEO 
+        title="Privacy Policy – CodeStrategists" 
+        description="Read the CodeStrategists privacy policy. We commit to a local execution standard where your data never leaves your browser sandbox." 
+      />
       <h1 className="font-heading text-3xl font-extrabold tracking-tight">Privacy Policy</h1>
       <p className="text-xs text-muted-foreground">Last updated: July 8, 2026</p>
       
@@ -161,7 +170,10 @@ export function PrivacyPage() {
 export function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-6 text-left leading-relaxed">
-      <SEO title="Terms of Service - CodeStrategists" />
+      <SEO 
+        title="Terms of Service – CodeStrategists" 
+        description="Terms of service and use licensing guidelines for CodeStrategists developer formatters, converters, and generators." 
+      />
       <h1 className="font-heading text-3xl font-extrabold tracking-tight">Terms of Service</h1>
       <p className="text-xs text-muted-foreground">Last updated: July 8, 2026</p>
       
@@ -217,7 +229,10 @@ export function ChangelogPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-8 text-left">
-      <SEO title="Changelog & Updates - CodeStrategists" />
+      <SEO 
+        title="Product Changelog – CodeStrategists" 
+        description="Keep track of the latest updates, bug fixes, feature releases, and configuration changes on CodeStrategists." 
+      />
       <div>
         <h1 className="font-heading text-3xl font-extrabold tracking-tight">Product Changelog</h1>
         <p className="text-sm text-muted-foreground mt-1">Keep track of releases and configuration updates.</p>

@@ -52,6 +52,7 @@ export function AppRoutes() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<LandingPage />} />
           <Route path="workspace" element={<WorkspacePage />} />
+          <Route path="tools/json-to-typescript" element={<ToolTemplatePage slug="json-to-typescript" />} />
           <Route path="tools" element={<ToolsPage />} />
           <Route path="tools/:categorySlug" element={<ToolsPage />} />
           <Route path="tool/:slug" element={<ToolTemplatePage />} />

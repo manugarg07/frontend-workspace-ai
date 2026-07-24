@@ -2,6 +2,16 @@ import React, { useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { useToast } from '../ui/Toast'
 
+const slugify = (text: string): string => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+}
+
 interface MarkdownRendererProps {
   content: string
 }
@@ -201,25 +211,25 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         switch (block.type) {
           case 'h1':
             return (
-              <h2 key={idx} className="font-heading text-2xl sm:text-3xl font-bold text-foreground mt-8 mb-2 leading-tight border-b border-border/40 pb-2">
+              <h2 key={idx} id={slugify(block.content)} className="font-heading text-2xl sm:text-3xl font-bold text-foreground mt-8 mb-2 leading-tight border-b border-border/40 pb-2">
                 {parseInlineElements(block.content)}
               </h2>
             )
           case 'h2':
             return (
-              <h2 key={idx} className="font-heading text-xl sm:text-2xl font-bold text-foreground mt-8 mb-2 leading-tight">
+              <h2 key={idx} id={slugify(block.content)} className="font-heading text-xl sm:text-2xl font-bold text-foreground mt-8 mb-2 leading-tight">
                 {parseInlineElements(block.content)}
               </h2>
             )
           case 'h3':
             return (
-              <h3 key={idx} className="font-heading text-lg sm:text-xl font-semibold text-foreground mt-6 mb-1.5 leading-tight">
+              <h3 key={idx} id={slugify(block.content)} className="font-heading text-lg sm:text-xl font-semibold text-foreground mt-6 mb-1.5 leading-tight">
                 {parseInlineElements(block.content)}
               </h3>
             )
           case 'h4':
             return (
-              <h4 key={idx} className="font-heading text-base sm:text-lg font-semibold text-foreground mt-4 mb-1 leading-tight">
+              <h4 key={idx} id={slugify(block.content)} className="font-heading text-base sm:text-lg font-semibold text-foreground mt-4 mb-1 leading-tight">
                 {parseInlineElements(block.content)}
               </h4>
             )

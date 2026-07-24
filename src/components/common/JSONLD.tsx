@@ -8,7 +8,9 @@ interface JSONLDProps {
 
 export function JSONLD({ tool }: JSONLDProps) {
   const siteUrl = 'https://www.codestrategists.com'
-  const toolUrl = `${siteUrl}/tool/${tool.slug}`
+  const toolUrl = tool.seo?.canonical
+    ? (tool.seo.canonical.startsWith('http') ? tool.seo.canonical : `${siteUrl}${tool.seo.canonical.startsWith('/') ? tool.seo.canonical : '/' + tool.seo.canonical}`)
+    : `${siteUrl}/tool/${tool.slug}`
 
   // 1. Shared Organization Schema
   const organizationSchema = {

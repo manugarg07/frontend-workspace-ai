@@ -41,7 +41,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav links */}
-          <nav className="hidden md:flex items-center gap-1.5" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-1.5" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -89,7 +89,7 @@ export function Navbar() {
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
-            className="flex md:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg focus-ring cursor-pointer transition-colors"
+            className="flex lg:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg focus-ring cursor-pointer transition-colors"
             aria-label="Toggle main menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
@@ -104,7 +104,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/30 bg-card overflow-hidden"
+            className="lg:hidden border-t border-border/30 bg-card overflow-hidden"
           >
             <div className="px-4 py-4 flex flex-col gap-2">
               <button

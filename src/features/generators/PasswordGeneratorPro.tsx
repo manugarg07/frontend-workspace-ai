@@ -828,7 +828,7 @@ export function PasswordGeneratorPro() {
                       </div>
 
                       {/* Crack statistics grid */}
-                      <div className="grid grid-cols-3 gap-3 text-xs font-medium">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-medium">
                         <div className="p-3 border border-border/40 bg-secondary/15 rounded-lg">
                           <span className="text-[10px] text-muted-foreground font-sans uppercase font-bold tracking-wider block mb-1">Shannon Entropy</span>
                           <span className="font-semibold font-mono text-foreground text-sm">{analysis.entropy} Bits</span>
@@ -848,7 +848,7 @@ export function PasswordGeneratorPro() {
                       {/* Character Analysis bar breakdown */}
                       <div className="space-y-2 pt-2 border-t border-border/40">
                         <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Character Classes Counts</span>
-                        <div className="grid grid-cols-4 gap-2 text-center text-[10px] font-semibold text-muted-foreground font-mono">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[10px] font-semibold text-muted-foreground font-mono">
                           <div className="bg-secondary/20 p-2 rounded-lg border border-border/30">
                             <span className="block text-foreground text-xs font-bold">{analysis.upperCount}</span>
                             <span>Uppercase</span>

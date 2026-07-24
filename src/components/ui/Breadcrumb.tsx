@@ -45,7 +45,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         </script>
       </Helmet>
 
-      <ol className="inline-flex items-center space-x-1 md:space-x-2 text-xs sm:text-sm font-medium text-muted-foreground">
+      <ol className="flex flex-wrap items-center gap-y-1 gap-x-1.5 text-xs sm:text-sm font-medium text-muted-foreground">
         <li className="inline-flex items-center">
           <Link
             to="/workspace"

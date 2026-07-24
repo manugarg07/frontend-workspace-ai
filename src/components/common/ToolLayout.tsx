@@ -32,6 +32,8 @@ interface ToolLayoutProps {
   instructions?: React.ReactNode
   benefits?: string[]
   faqs?: { id: string; title: React.ReactNode; content: React.ReactNode }[]
+  parentTitle?: string
+  parentRoute?: string
   extraSEOProps?: {
     title?: string
     description?: string
@@ -51,6 +53,8 @@ export function ToolLayout({
   instructions,
   benefits = [],
   faqs = [],
+  parentTitle,
+  parentRoute,
   extraSEOProps
 }: ToolLayoutProps) {
   const { toast } = useToast()
@@ -153,7 +157,11 @@ export function ToolLayout({
       {/* Header section with Breadcrumb and Meta */}
       <div className="flex flex-col gap-4">
         {!isFullscreen && (
-          <Breadcrumbs toolTitle={activeConfig.title} />
+          <Breadcrumbs
+            toolTitle={activeConfig.title}
+            parentTitle={parentTitle}
+            parentRoute={parentRoute}
+          />
         )}
         
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/40 pb-5">

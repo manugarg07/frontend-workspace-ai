@@ -303,7 +303,7 @@ export function getToolWithDefaults(tool: Tool) {
   const lastUpdated = tool.lastUpdated || '2026-07-17'
   
   const seo = {
-    title: tool.seo?.title || tool.seoTitle || `${tool.title} - Free Client-Side Developer Tool`,
+    title: tool.seo?.title || tool.seoTitle || `${tool.title} – Free Online Tool | CodeStrategists`,
     description: tool.seo?.description || tool.seoDescription || shortDesc,
     keywords: tool.seo?.keywords || tool.keywords || [],
     canonical: tool.seo?.canonical || `/tool/${tool.slug}`,

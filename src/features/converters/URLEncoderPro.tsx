@@ -500,7 +500,7 @@ export function URLEncoderPro() {
 
                     {/* Output statistics bar */}
                     {outputVal && (
-                      <div className="grid grid-cols-3 gap-3 text-[10px] text-muted-foreground font-mono bg-secondary/20 p-2 rounded-lg select-none border border-border/30">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[10px] text-muted-foreground font-mono bg-secondary/20 p-2 rounded-lg select-none border border-border/30">
                         <div>Characters: <span className="font-bold text-foreground">{outputVal.length}</span></div>
                         <div>Size: <span className="font-bold text-foreground">{getByteSize(outputVal)}</span></div>
                         <div>Speed: <span className="font-bold text-primary">{processingTime ? `${processingTime.toFixed(2)} ms` : '0 ms'}</span></div>
@@ -545,37 +545,39 @@ export function URLEncoderPro() {
               <h3 className="font-heading text-foreground font-semibold text-sm flex items-center gap-1.5">
                 <FileText className="h-4.5 w-4.5 text-primary" /> Common Percent-Encoding Examples
               </h3>
-              <table className="w-full text-xs text-left border-collapse min-w-[280px]">
-                <thead>
-                  <tr className="border-b border-border/50 text-muted-foreground font-bold uppercase tracking-wider">
-                    <th className="py-1 px-2">Character</th>
-                    <th className="py-1 px-2">Percent Code</th>
-                    <th className="py-1 px-2">Common Use Case</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/30 font-mono">
-                  <tr>
-                    <td className="py-1.5 px-2 text-foreground font-bold">Space</td>
-                    <td className="py-1.5 px-2 text-primary font-bold">%20 or +</td>
-                    <td className="py-1.5 px-2 text-muted-foreground font-sans">Query strings spaces</td>
-                  </tr>
-                  <tr>
-                    <td className="py-1.5 px-2 text-foreground font-bold">&</td>
-                    <td className="py-1.5 px-2 text-primary font-bold">%26</td>
-                    <td className="py-1.5 px-2 text-muted-foreground font-sans">Query parameter separators</td>
-                  </tr>
-                  <tr>
-                    <td className="py-1.5 px-2 text-foreground font-bold">=</td>
-                    <td className="py-1.5 px-2 text-primary font-bold">%3D</td>
-                    <td className="py-1.5 px-2 text-muted-foreground font-sans">Query key-value binder</td>
-                  </tr>
-                  <tr>
-                    <td className="py-1.5 px-2 text-foreground font-bold">?</td>
-                    <td className="py-1.5 px-2 text-primary font-bold">%3F</td>
-                    <td className="py-1.5 px-2 text-muted-foreground font-sans">URL query start identifier</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="overflow-x-auto w-full border border-border/40 rounded-xl bg-card/20">
+                <table className="w-full text-xs text-left border-collapse min-w-[380px]">
+                  <thead>
+                    <tr className="border-b border-border/50 text-muted-foreground font-bold uppercase tracking-wider">
+                      <th className="py-2.5 px-3">Character</th>
+                      <th className="py-2.5 px-3">Percent Code</th>
+                      <th className="py-2.5 px-3">Common Use Case</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/30 font-mono">
+                    <tr>
+                      <td className="py-2 px-3 text-foreground font-bold">Space</td>
+                      <td className="py-2 px-3 text-primary font-bold">%20 or +</td>
+                      <td className="py-2 px-3 text-muted-foreground font-sans">Query strings spaces</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 text-foreground font-bold">&</td>
+                      <td className="py-2 px-3 text-primary font-bold">%26</td>
+                      <td className="py-2 px-3 text-muted-foreground font-sans">Query parameter separators</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 text-foreground font-bold">=</td>
+                      <td className="py-2 px-3 text-primary font-bold">%3D</td>
+                      <td className="py-2 px-3 text-muted-foreground font-sans">Query key-value binder</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-3 text-foreground font-bold">?</td>
+                      <td className="py-2 px-3 text-primary font-bold">%3F</td>
+                      <td className="py-2 px-3 text-muted-foreground font-sans">URL query start identifier</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             {/* Best practices */}

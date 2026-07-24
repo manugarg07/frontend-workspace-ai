@@ -5,17 +5,24 @@ import { cn } from '@/lib/utils'
 
 interface BreadcrumbsProps {
   toolTitle: string
+  parentTitle?: string
+  parentRoute?: string
   className?: string
 }
 
-export function Breadcrumbs({ toolTitle, className }: BreadcrumbsProps) {
+export function Breadcrumbs({
+  toolTitle,
+  parentTitle = 'Developer Tools',
+  parentRoute = '/tools',
+  className
+}: BreadcrumbsProps) {
   return (
     <nav 
       className={cn('flex select-none font-sans', className)} 
       aria-label="Breadcrumb"
     >
       <ol 
-        className="inline-flex items-center space-x-1 md:space-x-2 text-xs sm:text-sm font-medium text-muted-foreground"
+        className="flex flex-wrap items-center gap-y-1 gap-x-1.5 text-xs sm:text-sm font-medium text-muted-foreground"
         itemScope
         itemType="https://schema.org/BreadcrumbList"
       >
@@ -50,11 +57,11 @@ export function Breadcrumbs({ toolTitle, className }: BreadcrumbsProps) {
           itemType="https://schema.org/ListItem"
         >
           <Link
-            to="/tools"
+            to={parentRoute}
             itemProp="item"
             className="hover:text-foreground transition-colors focus-ring rounded px-1 py-0.5"
           >
-            <span itemProp="name">Developer Tools</span>
+            <span itemProp="name">{parentTitle}</span>
           </Link>
           <meta itemProp="position" content="2" />
         </li>

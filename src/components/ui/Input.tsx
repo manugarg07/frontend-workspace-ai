@@ -22,9 +22,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <div className="relative flex items-center">
+        <div className="relative flex items-center w-full">
           {leftIcon && (
-            <div className="absolute left-3 text-muted-foreground pointer-events-none" aria-hidden="true">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none flex items-center" aria-hidden="true">
               {leftIcon}
             </div>
           )}
@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={error ? errorId : props['aria-describedby']}
             aria-invalid={error ? true : props['aria-invalid']}
             className={cn(
-              'flex h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-ring disabled:cursor-not-allowed disabled:opacity-50 transition-all',
+              'flex h-11 md:h-10 w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-ring disabled:cursor-not-allowed disabled:opacity-50 transition-all',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
               error && 'border-destructive focus-visible:ring-destructive/30',
@@ -46,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {rightIcon && (
-            <div className="absolute right-3 text-muted-foreground pointer-events-none" aria-hidden="true">
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none flex items-center" aria-hidden="true">
               {rightIcon}
             </div>
           )}

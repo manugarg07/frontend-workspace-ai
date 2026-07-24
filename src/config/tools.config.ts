@@ -72,6 +72,12 @@ export const TOOLS_CONFIG: ToolSEOConfig[] = [
     title: 'JSON Formatter',
     description: 'Prettify, minify, and inspect JSON payloads with automated validation.',
     shortDescription: 'Prettify, minify, and inspect JSON payloads with automated validation.',
+    seoTitle: 'JSON Formatter & Validator – Free Online Tool | CodeStrategists',
+    seo: {
+      title: 'JSON Formatter & Validator – Free Online Tool | CodeStrategists',
+      description: 'Prettify, minify, and inspect JSON payloads with automated validation.',
+      canonical: '/tool/json-formatter'
+    },
     category: 'formatters',
     keywords: ['json formatter', 'pretty print json', 'minify json', 'json validator', 'beautify json', 'parse json'],
     icon: 'Braces',
@@ -1311,5 +1317,184 @@ export const TOOLS_CONFIG: ToolSEOConfig[] = [
       'Forgetting the global (g) flag will limit the matcher to only highlighting the first matching sequence.',
       'Pasting unescaped slash characters inside patterns can cause RegExp compilation errors.'
     ]
+  },
+  {
+    id: 'json-to-typescript',
+    slug: 'json-to-typescript',
+    title: 'JSON to TypeScript Interface Generator',
+    description: 'Convert JSON into TypeScript interfaces instantly with this free online generator. Supports nested objects, arrays, optional properties and works completely in your browser.',
+    shortDescription: 'Convert any valid JSON into clean TypeScript interfaces instantly.',
+    category: 'generators',
+    keywords: [
+      'json to typescript',
+      'json to ts',
+      'json to typescript interface',
+      'json converter typescript',
+      'json to typescript online',
+      'generate typescript from json'
+    ],
+    icon: 'FileCode',
+    featured: true,
+    popular: true,
+    lastUpdated: '2026-07-23',
+    estimatedReadingTime: '4 min read',
+    seoTitle: 'JSON to TypeScript Interface Generator | CodeStrategists',
+    seoDescription: 'Convert JSON into TypeScript interfaces instantly with this free online generator. Supports nested objects, arrays, optional properties and works completely in your browser.',
+    seo: {
+      title: 'JSON to TypeScript Interface Generator | CodeStrategists',
+      description: 'Convert JSON into TypeScript interfaces instantly with this free online generator. Supports nested objects, arrays, optional properties and works completely in your browser.',
+      canonical: '/tools/json-to-typescript'
+    },
+    introduction: 'In modern frontend development, TypeScript has become the industry standard for writing robust, maintainable, and type-safe applications. One of the most frequent tasks developers face is integrating third-party APIs or external data sources, which typically return raw JSON payloads. Manually writing TypeScript interfaces for complex, deeply nested JSON objects is not only tedious but also highly prone to human error, such as mistyping field names or misidentifying types. The JSON to TypeScript Interface Generator is an advanced developer utility designed to solve this exact problem. By parsing any valid JSON string, the generator instantly compiles clean, standard-compliant TypeScript interfaces. Crucially, the entire operation is executed directly within your browser. No data is ever transmitted to external servers, ensuring absolute confidentiality for your database schemes, API keys, and sensitive production payloads. The generator automatically traverses the input structure recursively, parsing nested objects, lists, optional fields, and variable types, providing a seamless solution for accelerating front-end API integrations.',
+    features: [
+      'Recursive structure parsing: automatically generates matching interfaces for deeply nested object properties.',
+      'Intelligent object merging: combines matching keys in arrays of objects, identifying missing parameters as optional fields.',
+      'Interface structure deduplication: reuses identical sub-interface layouts, keeping the generated output clean and free of clutter.',
+      'Flexible configurations: adjust null classifications, toggle interface exports, and specify custom Root names.',
+      '100% Client-Side execution: processes all variables locally in browser memory with zero network latency.'
+    ],
+    howToUse: [
+      'Paste your raw, minified, or formatted JSON payload directly into the JSON Input editor panel on the left.',
+      'Click the Generate Interface button, or press the Ctrl + Enter keyboard shortcut to run the compiler.',
+      'Configure options such as custom Root naming, interface exports, and null representations using the Settings panels.',
+      'Click the Copy button to copy the interfaces to your clipboard, or click Download to save the types.ts file locally.'
+    ],
+    example: {
+      input: '{\n  "id": 1,\n  "name": "John",\n  "skills": [\n    {\n      "title": "React"\n    }\n  ]\n}',
+      output: 'interface Root {\n  id: number;\n  name: string;\n  skills: Skill[];\n}\n\ninterface Skill {\n  title: string;\n}',
+      explanation: 'The nested object is parsed recursively. The root fields map directly to the Root interface, while the nested array of objects merges its structures to generate the sub-interface Skill, linked via Skill[] array definition.'
+    },
+    useCases: [
+      'Migrating raw backend REST or GraphQL API responses into strongly typed React, Vue, or Angular component states.',
+      'Generating interfaces for application settings, configuration files, and state management states.',
+      'Validating incoming JSON payloads against standard client-side data definitions during compilation cycles.'
+    ],
+    tips: [
+      'Leverage identical structure matching to automatically consolidate configurations without spawning duplicate structures.',
+      'Use singular naming patterns for arrays of objects to ensure the sub-interfaces make semantic sense.',
+      'Map null properties carefully, using Union Null options when types fluctuate.'
+    ],
+    pitfalls: [
+      'Pasting standard JavaScript object literals with unquoted keys instead of strict JSON will cause parsing errors.',
+      'Relying on arbitrary object merging if the arrays contain completely disjoint data classes.'
+    ],
+    faqs: [
+      {
+        question: 'What is a JSON to TypeScript Interface Generator?',
+        answer: 'It is a developer utility that parses standard JavaScript Object Notation (JSON) strings and outputs typed TypeScript interfaces that match the shape of the data.'
+      },
+      {
+        question: 'Is my input data secure when generating interfaces?',
+        answer: 'Yes, 100%. The generator operates completely client-side in your local browser sandbox. No input strings, structures, or telemetry are sent over the network.'
+      },
+      {
+        question: 'How are nested objects handled by the generator?',
+        answer: 'The generator recursively parses the JSON structure. When it encounters a nested object, it generates a new interface for it, using the property key name as the interface name.'
+      },
+      {
+        question: 'What happens with arrays of objects with differing properties?',
+        answer: 'The generator merges the objects to create a single representative interface. Properties that exist in some objects but are missing in others are marked as optional.'
+      },
+      {
+        question: 'Why are some interfaces named with a counter suffix (e.g. Address2)?',
+        answer: 'This occurs when different properties share the same name but have completely different structure shapes. The generator assigns suffixes to prevent naming collisions.'
+      },
+      {
+        question: 'Does the generator support null values?',
+        answer: 'Yes, you can configure how null fields are mapped—either as type any, null, or unknown, depending on your preferences.'
+      },
+      {
+        question: 'Can I copy or download the generated TypeScript types?',
+        answer: 'Absolutely. You can copy the code directly to your clipboard or download it as a standard types.ts file.'
+      },
+      {
+        question: 'Is this tool offline-functional?',
+        answer: 'Yes. Once the web application loads, all interface generation logic is cached and runs locally without needing an active internet connection.'
+      }
+    ],
+    relatedTools: ['json-formatter', 'jwt-decoder', 'url-encoder', 'regex-tester', 'uuid-generator']
+  },
+  {
+    id: 'aes-encryption-decryption',
+    slug: 'aes-encryption-decryption',
+    title: 'AES Encryption & Decryption Tool',
+    description: 'Encrypt and decrypt text or JSON securely using AES-GCM directly in your browser. Generate AES keys, IVs, and production-ready encrypted payloads. Everything runs locally.',
+    shortDescription: 'Encrypt and decrypt text or JSON securely using AES-GCM directly in your browser.',
+    seoTitle: 'AES Encryption & Decryption Tool Online | CodeStrategists',
+    seo: {
+      title: 'AES Encryption & Decryption Tool Online | CodeStrategists',
+      description: 'Encrypt and decrypt text or JSON securely using AES-GCM directly in your browser. Generate AES keys, IVs, and production-ready encrypted payloads. Everything runs locally.',
+      canonical: '/tool/aes-encryption-decryption'
+    },
+    category: 'validators',
+    keywords: ['AES Encryption', 'AES Decryption', 'AES-GCM', 'Encrypt JSON', 'Decrypt JSON', 'Encrypt API Payload', 'Web Crypto API', 'Frontend Encryption'],
+    icon: 'Lock',
+    featured: true,
+    popular: true,
+    newlyAdded: true,
+    lastUpdated: '2026-07-24',
+    estimatedReadingTime: '12 min read',
+    introduction: `The Advanced Encryption Standard (AES) is a symmetric-key block cipher established by the U.S. National Institute of Standards and Technology (NIST) in 2001. Developed by Belgian cryptographers Joan Daemen and Vincent Rijmen, it replaced the aging Data Encryption Standard (DES) as the global standard for securing digital information. AES operates on fixed-size blocks of 128 bits, using key lengths of 128, 192, or 256 bits. Because symmetric ciphers use the same key for both encryption and decryption, the security of the encrypted payload hinges entirely on the secrecy and randomness of this key. Under the hood, AES uses a substitution-permutation network structure, executing multiple rounds of mathematical transformations—including SubBytes, ShiftRows, MixColumns, and AddRoundKey—to scramble input bytes into an unreadable state. For developers building client-server communication channels, database persistence layers, or secure client-side storage, AES provides the ultimate balance of security, compatibility, and execution speed.
+
+To encrypt payloads of arbitrary sizes, block ciphers require a mode of operation. Historically, AES-CBC (Cipher Block Chaining) was widely used. In CBC mode, each block of plaintext is XORed with the previous ciphertext block before being encrypted, necessitating an Initialization Vector (IV) for the first block. However, CBC mode only guarantees confidentiality (privacy); it does not provide authenticity or integrity. This omission leaves CBC vulnerable to active tempering, notably padding oracle attacks (such as POODLE or Lucky Thirteen), where an attacker can reconstruct the plaintext by observing error messages or timing differences during decryption. To address this, modern web protocols and developer guidelines strongly recommend AES-GCM (Galois/Counter Mode). AES-GCM is an Authenticated Encryption with Associated Data (AEAD) mode. It combines Counter (CTR) mode encryption with a Galois Message Authentication Code (GMAC). As a result, AES-GCM not only encrypts the payload but also generates a 128-bit authentication tag. During decryption, the system verifies this tag before recovering the plaintext. If even a single bit of the ciphertext or IV has been tampered with, the tag validation fails, and the decryption routine aborts, preventing malicious injections or deciphering attempts.
+
+Implementing AES-GCM in frontend applications is highly efficient thanks to the Web Crypto API, natively exposed via the window.crypto.subtle interface. The Web Crypto API provides high-performance, hardware-accelerated cryptographic primitives directly in the browser, eliminating the need to bundle large, slow, and potentially unmaintained external libraries like CryptoJS or node-forge. Because Web Crypto is sandboxed inside the browser process, operations occur in local volatile memory. This design ensures that keys, IVs, and plaintext parameters are kept secure, running 100% locally on the user's client machine without leaking database secrets or application payloads over the network. However, developers must navigate key characteristics of GCM mode to prevent catastrophic security leaks. The most critical requirement is the uniqueness of the Initialization Vector (IV). For AES-GCM, the recommended IV length is 96 bits (12 bytes). Reusing the same Key and IV combination to encrypt two different payloads breaks GCM security entirely, enabling an attacker to recover both plaintext payloads via simple XOR analysis. To avoid this, developers must generate a cryptographically secure random 12-byte IV for every single encryption operation using window.crypto.getRandomValues.
+
+When building API payload encryption pipelines, developers typically follow a hybrid model or complete symmetric encryption. In payload-level security, the client encrypts JSON objects (such as credentials, identity metadata, or financial details) into an encrypted string (Base64 or Hex) along with a random IV and the resulting authentication tag before posting it to a backend endpoint. The backend server, sharing the same pre-shared secret key, verifies the tag, decrypts the ciphertext, and processes the payload. In this playground, you can test both encryption and decryption flows. You can configure key bit lengths (128, 192, or 256 bits) and choose how keys are inputted. While raw keys require entering hex or base64 bytes matching the chosen size, Passphrase Mode lets you type arbitrary passwords, automatically deriving a CryptoKey by hashing the passphrase using SHA-256 and importing the resulting digest bytes. This tool also generates production-ready code examples for both browser-native Web Crypto and backend Node.js environments, allowing you to copy, paste, and deploy secure AES-GCM configurations instantly.`,
+    features: [
+      '100% Client-Side Privacy: Your data is never uploaded. All calculations occur inside sandboxed browser state variables using the native Web Crypto API.',
+      'AES-GCM Authenticated Encryption: Utilizes Galois/Counter Mode, providing both data confidentiality and cryptographic integrity verification.',
+      'Flexible Key Management: Supports 128-bit, 192-bit, and 256-bit key sizes, with options for raw base64/hex keys or derived passwords.',
+      'Real-Time Size and Timings: View original payload size, final ciphertext size, and execution speed in milliseconds for every operation.',
+      'Interactive Code Generator: Generates ready-to-use boilerplate JavaScript and Node.js decryption/encryption routines matching your settings.'
+    ],
+    howToUse: [
+      'Choose the "Encrypt" or "Decrypt" tab in the left-hand configuration panel.',
+      'Paste your cleartext payload (or JSON object) or your encrypted ciphertext string into the input viewport.',
+      'Select your key size (128-bit, 192-bit, or 256-bit) and input mode (Raw Key bytes vs Passphrase derived using SHA-256).',
+      'Provide your Key and IV values, or click "Generate" to have the tool create cryptographically random parameters for you.',
+      'Click the "Encrypt" or "Decrypt" action button (or use keyboard shortcuts Ctrl+Enter / Ctrl+Shift+Enter) to view output metrics, copy code blocks, or download findings.'
+    ],
+    example: {
+      input: '{"username":"john","email":"john@example.com","role":"admin"}',
+      output: '{"ciphertext":"+Lw1R...","iv":"9xS...","authTag":"m9K..."}',
+      explanation: 'The input JSON object is serialized to a UTF-8 byte stream, encrypted with a 256-bit AES key using Galois/Counter Mode (GCM) and a random 12-byte IV, resulting in a ciphertext payload and a separate 16-byte authentication tag.'
+    },
+    useCases: [
+      'Securing sensitive user-configuration payloads before storing them in local storage or cookies.',
+      'Testing backend API cryptography implementations by matching keys, IVs, and cipher results.',
+      'Encrypting credentials, configuration files, or database secrets client-side for secure transmission.'
+    ],
+    faqs: [
+      {
+        question: 'What is AES-GCM?',
+        answer: 'AES-GCM (Advanced Encryption Standard - Galois/Counter Mode) is an authenticated symmetric block cipher. It encrypts data for privacy while generating a cryptographic tag to ensure the data has not been modified.'
+      },
+      {
+        question: 'Is my data secure on CodeStrategists?',
+        answer: 'Yes. All calculations are performed entirely client-side in your local browser window. No payloads, keys, or initialization vectors are transmitted over the network.'
+      },
+      {
+        question: 'Why does AES-GCM require an IV?',
+        answer: 'The Initialization Vector (IV) ensures that encrypting the same text multiple times with the same key produces entirely different ciphertext outputs, blocking frequency analysis attacks.'
+      },
+      {
+        question: 'What happens if GCM decryption fails?',
+        answer: 'GCM decryption will fail if the ciphertext, key, IV, or authentication tag is incorrect, or has been altered by even a single bit, throwing a tag verification error.'
+      },
+      {
+        question: 'What is the standard tag length for AES-GCM?',
+        answer: 'The recommended tag length is 128 bits (16 bytes), which provides strong security against forgery attacks.'
+      }
+    ],
+    tips: [
+      'Always use a cryptographically secure random number generator to create IVs. Never hardcode or reuse IVs across multiple payloads.',
+      'Store your raw keys in environmental variables and never commit key variables directly to source code control.'
+    ],
+    pitfalls: [
+      'IV Reuse in AES-GCM: If you encrypt two different messages using the same Key and IV under GCM, an attacker can recover the plaintext. This is a catastrophic cryptographic failure.',
+      'Treating Base64 or Hex as Encryption: Encoding is not encryption. Encoded payloads can be decoded instantly by anyone. Always encrypt sensitive payloads before encoding.'
+    ],
+    relatedTools: ['jwt-decoder', 'base64-converter', 'json-formatter', 'password-generator', 'url-encoder']
   }
 ]

@@ -26,6 +26,8 @@ const UUIDGeneratorPro = lazy(() => import('@/features/generators/UUIDGeneratorP
 const PasswordGeneratorPro = lazy(() => import('@/features/generators/PasswordGeneratorPro').then(m => ({ default: m.PasswordGeneratorPro })))
 const RegexTesterPro = lazy(() => import('@/features/utilities/RegexTesterPro').then(m => ({ default: m.RegexTesterPro })))
 const URLEncoderPro = lazy(() => import('@/features/converters/URLEncoderPro').then(m => ({ default: m.URLEncoderPro })))
+const JSONToTypeScriptConverterPro = lazy(() => import('@/features/generators/JSONToTypeScriptConverterPro').then(m => ({ default: m.JSONToTypeScriptConverterPro })))
+const AESEncryptionTool = lazy(() => import('@/features/aes-encryption/pages/AESEncryptionTool').then(m => ({ default: m.AESEncryptionTool })))
 
 const CUSTOM_TOOLS: Record<string, React.ComponentType> = {
   'json-formatter': JSONFormatterPro,
@@ -38,10 +40,13 @@ const CUSTOM_TOOLS: Record<string, React.ComponentType> = {
   'password-generator': PasswordGeneratorPro,
   'regex-tester': RegexTesterPro,
   'url-encoder': URLEncoderPro,
+  'json-to-typescript': JSONToTypeScriptConverterPro,
+  'aes-encryption-decryption': AESEncryptionTool,
 }
 
-export function ToolTemplatePage() {
-  const { slug } = useParams<{ slug: string }>()
+export function ToolTemplatePage({ slug: propSlug }: { slug?: string } = {}) {
+  const { slug: routeSlug } = useParams<{ slug: string }>()
+  const slug = propSlug || routeSlug
   const navigate = useNavigate()
   const { toast } = useToast()
   

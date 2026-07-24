@@ -46,7 +46,7 @@ export function BlogBreadcrumbs({ category, postTitle }: BlogBreadcrumbsProps) {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground font-sans mt-2 mb-6 select-none">
+      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-y-1 gap-x-2 text-xs sm:text-sm text-muted-foreground font-sans mt-2 mb-6 select-none">
         <Link
           to="/"
           className="flex items-center gap-1.5 hover:text-foreground transition-colors duration-150 focus-ring rounded"
